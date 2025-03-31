@@ -1,0 +1,63 @@
+#programsPage{
+  .headBlock{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0;
+  }
+  .filterForm{
+    margin: 1.6rem 0 0;
+    .el-card{
+      margin-bottom: 1.6rem;
+      button.toggleButton{
+        display: block;
+        position: relative;
+        width: 100%;
+        font-size: 1.8rem;
+        background: transparent;
+        border: none;
+        text-align: left;
+        font-weight: 400;
+        padding-right: 2rem;
+        transition: .1s;
+        svg{
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translate(0, -50%);
+          transition: .1s;
+        }
+        &:hover{
+          cursor: pointer;
+          opacity: 0.6;
+        }
+      }
+      .toggleBlock{
+        display: none;
+        position: relative;
+        width: 100%;
+        padding: 1.6rem 0 0;
+        margin: 1.6rem 0 0;
+        border-top: 1px solid #F2F2F4;
+        .el-form-item{
+          margin: 0;
+        }
+      }
+      &.opened{
+        button.toggleButton{
+          color: #1E62E8;
+          svg{
+            transform: translate(0, -50%) rotate(-180deg);
+          }
+        }
+        .toggleBlock{
+          display: block;
+        }
+      }
+    }
+  }
+  .programsList{
+    margin: 2.4rem 0 0;
+  }
+}
