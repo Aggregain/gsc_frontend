@@ -42,6 +42,14 @@ const routes = [
           title: 'Программы',
           activeNav: '2'
         }
+      },
+      {
+        path: 'university/:university_id',
+        name: 'University',
+        component: () => import('../views/cabinet-pages/university/UniversityPage'),
+        meta: {
+          activeNav: '2'
+        }
       }
     ]
   },

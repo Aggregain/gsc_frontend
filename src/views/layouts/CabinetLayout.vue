@@ -23,9 +23,6 @@ export default {
   components:{
     AsideComponent,
     HeaderComponent
-  },
-  created() {
-    console.log('CabinetLayout created');
   }
 };
 </script>

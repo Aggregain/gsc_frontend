@@ -1,0 +1,202 @@
+#universityPage{
+  .stickyHeader{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 0 2.4rem;
+    margin: 0 0 1.6rem;
+    z-index: 3;
+    &:before{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: $custom-white;
+      opacity: 0;
+      transition: .1s;
+      border-bottom: 1px solid $color-main-9;
+    }
+    &.scrolled{
+      &:before{
+        opacity: 1;
+      }
+    }
+  }
+  .headBlock{
+    display: flex;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    gap: 2.4rem;
+    img{
+      height: 7.2rem;
+      width: 7.2rem;
+      display: inline-flex;
+      margin: 0;
+    }
+    p.title{
+      display: inline-flex;
+      margin: 0;
+      flex-direction: column;
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: $color-main-6;
+      span{
+        font-size: 1.8rem;
+        margin: .3rem 0 0;
+      }
+    }
+  }
+  .mainImage{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2.4rem;
+    margin: 0 0 4rem;
+    height: 34rem;
+    img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .el-card{
+    hr{
+      margin: 3.2rem 0;
+    }
+    .contentBlock{
+      display: flex;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      flex-direction: column;
+      p{
+        font-size: 1.6rem;
+        color: $color-main-6;
+      }
+      .infoList{
+        display: flex;
+        width: 100%;
+        margin: 2.4rem 0 0;
+        padding: 0;
+        p{
+          display: inline-flex;
+          flex-grow: 1;
+          flex-direction: column;
+          font-weight: 500;
+          gap: .4rem;
+          span{
+            display: flex;
+            color: $color-grey;
+            font-size: 1.5rem;
+            font-weight: 200;
+          }
+        }
+      }
+      &+.contentBlock{
+        margin-top: 2.4rem;
+      }
+    }
+    &.specialityCard{
+      border-color: $color-main-9;
+      border-width: 2px;
+      margin: 1.2rem 0;
+      .head{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0 0 1.8rem;
+        padding: 0;
+        align-items: center;
+        p.title{
+          margin: 0;
+          font-size: 1.7rem;
+          font-weight: 500;
+        }
+      }
+      .infoGrid{
+        background: $color-main-9;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.2rem 6.4rem;
+        margin: 0;
+        padding: 1.6rem 2.4rem;
+        border-radius: 1.6rem;
+        position: relative;
+        &:before{
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          height: 100%;
+          width: 1px;
+          background: $custom-white;
+          transform: translate(-50%, 0);
+        }
+        &:after{
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          height: 1px;
+          width: calc(100% - 4.8rem);
+          background: $custom-white;
+          transform: translate(-50%, -50%);
+        }
+        p{
+          display: flex;
+          flex-direction: column;
+          gap: .4rem;
+          margin: 0;
+          padding: 0;
+          font-size: 1.6rem;
+          font-weight: 500;
+          span{
+            font-size: 1.5rem;
+            font-weight: 200;
+          }
+        }
+      }
+      .bottom{
+        margin: 1.6rem 0 0;
+        width: 100%;
+      }
+    }
+    &.programTypeCard{
+      background: $color-main-9;
+      margin: 1.2rem 0;
+      .head{
+        display: flex;
+        width: 100%;
+        margin: 0 0 1.2rem;
+        padding: 0;
+        p.title{
+          display: flex;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          font-size: 1.7rem;
+          font-weight: 500;
+        }
+      }
+      .content{
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        flex-direction: column;
+        p{
+          display: flex;
+          width: 100%;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -26,7 +26,7 @@
     </el-col>
     <el-col :span="24">
       <el-alert v-if="formError" type="error" title="Ошибка" :description="formError" show-icon />
-      <el-button class="mini" type="primary" @click="submitForm" :loading="loading">Сохранить</el-button>
+      <el-button class="medium" type="primary" @click="submitForm" :loading="loading">Сохранить</el-button>
     </el-col>
   </el-row>
 </template>
