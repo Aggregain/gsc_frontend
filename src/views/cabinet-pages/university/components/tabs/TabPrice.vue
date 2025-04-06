@@ -10,7 +10,7 @@
         <p>Общий бюджет на обучение за границей включает не только оплату академической программы, но и расходы на проживание, питание, страховку и другие нужды. Ниже представлена примерная стоимость:</p>
       </div>
       <div class="contentBlock">
-        <el-table :data="tableData" style="width: 100%">
+        <el-table class="greyTable" :data="tableData">
           <el-table-column prop="name" label="Этап" />
           <el-table-column prop="label" label="Крайний срок" />
         </el-table>

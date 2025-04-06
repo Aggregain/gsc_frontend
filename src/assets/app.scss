@@ -447,6 +447,17 @@ h2,h3,h4{
       .emptyBlock{
         padding-top: 5rem;
         padding-bottom: 5rem;
+        img{
+          display: block;
+          margin: 0 auto 2.4rem;
+        }
+        p{
+          display: block;
+          text-align: center;
+          margin: 0;
+          font-size: 1.8rem;
+          font-weight: 400;
+        }
       }
     }
   }
@@ -536,6 +547,12 @@ h2,h3,h4{
     border: none;
     margin: 2.4rem 0;
     background: $color-main-9;
+    &.mini{
+      margin: 1.6rem 0;
+    }
+    &.big{
+      margin: 3.2rem 0;
+    }
   }
 }
 
@@ -568,6 +585,41 @@ h2,h3,h4{
   }
   .el-tabs__content{
     padding-top: 3.2rem;
+  }
+  &.secondStyle{
+    .el-tabs__header{
+      .el-tabs__nav-wrap{
+        &:after{
+          display: none;
+        }
+      }
+      .el-tabs__item{
+        height: auto;
+        padding: 1rem 1.6rem!important;
+        line-height: normal;
+        font-size: 1.6rem;
+        border: 1px solid $color-main-9;
+        transition: .2s;
+        font-weight: 200;
+        border-radius: 4rem;
+        background: $color-main-9;
+        &.is-active{
+          border: 1px solid $color-main-10;
+          font-weight: 300;
+          color: $color-main-2;
+          background: $color-main-10;
+          span{
+            font-weight: 300;
+          }
+        }
+        &:hover{
+          color: #999;
+        }
+        &+.el-tabs__item{
+          margin-left: .8rem;
+        }
+      }
+    }
   }
 }
 
@@ -805,6 +857,79 @@ h2,h3,h4{
 
 .el-loading-mask{
   border-radius: 2.4rem;
+}
+
+.el-table{
+  .el-table__header-wrapper{
+    border-radius: 1.6rem 1.6rem 0 0;
+    thead{
+      background: $color-main-2;
+      tr{
+        background: $color-main-2;
+        th{
+          background: $color-main-2;
+          color: $custom-white;
+          font-size: 1.7rem;
+          padding: 1.6rem 0;
+          .cell{
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+  .el-table__body-wrapper{
+    border-radius: 0 0 1.6rem 1.6rem;
+    tbody{
+      tr{
+        td{
+          font-size: 1.6rem;
+          padding: 1.6rem 0;
+          color: $color-main-6;
+          .cell{
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+  .cell{
+    padding: 0 2.4rem;
+  }
+  &.greyTable{
+    .el-table__inner-wrapper{
+      &:before{
+        background: transparent;
+      }
+    }
+    .el-table__header-wrapper{
+      thead {
+        background: $color-main-9;
+        tr {
+          background: $color-main-9;
+          th {
+            background: $color-main-9;
+            color: $color-main-6;
+          }
+        }
+      }
+    }
+    .el-table__body-wrapper{
+      border: 1px solid $color-main-9;
+      max-width: calc(100% - 2px);
+      box-shadow: none;
+      tbody{
+        border-bottom: none;
+        tr{
+          &:last-child{
+            td{
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1400px) {

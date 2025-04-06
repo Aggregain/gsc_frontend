@@ -7,7 +7,7 @@
         <p>Дедлайны</p>
       </div>
       <div class="contentBlock">
-        <el-table :data="tableData" style="width: 100%">
+        <el-table class="greyTable" :data="tableData">
           <el-table-column prop="name" label="Этап" />
           <el-table-column prop="label" label="Крайний срок" />
         </el-table>

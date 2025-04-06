@@ -67,9 +67,6 @@
     }
   }
   .el-card{
-    hr{
-      margin: 3.2rem 0;
-    }
     .contentBlock{
       display: flex;
       width: 100%;
@@ -195,6 +192,31 @@
           display: flex;
           width: 100%;
           font-size: 1.5rem;
+        }
+      }
+    }
+    .el-tabs.secondStyle{
+      margin-top: 1.6rem;
+    }
+  }
+  .stickyRightBlock{
+    position: sticky;
+    top: 11rem;
+    left: 0;
+    .headLabel{
+      margin: 0;
+      p{
+        font-size: 1.5rem;
+        font-weight: 200;
+        flex-direction: column;
+        span{
+          display: flex;
+          margin: .4rem 0 0;
+          font-size: 1.6rem;
+          font-weight: 500;
+          &.blue{
+            color: $color-main-2;
+          }
         }
       }
     }
