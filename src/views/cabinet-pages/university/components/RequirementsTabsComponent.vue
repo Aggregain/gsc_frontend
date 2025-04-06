@@ -7,19 +7,19 @@
 </template>
 
 <script>
-import TabDeadlines from "./tabs/TabDeadlines"
+import RequirementItemTab from "./tabs/RequirementItemTab"
 
 export default {
   components:{
-    TabDeadlines,
+    RequirementItemTab,
   },
   data:()=>({
     activeTab: 'tab1',
     tabs: [
-      { name: 'tab1', label: '🎓 Бакалавриат', component: 'TabDeadlines' },
-      { name: 'tab2', label: '📘 Магистратура', component: 'TabDeadlines' },
-      { name: 'tab3', label: '🔬 Докторантура / PhD', component: 'TabDeadlines' },
-      { name: 'tab4', label: '🌍 Подготовительные курсы', component: 'TabDeadlines' }
+      { name: 'tab1', label: '🎓 Бакалавриат', component: 'RequirementItemTab' },
+      { name: 'tab2', label: '📘 Магистратура', component: 'RequirementItemTab' },
+      { name: 'tab3', label: '🔬 Докторантура / PhD', component: 'RequirementItemTab' },
+      { name: 'tab4', label: '🌍 Подготовительные курсы', component: 'RequirementItemTab' }
     ]
   }),
   methods: {
