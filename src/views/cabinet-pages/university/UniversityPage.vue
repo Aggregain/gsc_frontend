@@ -8,6 +8,9 @@
 
       <TabsComponent />
     </el-col>
+    <el-col :span="6">
+      <RightBlock />
+    </el-col>
   </el-row>
 </template>
 
@@ -15,11 +18,13 @@
 import {mapGetters, mapActions} from "vuex";
 import HeadBlock from "./components/HeadBlock"
 import TabsComponent from "./components/TabsComponent"
+import RightBlock from "./components/RightBlock"
 
 export default {
   components:{
     HeadBlock,
-    TabsComponent
+    TabsComponent,
+    RightBlock
   },
   data:()=>({
   }),

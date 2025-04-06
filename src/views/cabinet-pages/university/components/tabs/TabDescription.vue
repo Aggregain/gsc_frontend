@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <hr>
+      <hr class="big">
 
       <div class="headLabel">
         <div class="defaultIcon"><Icon icon="fluent:building-bank-48-filled"></Icon></div>
@@ -29,7 +29,7 @@
         </p>
       </div>
 
-      <hr>
+      <hr class="big">
 
       <div class="headLabel">
         <div class="defaultIcon"><Icon icon="tabler:clipboard-list-filled"></Icon></div>

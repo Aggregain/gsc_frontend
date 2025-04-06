@@ -11,14 +11,19 @@
           Ниже приведён список документов, необходимых для подачи заявки на этот уровень обучения
         </p>
       </div>
+      <div class="contentBlock">
+        <RequirementsTabsComponent />
+      </div>
 
     </el-col>
   </el-row>
 </template>
 <script>
+import RequirementsTabsComponent from "../RequirementsTabsComponent";
 
 export default {
   components:{
+    RequirementsTabsComponent
   }
 }
 </script>

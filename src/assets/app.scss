@@ -536,6 +536,12 @@ h2,h3,h4{
     border: none;
     margin: 2.4rem 0;
     background: $color-main-9;
+    &.mini{
+      margin: 1.6rem 0;
+    }
+    &.big{
+      margin: 3.2rem 0;
+    }
   }
 }
 
@@ -805,6 +811,78 @@ h2,h3,h4{
 
 .el-loading-mask{
   border-radius: 2.4rem;
+}
+
+.el-table{
+  .el-table__header-wrapper{
+    border-radius: 1.6rem 1.6rem 0 0;
+    thead{
+      background: $color-main-2;
+      tr{
+        background: $color-main-2;
+        th{
+          background: $color-main-2;
+          color: $custom-white;
+          font-size: 1.7rem;
+          padding: 1.6rem 0;
+          .cell{
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+  .el-table__body-wrapper{
+    border-radius: 0 0 1.6rem 1.6rem;
+    tbody{
+      tr{
+        td{
+          font-size: 1.6rem;
+          padding: 1.6rem 0;
+          color: $color-main-6;
+          .cell{
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+  .cell{
+    padding: 0 2.4rem;
+  }
+  &.greyTable{
+    .el-table__inner-wrapper{
+      &:before{
+        background: transparent;
+      }
+    }
+    .el-table__header-wrapper{
+      thead {
+        background: $color-main-9;
+        tr {
+          background: $color-main-9;
+          th {
+            background: $color-main-9;
+            color: $color-main-6;
+          }
+        }
+      }
+    }
+    .el-table__body-wrapper{
+      border: 1px solid $color-main-9;
+      box-shadow: none;
+      tbody{
+        border-bottom: none;
+        tr{
+          &:last-child{
+            td{
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1400px) {
