@@ -14,9 +14,15 @@
         <CloseIcon @click="close" class="closeButton" />
       </template>
       <div class="drawerInfo text-center">
-        <div class="emptyBlock">
+        <div class="emptyBlock" v-if="false">
           <img src="@/assets/img/bell.png" alt="">
           <p>Нет новых уведомлений</p>
+        </div>
+        <div class="notificationsList">
+          <template v-for="(item, index) in list" :key="item.date">
+            <NotificationItem :notification_data="item" />
+            <hr v-if="index < list.length - 1" />
+          </template>
         </div>
       </div>
     </el-drawer>
@@ -26,15 +32,31 @@
 <script>
 import NotificationIcon from "@/components/icons/NotificationIcon";
 import CloseIcon from "@/components/icons/CloseIcon";
+import NotificationItem from "@/components/NotificationItem";
 
 export default {
   components:{
     NotificationIcon,
-    CloseIcon
+    CloseIcon,
+    NotificationItem
   },
   data() {
     return {
-      drawer: false
+      drawer: false,
+      list: [
+        {
+          date: '02.02.2025',
+          type: 'success',
+          id: 100,
+          comment: false
+        },
+        {
+          date: '28.01.2025',
+          type: 'edit',
+          id: 123,
+          comment: 'Пожалуйста, корректно укажите название университета в мотивационном письме. Если потребуется помощь, дайте знать!'
+        }
+      ]
     };
   }
 };

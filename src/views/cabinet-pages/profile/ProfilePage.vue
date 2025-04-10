@@ -25,7 +25,6 @@
       </el-card>
     </el-col>
     <el-col :span="24">
-      <el-alert v-if="formError" type="error" title="Ошибка" :description="formError" show-icon />
       <el-button class="medium" type="primary" @click="submitForm" :loading="loading">Сохранить</el-button>
     </el-col>
   </el-row>
@@ -69,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("UserModule", ["userForm", "formError", "isLoading"]),
+    ...mapGetters("UserModule", ["userForm", "isLoading"]),
     loading() {
       return this.isLoading;
     }
