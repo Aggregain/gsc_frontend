@@ -50,7 +50,16 @@ const routes = [
         meta: {
           activeNav: '2'
         }
-      }
+      },
+      {
+        path: 'new-application',
+        name: 'NewApplication',
+        component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
+        meta: {
+          title: 'Подача заявки',
+          activeNav: '4'
+        }
+      },
     ]
   },
   {

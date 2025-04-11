@@ -21,15 +21,10 @@ import TabsComponent from "./components/TabsComponent"
 import RightBlock from "./components/RightBlock"
 
 export default {
-  components:{
+  components: {
     HeadBlock,
     TabsComponent,
     RightBlock
-  },
-  data:()=>({
-  }),
-  methods:{
-    ...mapActions("UniversityModule", ["GET_UNIVERSITY_INFO"]),
   },
   computed: {
     universityId() {
@@ -37,8 +32,20 @@ export default {
     },
     ...mapGetters("UniversityModule", ["universityInfo", "isLoading"])
   },
+  methods: {
+    ...mapActions("UniversityModule", ["GET_UNIVERSITY_INFO"]),
+    fetchUniversityInfo(id) {
+      this.GET_UNIVERSITY_INFO(id);
+    }
+  },
   created() {
-    // this.GET_UNIVERSITY_INFO(this.universityId);
+    this.fetchUniversityInfo(this.universityId);
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.params.university_id !== from.params.university_id) {
+      this.fetchUniversityInfo(to.params.university_id);
+    }
+    next();
   }
-}
+};
 </script>
