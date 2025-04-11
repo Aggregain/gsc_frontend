@@ -17,7 +17,15 @@ const routes = [
       {
         path: '',
         name: 'HomePage',
-        component: () => import('../views/default-pages/HomeView')
+        component: () => import('../views/default-pages/HomePage')
+      },
+      {
+        path: 'login',
+        name: 'LoginPage',
+        component: () => import('../views/default-pages/LoginPage'),
+        meta: {
+          footerHidden: true
+        }
       },
     ]
   },
@@ -57,6 +65,15 @@ const routes = [
         component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
         meta: {
           title: 'Подача заявки',
+          activeNav: '4'
+        }
+      },
+      {
+        path: 'application/:application_id',
+        name: 'ViewApplication',
+        component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
+        meta: {
+          title: 'Заявка №',
           activeNav: '4'
         }
       },

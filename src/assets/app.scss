@@ -46,6 +46,13 @@ body{
 .el-container{
   padding: 0 2.4rem;
 }
+
+.default-container{
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
 .el-empty {
   height: 100%;
 }
@@ -119,6 +126,10 @@ hr{
   }
 }
 
+.maxImage{
+  max-width: 100%;
+}
+
 .el-header{
   padding: 2.4rem 4rem 2.4rem 2.4rem;
   background: $custom-white;
@@ -180,6 +191,11 @@ hr{
       p.name{
         color: $color-main-2;
       }
+    }
+  }
+  .logo{
+    img{
+      height: 5.6rem;
     }
   }
 }
@@ -289,6 +305,10 @@ hr{
       }
     }
   }
+  &.medium-second{
+    height: 4.8rem;
+    min-height: 4.8rem;
+  }
   &.mini{
     height: 4.4rem;
     min-height: 4.4rem;
@@ -345,6 +365,10 @@ hr{
         max-width: 0;
         opacity: 0;
       }
+    }
+    &.mini{
+      width: 4.8rem;
+      height: 4.8rem;
     }
   }
   &.el-button--primary{
@@ -616,11 +640,13 @@ hr{
       border-bottom: 1px solid $color-main-9;
       align-items: center;
       gap: 2rem;
+      justify-content: space-around;
       img{
         height: 6.4rem;
         width: 6.4rem;
         display: inline-flex;
         margin: 0;
+        flex-shrink: 0;
       }
       p.title{
         display: inline-flex;
@@ -628,11 +654,15 @@ hr{
         flex-direction: column;
         font-size: 1.8rem;
         font-weight: 500;
+        flex-grow: 1;
         span{
           color: $color-grey;
           font-size: 1.6rem;
           font-weight: 300;
         }
+      }
+      .el-button{
+        flex-shrink: 0;
       }
     }
     .body{

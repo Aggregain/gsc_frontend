@@ -9,6 +9,7 @@
               {{ item.name }}
               <span>США, Юта</span>
             </p>
+            <el-button type="info" class="onlyIcon mini"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
           </div>
           <div class="body">
             <p><span class="label">Язык обучения:</span> <span>Английский</span></p>
@@ -24,9 +25,12 @@
 
 <script>
 import {mapGetters} from "vuex";
+import HeartIcon from "@/components/icons/HeartIcon";
 
 export default {
-  components: {},
+  components: {
+    HeartIcon
+  },
   computed: {
     ...mapGetters("WishlistModule", ["wishlistData"])
   }

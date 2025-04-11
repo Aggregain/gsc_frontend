@@ -1,6 +1,6 @@
 <template>
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" :stroke="color" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" :fill="fill" :stroke="color" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </template>
 
@@ -10,6 +10,10 @@ export default {
     color:{
       type: String,
       default: '#8E9DAF'
+    },
+    fill:{
+      type: String,
+      default: 'none'
     }
   }
 }

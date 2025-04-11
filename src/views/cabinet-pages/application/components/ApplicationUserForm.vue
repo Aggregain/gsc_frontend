@@ -13,44 +13,44 @@
           <p class="custom-label">
             IELTS <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.ielts" name="ielts" />
-          <UploadDocumentInput v-model="userForm.ielts_doc" name="ielts_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.ielts" name="ielts" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.ielts_doc" name="ielts_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             SAT <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.sat" name="sat" />
-          <UploadDocumentInput v-model="userForm.sat_doc" name="sat_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.sat" name="sat" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.sat_doc" name="sat_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             GMAT <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.gmat" name="gmat" />
-          <UploadDocumentInput v-model="userForm.gmat_doc" name="gmat_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gmat" name="gmat" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.gmat_doc" name="gmat_doc" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="8">
           <p class="custom-label">
             TOEFL <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.toefl" name="toefl" />
-          <UploadDocumentInput v-model="userForm.toefl_doc" name="toefl_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.toefl" name="toefl" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.toefl_doc" name="toefl_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             GRE <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.gre" name="gre" />
-          <UploadDocumentInput v-model="userForm.gre_doc" name="gre_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gre" name="gre" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.gre_doc" name="gre_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             DUOLINGO <span>{{ default_descr }}</span>
           </p>
-          <DefaultInput placeholder="Введите балл" v-model="userForm.duolingo" name="duolingo" />
-          <UploadDocumentInput v-model="userForm.duolingo_doc" name="duolingo_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.duolingo" name="duolingo" />
+          <UploadDocumentInput :readonly="readonly" v-model="userForm.duolingo_doc" name="duolingo_doc" />
         </el-col>
       </el-row>
     </el-form>
@@ -66,6 +66,9 @@ export default {
   components: {
     DefaultInput,
     UploadDocumentInput
+  },
+  props:{
+    readonly: Boolean
   },
   data:()=>({
     rules: {},

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {ON_GOOGLE_OAUTH, SET_REFRESH_TOKEN, SET_TOKEN, SET_USER_INFO} from "@/store/modules/AuthModule";
+import {ON_GOOGLE_OAUTH, SET_REFRESH_TOKEN, SET_TOKEN, SET_USER_INFO} from "@/store/modules/Old-AuthModule";
 
 export default {
   props:{

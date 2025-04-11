@@ -7,7 +7,7 @@
       <el-main id="main-block">
         <router-view></router-view>
       </el-main>
-      <el-footer>
+      <el-footer v-if="!footerHidden">
         <FooterComponent />
       </el-footer>
     </el-container>
@@ -23,6 +23,11 @@ export default {
   components:{
     HeaderComponent,
     FooterComponent
-  }
+  },
+  computed: {
+    footerHidden() {
+      return this.$route.meta.footerHidden;
+    },
+  },
 };
 </script>

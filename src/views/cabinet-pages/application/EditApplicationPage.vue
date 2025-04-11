@@ -4,8 +4,8 @@
       <h2 class="withMB">Чеклист по документам для студента</h2>
     </el-col>
     <el-col :span="24">
-      <ApplicationDocumentsForm ref="documentsFormRef" />
-      <ApplicationUserForm ref="userFormRef" />
+      <ApplicationDocumentsForm :readonly="readonly" ref="documentsFormRef" />
+      <ApplicationUserForm :readonly="readonly" ref="userFormRef" />
     </el-col>
     <el-col :span="24">
       <el-button class="medium" type="primary" @click="submitForms" :loading="isSubmitDisabled">Отправить</el-button>
@@ -24,8 +24,19 @@ export default {
     ApplicationUserForm
   },
   data:()=>({
-    rules: {}
+    rules: {},
+    readonly: true,
   }),
+  computed: {
+    ...mapGetters('ApplicationModule', { applicationIsReady: 'isReady' }),
+    ...mapGetters('UserModule', { userIsReady: 'isReady' }),
+    isSubmitDisabled() {
+      return !(this.applicationIsReady && this.userIsReady);
+    },
+    applicationId() {
+      return this.$route.params.application_id;
+    },
+  },
   methods: {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO", "UPDATE_APPLICATION_INFO"]),
     ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO"]),
@@ -49,18 +60,24 @@ export default {
       } catch (err) {
         console.error("Ошибка при отправке:", err);
       }
+    },
+    getApplicationInfo() {
+      this.GET_APPLICATION_INFO(this.applicationId);
     }
   },
-  computed: {
-    ...mapGetters('ApplicationModule', { applicationIsReady: 'isReady' }),
-    ...mapGetters('UserModule', { userIsReady: 'isReady' }),
-    isSubmitDisabled() {
-      return !(this.applicationIsReady && this.userIsReady);
-    },
-  },
   created() {
-    // this.GET_APPLICATION_INFO();
     // this.GET_USER_INFO();
+    if (this.applicationId) {
+      // this.getApplicationInfo();
+    }else{
+      this.readonly = false;
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.params.application_id !== from.params.application_id) {
+      // this.getApplicationInfo();
+    }
+    next();
   }
 }
 </script>

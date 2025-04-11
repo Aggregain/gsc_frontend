@@ -34,16 +34,16 @@ export default {
   },
   methods: {
     ...mapActions("UniversityModule", ["GET_UNIVERSITY_INFO"]),
-    fetchUniversityInfo(id) {
-      this.GET_UNIVERSITY_INFO(id);
+    getUniversityInfo() {
+      this.GET_UNIVERSITY_INFO(this.universityId);
     }
   },
   created() {
-    this.fetchUniversityInfo(this.universityId);
+    this.getUniversityInfo();
   },
   beforeRouteUpdate(to, from, next) {
     if (to.params.university_id !== from.params.university_id) {
-      this.fetchUniversityInfo(to.params.university_id);
+      this.getUniversityInfo();
     }
     next();
   }
