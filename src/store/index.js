@@ -6,6 +6,7 @@ import UserModule from './modules/UserModule'
 import ProgramModule from './modules/ProgramModule'
 import UniversityModule from './modules/UniversityModule'
 import ApplicationModule from './modules/ApplicationModule'
+import WishlistModule from './modules/WishlistModule'
 
 export default createStore({
   modules: {
@@ -13,6 +14,7 @@ export default createStore({
       UserModule,
       ProgramModule,
       UniversityModule,
-      ApplicationModule
+      ApplicationModule,
+      WishlistModule
   }
 })

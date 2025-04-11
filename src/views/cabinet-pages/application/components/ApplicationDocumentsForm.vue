@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="never" v-loading="this.loading">
+  <el-card shadow="never" v-loading="isLoading">
     <el-form ref="formRef" :model="applicationForm" :rules="rules" validateOnRuleChange>
       <el-row :gutter="24">
         <el-col :span="24">
@@ -8,9 +8,36 @@
             <p>Документы</p>
           </div>
         </el-col>
-        <el-col :span="24">
-          <UploadDocumentInput v-model="applicationForm.document1" label="Фото профиля" name="avatar" />
+
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document1" label="Транскрипт" descr="Транскрипт должен быть нотариально заверен" name="document1" />
         </el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document2" label="Мотивационное письмо" name="document2" />
+        </el-col>
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document3" label="Essay" name="document3" />
+        </el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document4" label="Personal Statement" name="document4" />
+        </el-col>
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document5" label="Резюме" name="document5" />
+        </el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document6" label="Портфолио" name="document6" />
+        </el-col>
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document7" label="Скан Паспорта" descr="Загрузите файл в формате PDF (.pdf)" name="document7" />
+        </el-col>
+        <el-col :span="12">
+          <UploadDocumentInput v-model="applicationForm.document8" label="Оплата депозита за обучение (Инвойс)" name="document8" />
+        </el-col>
+
       </el-row>
     </el-form>
   </el-card>
@@ -29,9 +56,6 @@ export default {
   }),
   computed: {
     ...mapGetters("ApplicationModule", ["applicationForm", "isLoading"]),
-    loading() {
-      return this.isLoading;
-    }
   }
 };
 </script>

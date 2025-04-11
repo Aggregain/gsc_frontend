@@ -1,58 +1,64 @@
 <template>
-  <el-form-item :label="label" :prop="name">
-    {{ label }}
+  <el-form-item :prop="name">
+    <p v-if="label" class="custom-label">{{ label }}<span>{{ descr }}</span></p>
     <!-- ======== Readonly Mode ======== -->
     <template v-if="readonly">
-      <div v-if="modelValue">
-        <a
-            :href="fileDownloadUrl"
-            target="_blank"
-            class="file-link"
-            rel="noopener noreferrer"
-        >
-          {{ displayFileName }}
-        </a>
-      </div>
+      <button
+          v-if="modelValue"
+          class="upload-button greyStyle"
+          type="button"
+          @click="alert(fileDownloadUrl)"
+      >
+        <Icon icon="akar-icons:file" color="#8E9DAF" /><span>{{ displayFileName }}</span><DownloadIcon />
+      </button>
       <div v-else class="text-muted">Файл не был загружен</div>
     </template>
 
     <!-- ======== Editable Mode ======== -->
     <template v-else>
-      <div v-if="modelValue" class="file-preview">
-        <span>{{ displayFileName }}</span>
-        <el-button
-            type="danger"
-            text
-            size="small"
-            icon="el-icon-delete"
-            @click="removeFile"
-        >
-          Удалить
-        </el-button>
-      </div>
+      <button
+          v-if="modelValue"
+          class="upload-button greyStyle"
+          type="button"
+          @click="removeFile"
+      >
+        <Icon icon="akar-icons:file" color="#8E9DAF" /><span>{{ displayFileName }}</span><TrashIcon />
+      </button>
 
       <el-upload
           v-else
-          class="upload-demo"
           :auto-upload="false"
           :show-file-list="false"
           :on-change="handleFileChange"
       >
-        <el-button type="primary" size="small" icon="el-icon-upload">
-          Загрузить файл
-        </el-button>
+        <button
+            class="upload-button"
+            type="button"
+        >
+          <Icon icon="tabler:upload" color="#FDFDFD" class="uploadStyle" /><span>Загрузить</span>
+        </button>
       </el-upload>
     </template>
   </el-form-item>
 </template>
 
 <script>
+import TrashIcon from "@/components/icons/TrashIcon.vue";
+import DownloadIcon from "@/components/icons/DownloadIcon.vue";
+
 export default {
   name: "UploadDocumentInput",
-
+  components:{
+    TrashIcon,
+    DownloadIcon
+  },
   props: {
     label: String,
     name: String,
+    descr: {
+      type: String,
+      default: "Загрузите файл в формате Word (.docx) или PDF (.pdf)"
+    },
     modelValue: {
       type: [File, Object, null],
       default: null,

@@ -2,6 +2,7 @@
 @import "styles/fonts";
 @import "styles/programs";
 @import "styles/university";
+@import "styles/wishlist";
 *{
   margin: 0;
   padding: 0;
@@ -431,6 +432,58 @@ hr{
     }
   }
 }
+.upload-button{
+  height: 4.8rem;
+  min-height: 4.8rem;
+  padding: 0 1.6rem;
+  border-radius: 1.2rem;
+  background: $color-main-10;
+  color: $color-main-2;
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-main-10;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  &:hover{
+    cursor: pointer;
+    opacity: 0.6;
+  }
+  svg{
+    &.uploadStyle{
+      background: $color-main-2;
+      border-radius: .8rem;
+      padding: .3rem .4rem .5rem;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+  span{
+    display: inline-flex;
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  &.greyStyle{
+    background: $color-main-9;
+    border-color: $color-main-9;
+    font-size: 1.6rem;
+    font-weight: 300;
+    min-width: 35rem;
+    max-width: 100%;
+    justify-content: space-between;
+    span{
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: $color-main-6;
+      flex-grow: 1;
+      max-width: calc(100% - 6rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
 
 .el-drawer{
   background: $custom-white;
@@ -550,6 +603,7 @@ hr{
   border-radius: 2.4rem;
   margin: 0 0 2.4rem;
   transition: .1s;
+  width: 100%;
   .el-card__body{
     padding: 2.4rem;
   }
@@ -767,6 +821,24 @@ hr{
   line-height: 0;
 }
 
+.custom-label{
+  display: flex;
+  color: $color-main-6;
+  font-size: 1.8rem;
+  font-weight: 500;
+  gap: .4rem;
+  width: 100%;
+  flex-direction: column;
+  margin: 0 0 2rem;
+  padding: 0;
+  span{
+    display: flex;
+    color: $color-grey;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
+
 .el-form-item{
   flex-direction: column;
   justify-content: flex-start;
@@ -786,6 +858,13 @@ hr{
     display: flex;
     line-height: 1.3;
     width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    .text-muted{
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
     .el-select{
       width: 100%;
     }
@@ -928,6 +1007,7 @@ hr{
 }
 
 .el-table{
+  background: transparent;
   .el-table__header-wrapper{
     border-radius: 1.6rem 1.6rem 0 0;
     thead{
@@ -941,6 +1021,7 @@ hr{
           padding: 1.6rem 0;
           .cell{
             font-weight: 400;
+            white-space: nowrap;
           }
         }
       }
@@ -956,6 +1037,24 @@ hr{
           color: $color-main-6;
           .cell{
             font-weight: 300;
+            p{
+              font-weight: 300;
+              display: flex;
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              flex-direction: column;
+              gap: .4rem;
+              word-break: normal;
+              span{
+                color: $color-grey;
+                font-size: 1.4rem;
+              }
+              &.statusText{
+                gap: 0;
+                padding-left: 1.8rem;
+              }
+            }
           }
         }
       }
@@ -995,6 +1094,125 @@ hr{
             }
           }
         }
+      }
+    }
+  }
+}
+
+.el-dropdown{
+  height: 2.4rem;
+  width: 2.4rem;
+  &:hover{
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+.el-popper{
+  background: $custom-white;
+  border-radius: 1.2rem;
+  border: 1px solid transparent;
+  margin-left: .5rem!important;
+  .el-popper__arrow{
+    display: none;
+  }
+  &.is-light{
+    background: $custom-white;
+    border: 1px solid #e1e1e1;
+  }
+  .el-dropdown-menu{
+    padding: .5rem 0;
+    border: 1px solid transparent;
+    border-radius: 1.2rem;
+    .el-dropdown-menu__item{
+      padding: .9rem 1.6rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: $color-main-6;
+      background: transparent;
+      &:hover{
+        color: $color-main-2;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.statusText{
+  color: $color-grey;
+  position: relative;
+  display: flex;
+  padding-left: 1.8rem;
+  &:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: $color-grey;
+    display: inline-flex;
+  }
+  &.pending{
+    color: $color-grey;
+    &:before{ background: $color-grey; }
+  }
+  &.success{
+    color: $color-main-3;
+    &:before{ background: $color-main-3; }
+  }
+  &.edit{
+    color: #FF7E07;
+    &:before{ background: #FF7E07; }
+  }
+  &.reject{
+    color: $color-main-1;
+    &:before{ background: $color-main-1; }
+  }
+  &.university{
+    color: $color-main-2;
+    &:before{ background: $color-main-2; }
+  }
+}
+
+.defaultEmptyBlock{
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  .el-card{
+    .el-card__body{
+      display: flex;
+      padding: 8rem 2.4rem;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      img{
+        max-width: 100%;
+        width: 10rem;
+      }
+      p{
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        color: $color-main-6;
+        font-size: 2.2rem;
+        font-weight: 500;
+        padding: 0;
+        margin: 2.4rem 0 0;
+        justify-content: center;
+        align-items: center;
+        span{
+          display: flex;
+          margin: 0;
+          padding: 0;
+          font-size: 1.6rem;
+        }
+      }
+      .el-button{
+        margin: 2.4rem auto 0;
       }
     }
   }

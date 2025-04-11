@@ -60,6 +60,24 @@ const routes = [
           activeNav: '4'
         }
       },
+      {
+        path: 'applications',
+        name: 'Applications',
+        component: () => import('../views/cabinet-pages/application/ApplicationsPage'),
+        meta: {
+          title: 'Мои заявки',
+          activeNav: '4'
+        }
+      },
+      {
+        path: 'wishlist',
+        name: 'Wishlist',
+        component: () => import('../views/cabinet-pages/wishlist/WishlistPage'),
+        meta: {
+          title: 'Мои избранные',
+          activeNav: '3'
+        }
+      },
     ]
   },
   {
