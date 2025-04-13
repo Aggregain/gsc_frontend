@@ -3,6 +3,8 @@
 @import "styles/programs";
 @import "styles/university";
 @import "styles/wishlist";
+@import "styles/landing";
+@import "styles/login";
 *{
   margin: 0;
   padding: 0;
@@ -51,6 +53,10 @@ body{
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
+  &.height100{
+    min-height: 100%;
+    align-content: center;
+  }
 }
 
 .el-empty {

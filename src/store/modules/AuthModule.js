@@ -48,6 +48,7 @@ const actions = {
 };
 
 const getters = {
+    authForm: (state) => state.authForm,
     formError: (state) => state.formError,
     isLoading: (state) => state.loading
 };

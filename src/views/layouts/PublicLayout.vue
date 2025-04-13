@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout">
+  <div class="public-layout">
     <el-container id="main-container">
       <el-header>
         <HeaderComponent />

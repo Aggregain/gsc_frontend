@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout">
+  <div class="cabinet-layout">
     <el-container id="main-container">
       <AsideComponent />
       <el-container id="inner-container">

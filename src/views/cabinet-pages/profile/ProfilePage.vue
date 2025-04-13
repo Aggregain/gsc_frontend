@@ -25,7 +25,7 @@
       </el-card>
     </el-col>
     <el-col :span="24">
-      <el-button class="medium" type="primary" @click="submitForm" :loading="loading">Сохранить</el-button>
+      <el-button class="medium" type="primary" @click="submitForm" :loading="isLoading">Сохранить</el-button>
     </el-col>
   </el-row>
 </template>
@@ -69,9 +69,6 @@ export default {
   },
   computed: {
     ...mapGetters("UserModule", ["userForm", "isLoading"]),
-    loading() {
-      return this.isLoading;
-    }
   },
   created() {
     // this.GET_USER_INFO();
