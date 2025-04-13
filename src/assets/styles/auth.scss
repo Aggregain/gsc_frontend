@@ -1,0 +1,74 @@
+.authPage{
+  .el-button{
+    &.bigFS{
+      span{
+        font-size: 2rem;
+        font-weight: 500;
+        span{
+          font-size: 2rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  h1{
+    margin-bottom: 4rem;
+  }
+  .el-form{
+    .el-form-item{
+      margin-bottom: 1.6rem;
+    }
+    .el-button{
+      margin: 3.4rem 0 0;
+      &+.el-button{
+        margin: 1.6rem 0 0;
+      }
+    }
+    .supportText{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      margin: 1.6rem 0 0;
+      gap: 1.2rem;
+      color: $color-grey;
+      font-size: 1.8rem;
+      a{
+        color: $color-main-2;
+        font-size: 1.8rem;
+        font-weight: 400;
+      }
+    }
+  }
+  .imageBlock{
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4rem;
+    border: 1px solid $color-main-2;
+    img.maxImage{
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+    img.stickerImage{
+      position: absolute;
+      top: 0;
+      left: 3.2rem;
+      margin: 0;
+      max-width: 30%;
+    }
+    p{
+      display: block;
+      margin: 0;
+      padding: 2.7rem 1.6rem;
+      text-align: center;
+      font-size: 2rem;
+      color: $color-main-2;
+      font-weight: 600;
+      background: $color-main-10;
+    }
+  }
+}

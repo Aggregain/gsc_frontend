@@ -27,6 +27,14 @@ const routes = [
           footerHidden: true
         }
       },
+      {
+        path: 'register',
+        name: 'RegisterPage',
+        component: () => import('../views/default-pages/RegisterPage'),
+        meta: {
+          footerHidden: true
+        }
+      },
     ]
   },
   {

@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="label" :prop="name">
-    <el-input v-model="computedValue" :placeholder="placeholder" :disabled="readonly" />
+    <el-input v-model="computedValue" :placeholder="placeholder" :disabled="readonly" :type="name==='password'?'password':'text'" />
   </el-form-item>
 </template>
 
