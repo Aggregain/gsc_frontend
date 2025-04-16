@@ -20,7 +20,7 @@ export const DefaultAPIInstance = axios.create(defaultConfig);
 
 DefaultAPIInstance.interceptors.request.use(
     config => {
-        const accessToken = localStorage.getItem('token')
+        const accessToken = localStorage.getItem('access_token')
         if (accessToken) {
             // eslint-disable-next-line no-param-reassign
             config.headers.Authorization = `Bearer ${accessToken}`;
@@ -40,11 +40,12 @@ DefaultAPIInstance.interceptors.response.use(
                 originalConfig._retry = true;
                 try {
                   const refreshToken = localStorage.getItem('refresh_token');
-                  const rs = await LoginAPIInstance.post("/auth/token/refresh/", {"refresh":refreshToken});
-                  localStorage.setItem('token', rs.data.access);
+                  const rs = await LoginAPIInstance.post("/accounts/token/refresh/", {"refresh":refreshToken});
+                  localStorage.setItem('access_token', rs.data.access);
+                  localStorage.setItem('refresh_token', rs.data.refresh);
                   return DefaultAPIInstance(originalConfig);
                 } catch (_error) {
-                  localStorage.removeItem('token');
+                  localStorage.removeItem('access_token');
                   localStorage.removeItem('refresh_token');
                   delete DefaultAPIInstance.defaults.headers['authorization'];
                   console.log(_error);

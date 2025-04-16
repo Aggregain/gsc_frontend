@@ -4,7 +4,13 @@
       <UploadAvatar v-model="computedUserForm.avatar" label="Фото профиля" name="avatar" />
     </el-col>
     <el-col :span="10">
-      <DefaultInput label="ФИО" placeholder="Введите ФИО" name="name" v-model="computedUserForm.name" />
+      <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="computedUserForm.first_name" />
+      <DefaultInput label="Фамилия" placeholder="Введите Фамилию" name="second_name" v-model="computedUserForm.second_name" />
+      <DefaultInput label="Отчество" placeholder="Введите Отчество" name="last_name" v-model="computedUserForm.last_name" />
+      <DefaultInput label="Дата рождения" placeholder="дд.мм.гггг" name="birth_date" v-model="computedUserForm.birth_date" />
+    </el-col>
+    <el-col :span="10">
+      <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="computedUserForm.phone_number" />
       <DefaultSelect
           v-model="computedUserForm.country"
           label="Страна проживания"
@@ -24,9 +30,6 @@
             { label: 'Опция 2', value: 'option2' }
           ]"
       />
-    </el-col>
-    <el-col :span="10">
-      <DefaultInput label="Дата рождения" placeholder="дд.мм.гггг" name="birthday" v-model="computedUserForm.birthday" />
       <DefaultSelect
           v-model="computedUserForm.city"
           label="Город проживания"

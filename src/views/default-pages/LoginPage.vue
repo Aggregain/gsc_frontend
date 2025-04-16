@@ -4,12 +4,12 @@
       <el-col :span="9" class="text-center">
         <h1>Войти</h1>
         <el-form ref="formRef" :model="authForm" :rules="rules" validateOnRuleChange>
-          <DefaultInput label="Номер телефона" placeholder="+7" name="phone" v-model="authForm.phone" />
+          <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
           <DefaultInput label="Пароль" placeholder="Введите пароль" name="password" v-model="authForm.password" />
 
           <router-link :to="{name: 'LoginPage'}" class="defaultLink">Забыли пароль?</router-link>
 
-          <el-button type="primary" class="fullSize bigFS">Войти</el-button>
+          <el-button type="primary" class="fullSize bigFS" @click="submitForm">Войти</el-button>
           <el-button class="fullSize bigFS white--style"><GoogleIcon />Продолжить с Google</el-button>
 
           <p class="supportText">
@@ -38,7 +38,7 @@ export default {
   },
   data:()=>({
     rules: {
-      phone: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
+      email: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
       password: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
     }
   }),
@@ -48,7 +48,10 @@ export default {
     async submitForm() {
       this.$refs.formRef.validate(async (valid) => {
         if (valid) {
-          await this.ON_LOGIN();
+          const result = await this.ON_LOGIN();
+          if (result.success) {
+            this.$router.push({ name: "Profile" });
+          }
         }
       });
     }

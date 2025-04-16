@@ -3,7 +3,7 @@ import PublicLayout from '../views/layouts/PublicLayout.vue';
 import CabinetLayout from '../views/layouts/CabinetLayout.vue';
 
 // eslint-disable-next-line no-prototype-builtins
-// const isAuthorized = localStorage.hasOwnProperty('token');
+// const isAuthorized = localStorage.hasOwnProperty('access_token');
 // const authGuard = function (to, from, next){
 //   if(!isAuthorized) next({ name: 'Login' });
 //   else next()

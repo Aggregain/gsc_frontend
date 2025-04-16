@@ -51,8 +51,8 @@ export default {
       { name: 'tab4', label: 'AI', disabled: true },
     ],
     rules: {
-      name: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
-      birthday: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
+      first_name: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
+      birth_date: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
       country: [{ required: true, message: "Обязательное поле", trigger: "change" }],
     }
   }),
