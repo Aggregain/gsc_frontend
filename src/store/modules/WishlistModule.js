@@ -7,17 +7,12 @@ const state = {
         {name: 'University of Utah 2'},
         {name: 'University of Utah'}
     ],
-    formError: null,
     loading: false
 };
 
 const mutations = {
     SET_WISHLIST(state, setData) {
         state.wishlistData = setData;
-        state.formError = null;
-    },
-    SET_ERROR(state, error) {
-        state.formError = error;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -31,7 +26,7 @@ const actions = {
             const { data } = await DefaultAPIInstance({ url: "/get-wishlist", method: "GET" });
             commit("SET_WISHLIST", data);
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Wishlist Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Не удалось загрузить данные.",
@@ -45,8 +40,6 @@ const actions = {
 
 const getters = {
     wishlistData: (state) => state.wishlistData,
-    filterForm: (state) => state.filterForm,
-    formError: (state) => state.formError,
     isLoading: (state) => state.loading
 };
 

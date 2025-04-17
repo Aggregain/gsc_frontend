@@ -3,11 +3,11 @@ import PublicLayout from '../views/layouts/PublicLayout.vue';
 import CabinetLayout from '../views/layouts/CabinetLayout.vue';
 
 // eslint-disable-next-line no-prototype-builtins
-// const isAuthorized = localStorage.hasOwnProperty('access_token');
-// const authGuard = function (to, from, next){
-//   if(!isAuthorized) next({ name: 'Login' });
-//   else next()
-// }
+const isAuthorized = localStorage.hasOwnProperty('access_token');
+const authGuard = function (to, from, next){
+  if(!isAuthorized) next({ name: 'LoginPage' });
+  else next()
+}
 
 const routes = [
   {
@@ -40,6 +40,7 @@ const routes = [
   {
     path: '/cabinet',
     component: CabinetLayout,
+    beforeEnter: authGuard,
     children: [
       {
         path: '',
@@ -68,11 +69,11 @@ const routes = [
         }
       },
       {
-        path: 'new-application',
-        name: 'NewApplication',
-        component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
+        path: 'applications',
+        name: 'Applications',
+        component: () => import('../views/cabinet-pages/application/ApplicationsPage'),
         meta: {
-          title: 'Подача заявки',
+          title: 'Мои заявки',
           activeNav: '4'
         }
       },
@@ -82,15 +83,6 @@ const routes = [
         component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
         meta: {
           title: 'Заявка №',
-          activeNav: '4'
-        }
-      },
-      {
-        path: 'applications',
-        name: 'Applications',
-        component: () => import('../views/cabinet-pages/application/ApplicationsPage'),
-        meta: {
-          title: 'Мои заявки',
           activeNav: '4'
         }
       },

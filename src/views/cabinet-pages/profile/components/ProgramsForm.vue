@@ -2,14 +2,12 @@
   <el-row :gutter="24">
     <el-col :span="24">
       <DefaultRadio
-          v-model="computedUserForm.program_type"
-          name="program_type"
+          v-model="computedUserForm.degree"
+          name="degree"
           :options="[
-            { label: 'Бакалавриат', value: 'type1' },
-            { label: 'Магистратура', value: 'type2' },
-            { label: 'Программа 3', value: 'type3' },
-            { label: 'Программа 4', value: 'type4' },
-            { label: 'Программа 5', value: 'type5' }
+            { label: 'Бакалавриат', value: 'BACHELOR' },
+            { label: 'Магистратура', value: 'MASTERS' },
+            { label: 'МВА', value: 'MBA' }
           ]"
       />
     </el-col>

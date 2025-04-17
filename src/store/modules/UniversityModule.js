@@ -3,17 +3,12 @@ import { ElNotification } from "element-plus";
 
 const state = {
     universityInfo: {},
-    formError: null,
     loading: false
 };
 
 const mutations = {
     SET_INFO(state, setData) {
         state.universityInfo = setData;
-        state.formError = null;
-    },
-    SET_ERROR(state, error) {
-        state.formError = error;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -27,7 +22,7 @@ const actions = {
             const { data } = await DefaultAPIInstance({ url: "/get-university/"+university_id, method: "GET" });
             commit("SET_INFO", data);
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('University Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Не удалось загрузить данные.",
@@ -41,7 +36,6 @@ const actions = {
 
 const getters = {
     universityInfo: (state) => state.universityInfo,
-    formError: (state) => state.formError,
     isLoading: (state) => state.loading
 };
 

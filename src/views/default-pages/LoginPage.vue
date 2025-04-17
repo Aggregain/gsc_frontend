@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import DefaultInput from "@/components/form/DefaultInput";
 import AuthImageComponent from "../default-components/AuthImageComponent"
 import GoogleIcon from "@/components/icons/GoogleIcon"
@@ -44,13 +44,15 @@ export default {
   }),
   methods: {
     ...mapActions("AuthModule", ["ON_LOGIN"]),
+    ...mapMutations('AuthModule', ['SET_TOKENS']),
 
     async submitForm() {
       this.$refs.formRef.validate(async (valid) => {
         if (valid) {
           const result = await this.ON_LOGIN();
           if (result.success) {
-            this.$router.push({ name: "Profile" });
+            this.SET_TOKENS(result.data);
+            window.location = '/cabinet';
           }
         }
       });

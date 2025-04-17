@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
 import StarIcon from "@/components/icons/StarIcon";
 import SortIcon from "@/components/icons/SortIcon";
 import FilterComponent from "./components/FilterComponent";
@@ -50,10 +49,8 @@ export default {
     ],
   }),
   methods:{
-    ...mapActions("ProgramModule", ["GET_PROGRAMS"]),
   },
   created() {
-    // this.GET_PROGRAMS();
   }
 }
 </script>

@@ -1,22 +1,33 @@
 <template>
   <div id="profileBlock">
     <div class="imageBlock">
-      <Icon icon="mage:user-fill" style="color: #8E9DAF;" />
+      <img v-if="profileInfo.avatar" :src="profileInfo.avatar" alt="GSC Avatar">
+      <Icon v-else icon="mage:user-fill" style="color: #8E9DAF;" />
     </div>
     <p class="name">
-      Мадина<br>
-      Иманбаева
+      {{ profileInfo.first_name }}<br>
+      {{ profileInfo.second_name }}
     </p>
     <ArrowIcon />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import ArrowIcon from "@/components/icons/ArrowIcon";
 
 export default {
   components:{
     ArrowIcon
+  },
+  methods:{
+    ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO"]),
+  },
+  computed: {
+    ...mapGetters("UserModule", ["profileInfo"]),
+  },
+  created() {
+    this.GET_USER_INFO();
   }
 };
 </script>

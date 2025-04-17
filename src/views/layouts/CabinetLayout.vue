@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import AsideComponent from '@/views/cabinet-components/AsideComponent'
 import HeaderComponent from '@/views/cabinet-components/HeaderComponent'
 
@@ -23,6 +24,16 @@ export default {
   components:{
     AsideComponent,
     HeaderComponent
-  }
+  },
+  methods: {
+    ...mapActions("DictionaryModule", ["GET_DICTIONARY"]),
+
+    async loadDictionary() {
+      await this.GET_DICTIONARY();
+    }
+  },
+  created() {
+    this.loadDictionary();
+  },
 };
 </script>

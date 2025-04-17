@@ -45,6 +45,9 @@ export default {
   },
   computed: {
     ...mapGetters("ProgramModule", ["filterForm"])
+  },
+  created() {
+    this.GET_PROGRAMS();
   }
 };
 </script>

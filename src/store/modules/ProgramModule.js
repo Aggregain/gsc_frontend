@@ -19,17 +19,12 @@ const state = {
         {name: 'University of Utah'}
     ],
     filterForm: {},
-    formError: null,
     loading: false
 };
 
 const mutations = {
     SET_PROGRAMS(state, setData) {
         state.programsList = setData;
-        state.formError = null;
-    },
-    SET_ERROR(state, error) {
-        state.formError = error;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -43,7 +38,7 @@ const actions = {
             const { data } = await DefaultAPIInstance({ url: "/get-programs", method: "GET", params: state.filterForm });
             commit("SET_PROGRAMS", data);
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Program Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Не удалось загрузить данные.",
@@ -58,7 +53,6 @@ const actions = {
 const getters = {
     programsList: (state) => state.programsList,
     filterForm: (state) => state.filterForm,
-    formError: (state) => state.formError,
     isLoading: (state) => state.loading
 };
 

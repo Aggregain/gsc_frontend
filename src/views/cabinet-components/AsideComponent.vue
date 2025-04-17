@@ -22,6 +22,7 @@
       <el-button type="danger"
                  :class="{ onlyIcon: !asideOpened }"
                  class="afterIcon fullSize logoutButton"
+                 @click="logoutFunc"
                  plain>
         <span>Выйти</span>
         <LogoutIcon />
@@ -30,6 +31,7 @@
   </el-aside>
 </template>
 <script>
+import { mapActions } from "vuex";
 import { menuItems } from "@/constants/menu.js";
 import LogoutIcon from "@/components/icons/LogoutIcon";
 
@@ -44,12 +46,16 @@ export default {
     };
   },
   methods: {
+    ...mapActions("AuthModule", ["ON_LOGOUT"]),
     openAside() {
       this.asideOpened = true;
     },
     closeAside() {
       this.asideOpened = false;
     },
+    logoutFunc() {
+      this.ON_LOGOUT();
+    }
   },
   computed: {
     activeNav() {

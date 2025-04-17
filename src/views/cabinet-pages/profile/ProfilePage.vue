@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="30">
     <el-col :span="24">
-      <el-card shadow="never">
+      <el-card shadow="never" v-loading="isLoading">
         <el-form ref="formRef" :model="userForm" :rules="rules" validateOnRuleChange>
           <el-tabs v-model="activeTab">
             <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" :disabled="tab.disabled">
@@ -52,9 +52,8 @@ export default {
     ],
     rules: {
       first_name: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
-      birth_date: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
-      country: [{ required: true, message: "Обязательное поле", trigger: "change" }],
-    }
+      // country: [{ required: true, message: "Обязательное поле", trigger: "change" }],
+    },
   }),
   methods: {
     ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO"]),
@@ -71,7 +70,7 @@ export default {
     ...mapGetters("UserModule", ["userForm", "isLoading"]),
   },
   created() {
-    // this.GET_USER_INFO();
+    this.GET_USER_INFO();
   }
 }
 </script>

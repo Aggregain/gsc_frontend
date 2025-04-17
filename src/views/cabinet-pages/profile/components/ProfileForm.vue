@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="24">
     <el-col :span="4">
-      <UploadAvatar v-model="computedUserForm.avatar" label="Фото профиля" name="avatar" />
+      <UploadAvatar />
     </el-col>
     <el-col :span="10">
       <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="computedUserForm.first_name" />
@@ -16,35 +16,30 @@
           label="Страна проживания"
           name="country"
           placeholder="Выберите страну"
-          :options="[
-            { label: 'Опция 1', value: 'option1' },
-            { label: 'Опция 2', value: 'option2' }
-          ]"
-      />
-      <DefaultSelect
-          v-model="computedUserForm.school"
-          label="Учебное заведение"
-          name="school"
-          :options="[
-            { label: 'Опция 1', value: 'option1' },
-            { label: 'Опция 2', value: 'option2' }
-          ]"
+          :loading="dictionaryLoading"
+          :options="dictionaryList.countries"
       />
       <DefaultSelect
           v-model="computedUserForm.city"
           label="Город проживания"
           name="city"
           placeholder="Выберите город"
-          :options="[
-            { label: 'Опция 1', value: 'option1' },
-            { label: 'Опция 2', value: 'option2' }
-          ]"
+          :loading="dictionaryLoading"
+          :options="dictionaryList.cities"
+      />
+      <DefaultSelect
+          v-model="computedUserForm.education_place"
+          label="Учебное заведение"
+          name="education_place"
+          :loading="dictionaryLoading"
+          :options="dictionaryList.education_places"
       />
     </el-col>
   </el-row>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import DefaultInput from "@/components/form/DefaultInput";
 import DefaultSelect from "@/components/form/DefaultSelect";
 import UploadAvatar from "@/components/form/UploadAvatar";
@@ -59,6 +54,7 @@ export default {
     modelValue: Object
   },
   computed: {
+    ...mapGetters("DictionaryModule", ["dictionaryList", "dictionaryLoading"]),
     computedUserForm: {
       get() {
         return this.modelValue;

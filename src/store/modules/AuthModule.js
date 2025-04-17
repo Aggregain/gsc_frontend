@@ -3,20 +3,28 @@ import { ElNotification } from "element-plus";
 
 const state = {
     credentials: {
-        token: localStorage.getItem('access_token') || null,
+        access_token: localStorage.getItem('access_token') || null,
         refresh_token: localStorage.getItem('refresh_token') || null,
     },
     authForm: {},
-    formError: null,
     loading: false
 };
 
 const mutations = {
-    SET_ERROR(state, error) {
-        state.formError = error;
-    },
     SET_LOADING(state, loading) {
         state.loading = loading;
+    },
+    SET_TOKENS(state, data) {
+        state.credentials.access_token = data.access;
+        state.credentials.refresh_token = data.refresh;
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+    },
+    DELETE_TOKENS(state) {
+        state.credentials.access_token = null;
+        state.credentials.refresh_token = null;
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
     }
 };
 
@@ -33,7 +41,7 @@ const actions = {
 
             return { success: true, data: response.data };
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Auth Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Ошибка при отправке.",
@@ -57,7 +65,7 @@ const actions = {
 
             return { success: true, data: response.data };
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Auth Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Ошибка при отправке.",
@@ -68,12 +76,16 @@ const actions = {
         } finally {
             commit("SET_LOADING", false);
         }
+    },
+    async ON_LOGOUT({ commit }) {
+        commit("DELETE_TOKENS");
+        delete DefaultAPIInstance.defaults.headers['authorization'];
+        window.location = '/login';
     }
 };
 
 const getters = {
     authForm: (state) => state.authForm,
-    formError: (state) => state.formError,
     isLoading: (state) => state.loading
 };
 

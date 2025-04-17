@@ -1,40 +1,35 @@
 <template>
   <el-form-item :label="label" :prop="name">
-    <el-select
-        v-model="selectedValue"
+    <el-date-picker
+        v-model="computedValue"
         :placeholder="placeholder"
-        :disabled="loading"
-    >
-      <el-option
-          v-for="option in options"
-          :key="option.id"
-          :label="option.name"
-          :value="option.id"
-      />
-    </el-select>
+        :disabled="readonly"
+        type="date"
+        format="YYYY-MM-DD"
+        value-format="YYYY-MM-DD"
+        style="width: 100%"
+    />
   </el-form-item>
 </template>
 
 <script>
 export default {
+  name: "DatePickerField",
   props: {
     label: String,
+    name: String,
     placeholder: {
       type: String,
-      default: 'Выберите из списка'
+      default: "Выберите дату"
     },
-    loading: {
+    readonly: {
       type: Boolean,
       default: false
     },
-    name: String,
-    modelValue: [String, Number, null],
-    options: {
-      type: Array
-    }
+    modelValue: [String, Date, null]
   },
   computed: {
-    selectedValue: {
+    computedValue: {
       get() {
         return this.modelValue;
       },

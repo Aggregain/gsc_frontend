@@ -3,7 +3,6 @@ import { ElNotification } from "element-plus";
 
 const state = {
     applicationForm: {},
-    formError: null,
     loading: false,
     ready: true,
 };
@@ -11,10 +10,6 @@ const state = {
 const mutations = {
     SET_FORM(state, setData) {
         state.applicationForm = setData;
-        state.formError = null;
-    },
-    SET_ERROR(state, error) {
-        state.formError = error;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -33,7 +28,7 @@ const actions = {
             commit("SET_FORM", data);
             commit("SET_READY", true);
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Application Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Не удалось загрузить данные.",
@@ -57,7 +52,7 @@ const actions = {
 
             return { success: true, data: response.data };
         } catch (error) {
-            commit("SET_ERROR", error.message);
+            console.log('Application Error:', error);
             ElNotification({
                 title: "Ошибка",
                 message: "Ошибка при отправке.",
@@ -74,7 +69,6 @@ const actions = {
 
 const getters = {
     applicationForm: (state) => state.applicationForm,
-    formError: (state) => state.formError,
     isLoading: (state) => state.loading,
     isReady: (state) => state.ready,
 };
