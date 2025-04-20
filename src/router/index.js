@@ -95,6 +95,15 @@ const routes = [
           activeNav: '3'
         }
       },
+      {
+        path: 'manager/profile',
+        name: 'ManagerProfile',
+        component: () => import('../views/cabinet-pages/manager/ProfilePage'),
+        meta: {
+          title: 'Мой профиль',
+          activeNav: '1'
+        }
+      },
     ]
   },
   {
