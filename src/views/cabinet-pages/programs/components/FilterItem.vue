@@ -5,8 +5,10 @@
     </button>
     <div class="toggleBlock">
       <DefaultCheckboxes
+          v-if="!show"
           v-model="computedValue"
           :name="name"
+          :loading="loading"
           :options="options"
       />
     </div>
@@ -23,6 +25,14 @@ export default {
     title: String,
     modelValue: Array,
     name: String,
+    show: {
+      type: Boolean,
+      default: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     options: Array
   },
   data:()=>({

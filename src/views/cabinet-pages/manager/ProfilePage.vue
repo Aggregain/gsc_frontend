@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="30">
+  <el-row :gutter="30" id="managerPage">
     <el-col :span="24">
       <el-card shadow="never" v-loading="isLoading">
         <el-form ref="formRef" :model="userForm" :rules="rules" validateOnRuleChange>

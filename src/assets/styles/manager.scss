@@ -1,0 +1,14 @@
+#managerPage{
+  .el-form-item{
+    flex-direction: row;
+    align-items: center;
+    .el-form-item__label{
+      display: inline-flex;
+      max-width: 14rem;
+    }
+    .el-form-item__content{
+      display: inline-flex;
+      width: auto;
+    }
+  }
+}

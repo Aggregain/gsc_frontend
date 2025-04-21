@@ -23,7 +23,7 @@
       <FilterComponent />
     </el-col>
     <el-col :span="18">
-      <ProgramsList />
+      <ProgramsList v-loading="isLoading" />
     </el-col>
   </el-row>
 </template>
@@ -33,6 +33,7 @@ import StarIcon from "@/components/icons/StarIcon";
 import SortIcon from "@/components/icons/SortIcon";
 import FilterComponent from "./components/FilterComponent";
 import ProgramsList from "./components/ProgramsList";
+import {mapGetters} from "vuex";
 
 export default {
   components:{
@@ -42,15 +43,9 @@ export default {
     ProgramsList
   },
   data:()=>({
-    programs: [
-      {
-        name: 'University of Utah'
-      }
-    ],
   }),
-  methods:{
-  },
-  created() {
+  computed: {
+    ...mapGetters("ProgramModule", ["isLoading"])
   }
 }
 </script>

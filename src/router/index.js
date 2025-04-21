@@ -2,12 +2,22 @@ import { createRouter, createWebHistory } from 'vue-router'
 import PublicLayout from '../views/layouts/PublicLayout.vue';
 import CabinetLayout from '../views/layouts/CabinetLayout.vue';
 
-// eslint-disable-next-line no-prototype-builtins
-const isAuthorized = localStorage.hasOwnProperty('access_token');
-const authGuard = function (to, from, next){
-  if(!isAuthorized) next({ name: 'LoginPage' });
-  else next()
-}
+const authGuard = (to, from, next) => {
+  const token = localStorage.getItem('access_token');
+  // const role = localStorage.getItem('auth_role');
+  const role = 'manager';
+
+  if (!token) {
+    return next({ name: 'LoginPage' });
+  }
+
+  const requiredRole = to.meta?.requiresRole;
+  if (requiredRole && role !== requiredRole) {
+    return next({ name: 'Profile' });
+  }
+
+  next();
+};
 
 const routes = [
   {
@@ -96,14 +106,15 @@ const routes = [
         }
       },
       {
-        path: 'manager/profile',
+        path: 'manager',
         name: 'ManagerProfile',
-        component: () => import('../views/cabinet-pages/manager/ProfilePage'),
+        component: () => import('../views/cabinet-pages/manager/ProfilePage.vue'),
         meta: {
-          title: 'Мой профиль',
+          requiresRole: 'manager',
+          title: 'Профиль менеджера',
           activeNav: '1'
         }
-      },
+      }
     ]
   },
   {

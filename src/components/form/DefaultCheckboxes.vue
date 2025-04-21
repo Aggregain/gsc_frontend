@@ -1,12 +1,12 @@
 <template>
   <el-form-item :label="label" :prop="name">
-    <el-checkbox-group v-model="computedValue">
+    <el-checkbox-group v-model="computedValue" :disabled="loading">
       <el-checkbox
           v-for="option in options"
-          :key="option.value"
-          :label="option.value"
+          :key="option.name"
+          :label="option.name"
       >
-        {{ option.label }}
+        {{ option.name }}
       </el-checkbox>
     </el-checkbox-group>
   </el-form-item>
@@ -18,6 +18,10 @@ export default {
     label: String,
     name: String,
     modelValue: Array,
+    loading: {
+      type: Boolean,
+      default: false
+    },
     options: {
       type: Array,
       required: true

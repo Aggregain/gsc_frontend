@@ -1,31 +1,23 @@
 <template>
   <el-form :model="filterForm" class="filterForm">
     <FilterItem
-        v-model="filterForm.example_type"
+        v-model="filterForm.country"
         @update:modelValue="filterChanged"
         title="Страна обучения"
-        name="example_type"
-        :options="[
-        { label: 'Бакалавриат', value: 'type1' },
-        { label: 'Магистратура', value: 'type2' },
-        { label: 'Программа 3', value: 'type3' },
-        { label: 'Программа 4', value: 'type4' },
-        { label: 'Программа 5', value: 'type5' }
-      ]"
+        name="country"
+        :show="dictionaryLoading"
+        :loading="isLoading"
+        :options="dictionaryList.countries"
     />
 
     <FilterItem
-        v-model="filterForm.example_type2"
+        v-model="filterForm.city"
         @update:modelValue="filterChanged"
-        title="Стоимость обучения"
-        name="example_type2"
-        :options="[
-        { label: 'Бакалавриат', value: 'type1' },
-        { label: 'Магистратура', value: 'type2' },
-        { label: 'Программа 3', value: 'type3' },
-        { label: 'Программа 4', value: 'type4' },
-        { label: 'Программа 5', value: 'type5' }
-      ]"
+        title="Город обучения"
+        name="city"
+        :show="dictionaryLoading"
+        :loading="isLoading"
+        :options="dictionaryList.cities"
     />
   </el-form>
 </template>
@@ -44,7 +36,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("ProgramModule", ["filterForm"])
+    ...mapGetters("DictionaryModule", ["dictionaryList", "dictionaryLoading"]),
+    ...mapGetters("ProgramModule", ["filterForm", "isLoading"])
   },
   created() {
     this.GET_PROGRAMS();

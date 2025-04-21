@@ -5,6 +5,7 @@
 @import "styles/wishlist";
 @import "styles/landing";
 @import "styles/auth";
+@import "styles/manager";
 *{
   margin: 0;
   padding: 0;
@@ -1266,6 +1267,51 @@ a.defaultLink{
       }
       .el-button{
         margin: 2.4rem auto 0;
+      }
+    }
+  }
+}
+
+.multiSelectBlock{
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  flex-direction: column;
+  .el-button.opened{
+    svg{
+      transform: rotate(-180deg);
+    }
+  }
+  .absoluteSelectBlock{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: $custom-white;
+    border-radius: 1.2rem;
+    border: 1px solid #BDC3C9;
+    width: 30rem;
+    max-width: 100%;
+    box-shadow: 0 0 15px rgba(32,33,36,.15);
+    margin: .4rem 0 0;
+    padding: 2rem;
+    z-index: 13;
+    .el-form-item{
+      margin: 0 0 1.2rem;
+      max-height: 200px;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $color-main-9;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #BDC3C9;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: $color-grey;
       }
     }
   }

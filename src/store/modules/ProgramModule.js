@@ -2,22 +2,7 @@ import { DefaultAPIInstance } from "@/plugins/axios";
 import { ElNotification } from "element-plus";
 
 const state = {
-    programsList: [
-        {name: 'University of Utah'},
-        {name: 'University of Utah 2'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'},
-        {name: 'University of Utah'}
-    ],
+    programsList: [],
     filterForm: {},
     loading: false
 };
@@ -35,7 +20,7 @@ const actions = {
     async GET_PROGRAMS({ state, commit }) {
         commit("SET_LOADING", true);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/get-programs", method: "GET", params: state.filterForm });
+            const { data } = await DefaultAPIInstance({ url: "/common/programs/", method: "GET", params: state.filterForm });
             commit("SET_PROGRAMS", data);
         } catch (error) {
             console.log('Program Error:', error);
