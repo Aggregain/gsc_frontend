@@ -28,8 +28,8 @@ export default {
   methods: {
     ...mapActions("DictionaryModule", ["GET_DICTIONARY"]),
 
-    async loadDictionary() {
-      await this.GET_DICTIONARY();
+    loadDictionary() {
+      this.GET_DICTIONARY();
     }
   },
   created() {

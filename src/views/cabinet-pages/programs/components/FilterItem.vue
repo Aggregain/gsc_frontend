@@ -49,7 +49,7 @@ export default {
     }
   },
   created() {
-    if(this.name === 'example_type'){
+    if(this.name === 'country'){
       this.opened = true;
     }
   }

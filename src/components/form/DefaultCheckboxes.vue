@@ -3,8 +3,8 @@
     <el-checkbox-group v-model="computedValue" :disabled="loading">
       <el-checkbox
           v-for="option in options"
-          :key="option.name"
-          :label="option.name"
+          :key="option.id"
+          :label="option.id"
       >
         {{ option.name }}
       </el-checkbox>

@@ -4,12 +4,20 @@ import { ElNotification } from "element-plus";
 const state = {
     programsList: [],
     filterForm: {},
+    filterOptions: {},
     loading: false
 };
 
 const mutations = {
     SET_PROGRAMS(state, setData) {
-        state.programsList = setData;
+        state.programsList = setData.programs;
+        state.filterOptions = setData.filters.filters;
+    },
+    UPDATE_FILTER_DATA(state, data) {
+        state.filterForm = data;
+    },
+    SET_ORDERING_FILTER(state, order) {
+        state.filterForm.ordering = order;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -20,7 +28,15 @@ const actions = {
     async GET_PROGRAMS({ state, commit }) {
         commit("SET_LOADING", true);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/common/programs/", method: "GET", params: state.filterForm });
+            const queryParams = { ...state.filterForm };
+
+            for (const key in queryParams) {
+                if (Array.isArray(queryParams[key])) {
+                    queryParams[key] = queryParams[key].join(',');
+                }
+            }
+
+            const { data } = await DefaultAPIInstance({ url: "/common/programs/", method: "GET", params: queryParams });
             commit("SET_PROGRAMS", data);
         } catch (error) {
             console.log('Program Error:', error);
@@ -38,6 +54,7 @@ const actions = {
 const getters = {
     programsList: (state) => state.programsList,
     filterForm: (state) => state.filterForm,
+    filterOptions: (state) => state.filterOptions,
     isLoading: (state) => state.loading
 };
 

@@ -75,4 +75,29 @@
   .programsList{
     margin: 2.4rem 0 0;
   }
+  .rangeSelectorBlock{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    .inputsBlock{
+      display: flex;
+      width: 100%;
+      margin: 0 0 1.6rem;
+      gap: .8rem;
+      justify-content: space-around;
+      align-items: flex-end;
+      .line{
+        display: inline-flex;
+        margin: 0 0 2.5rem;
+        padding: 0;
+        width: 1.2rem;
+        height: 1px;
+        background: #BDC3C9;
+        flex-shrink: 0;
+      }
+    }
+  }
 }

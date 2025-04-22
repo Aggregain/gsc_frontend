@@ -5,15 +5,15 @@
         <el-col :span="6">
           <div class="headBlock">
             <h2>Фильтры</h2>
-            <el-button class="mini" type="danger" link>Сбросить</el-button>
+            <el-button v-if="Object.keys(filterForm).length>0" class="mini" type="danger" link @click="clearFilter">Сбросить</el-button>
           </div>
         </el-col>
         <el-col :span="18">
           <el-row :gutter="40" align="middle">
-            <el-col :span="12"><h2>Найдено 143 программ</h2></el-col>
+            <el-col :span="12"><h2>Найдено программ: {{ programsList.length }}</h2></el-col>
             <el-col :span="12" class="text-right">
-              <el-button class="mini afterIcon" type="primary" plain>Подходящие мне <StarIcon /></el-button>
-              <el-button class="mini afterIcon secondStyle" type="primary" plain>По названию <SortIcon /></el-button>
+              <ForMeButton />
+              <SortButton />
             </el-col>
           </el-row>
         </el-col>
@@ -29,23 +29,33 @@
 </template>
 
 <script>
-import StarIcon from "@/components/icons/StarIcon";
-import SortIcon from "@/components/icons/SortIcon";
+import {mapGetters, mapMutations, mapActions} from "vuex";
 import FilterComponent from "./components/FilterComponent";
 import ProgramsList from "./components/ProgramsList";
-import {mapGetters} from "vuex";
+import ForMeButton from "./components/ForMeButton";
+import SortButton from "./components/SortButton";
 
 export default {
   components:{
-    StarIcon,
-    SortIcon,
     FilterComponent,
-    ProgramsList
+    ProgramsList,
+    ForMeButton,
+    SortButton
   },
   data:()=>({
   }),
+  methods: {
+    ...mapActions("ProgramModule", ["GET_PROGRAMS"]),
+    ...mapMutations("ProgramModule", ["UPDATE_FILTER_DATA"]),
+
+    clearFilter(){
+      this.UPDATE_FILTER_DATA({});
+      this.GET_PROGRAMS();
+    }
+  },
   computed: {
-    ...mapGetters("ProgramModule", ["isLoading"])
+    ...mapGetters("ProgramModule", ["filterForm", "isLoading"]),
+    ...mapGetters("ProgramModule", ["programsList"])
   }
 }
 </script>

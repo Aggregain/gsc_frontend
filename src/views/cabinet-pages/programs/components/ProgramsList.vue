@@ -6,17 +6,27 @@
           <div class="head">
             <img src="@/assets/img/program-logo.png" alt="">
             <p class="title">
-              {{ item.name }}
-              <span>США, Юта</span>
+              {{ (n => n.length > 40 ? n.slice(0, 40) + '...' : n)(item.education_place.name) }}
+              <span>{{ getNameFromDictionary('cities', item.education_place.city) }}</span>
             </p>
           </div>
           <div class="body">
-            <p><span class="label">Язык обучения:</span> <span>Английский</span></p>
-            <p><span class="label">Срок обучения:</span> <span>4 года</span></p>
-            <p><span class="label">Сумма в год:</span> <span>$33 000</span></p>
-            <p><span class="label">Дедлайн подачи:</span> <span>01.08.2025</span></p>
+            <p><span class="label">Язык обучения:</span> <span>{{ getNameFromDictionary('degrees', item.name) }}</span></p>
+            <p><span class="label">Срок обучения:</span> <span>{{ item.duration_years }} года</span></p>
+            <p><span class="label">Сумма в год:</span> <span>{{ $formatPrice(item.price) }}</span></p>
+            <p><span class="label">Дедлайн подачи:</span> <span>{{ $formatDate(item.admission_deadline) }}</span></p>
           </div>
         </el-card>
+      </el-col>
+    </template>
+    <template v-else>
+      <el-col :span="24">
+        <div class="defaultEmptyBlock">
+          <el-card shadow="never">
+            <img src="@/assets/img/empty-docs.png" alt="" />
+            <p class="custom-empty-text">Ничего не найдено</p>
+          </el-card>
+        </div>
       </el-col>
     </template>
   </el-row>
@@ -28,7 +38,17 @@ import {mapGetters} from "vuex";
 export default {
   components: {},
   computed: {
+    ...mapGetters("DictionaryModule", ["dictionaryList"]),
     ...mapGetters("ProgramModule", ["programsList"])
+  },
+  methods: {
+    getNameFromDictionary(field, id) {
+      const list = this.dictionaryList[field];
+      if (!list) return null;
+
+      const item = list.find(entry => entry.id === id);
+      return item ? item.name : '-';
+    }
   }
 };
 </script>
