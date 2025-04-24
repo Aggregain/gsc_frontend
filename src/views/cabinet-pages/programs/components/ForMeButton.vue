@@ -22,7 +22,7 @@ export default {
 
     forMeFilter(){
       if(this.profileInfo.degree && !this.forMeStatus){
-        this.UPDATE_FILTER_DATA({name:[this.profileInfo.degree]});
+        this.UPDATE_FILTER_DATA({names:[this.profileInfo.degree]});
         this.GET_PROGRAMS();
       }
     }
@@ -31,7 +31,7 @@ export default {
     ...mapGetters("UserModule", ["profileInfo"]),
     ...mapGetters("ProgramModule", ["filterForm"]),
     forMeStatus(){
-      return Array.isArray(this.filterForm?.name) && this.filterForm.name.some(item => item === this.profileInfo?.degree);
+      return Array.isArray(this.filterForm?.names) && this.filterForm.names.some(item => item === this.profileInfo?.degree);
     }
   }
 }

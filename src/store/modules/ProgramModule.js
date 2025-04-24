@@ -11,13 +11,17 @@ const state = {
 const mutations = {
     SET_PROGRAMS(state, setData) {
         state.programsList = setData.programs;
-        state.filterOptions = setData.filters.filters;
+        state.filterOptions = setData.filters;
     },
     UPDATE_FILTER_DATA(state, data) {
         state.filterForm = data;
     },
     SET_ORDERING_FILTER(state, order) {
         state.filterForm.ordering = order;
+    },
+    SET_PRICES_FILTER(state, prices) {
+        state.filterForm.price_min = prices.price_min;
+        state.filterForm.price_max = prices.price_max;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -32,7 +36,11 @@ const actions = {
 
             for (const key in queryParams) {
                 if (Array.isArray(queryParams[key])) {
-                    queryParams[key] = queryParams[key].join(',');
+                    if (queryParams[key].length === 0) {
+                        delete queryParams[key];
+                    } else {
+                        queryParams[key] = queryParams[key].join(',');
+                    }
                 }
             }
 

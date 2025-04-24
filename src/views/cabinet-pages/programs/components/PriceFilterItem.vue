@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="never" v-if="filterOptions?.min_price" :class="{ opened }">
+  <el-card shadow="never" v-if="filterOptions?.prices?.min && filterOptions?.prices?.max" :class="{ opened }">
     <button type="button" class="toggleButton" @click="opened=!opened">
       {{ title }} <ArrowIcon :color="opened?'#1E62E8':'#202124'" />
     </button>
@@ -11,8 +11,9 @@
                 :disabled="isLoading"
                 :controls="false"
                 v-model="priceRange[0]"
-                :min="filterOptions.min_price"
-                :max="filterOptions.max_price"
+                @change="onPriceChange"
+                :min="filterOptions.prices.min"
+                :max="priceRange[1]"
             />
           </el-form-item>
           <div class="line"></div>
@@ -21,8 +22,9 @@
                 :disabled="isLoading"
                 :controls="false"
                 v-model="priceRange[1]"
-                :min="filterOptions.min_price"
-                :max="filterOptions.max_price"
+                @change="onPriceChange"
+                :min="priceRange[0]"
+                :max="filterOptions.prices.max"
             />
           </el-form-item>
         </div>
@@ -30,9 +32,10 @@
         <el-slider
             :disabled="isLoading"
             v-model="priceRange"
+            @change="onPriceChange"
             range
-            :min="filterOptions.min_price"
-            :max="filterOptions.max_price"
+            :min="filterOptions.prices.min"
+            :max="filterOptions.prices.max"
             :format-tooltip="formatTooltip"
         />
       </div>
@@ -41,7 +44,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import ArrowIcon from "@/components/icons/ArrowIcon";
 
 export default {
@@ -56,8 +59,11 @@ export default {
   }),
   methods: {
     ...mapActions("ProgramModule", ["GET_PROGRAMS"]),
+    ...mapMutations("ProgramModule", ["SET_PRICES_FILTER"]),
 
-    priceChanged() {
+    onPriceChange() {
+      const [min, max] = this.priceRange;
+      this.SET_PRICES_FILTER({ price_min: min, price_max: max });
       this.GET_PROGRAMS();
     },
     formatTooltip(val) {
@@ -68,19 +74,19 @@ export default {
     ...mapGetters("ProgramModule", ["filterForm", "filterOptions", "isLoading"])
   },
   watch: {
-    filterOptions: {
-      handler({ min_price, max_price } = {}) {
-        if (min_price == null || max_price == null) return;
+    'filterOptions.prices': {
+      handler({ min, max } = {}) {
+        if (min == null || max == null) return;
 
         if (!this.initialSet) {
-          this.priceRange = [min_price, max_price];
+          this.priceRange = [min, max];
           this.initialSet = true;
           return;
         }
 
         const [from, to] = this.priceRange;
-        const newFrom = Math.min(Math.max(from, min_price), max_price);
-        const newTo = Math.min(Math.max(to, newFrom), max_price);
+        const newFrom = Math.min(Math.max(from, min), max);
+        const newTo = Math.min(Math.max(to, newFrom), max);
 
         this.priceRange = [newFrom, newTo];
       },

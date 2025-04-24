@@ -11,7 +11,7 @@
             </p>
           </div>
           <div class="body">
-            <p><span class="label">Язык обучения:</span> <span>{{ getNameFromDictionary('degrees', item.name) }}</span></p>
+            <p><span class="label">Программа:</span> <span>{{ getNameFromDictionary('degrees', item.name) }}</span></p>
             <p><span class="label">Срок обучения:</span> <span>{{ item.duration_years }} года</span></p>
             <p><span class="label">Сумма в год:</span> <span>{{ $formatPrice(item.price) }}</span></p>
             <p><span class="label">Дедлайн подачи:</span> <span>{{ $formatDate(item.admission_deadline) }}</span></p>
