@@ -19,7 +19,7 @@ const actions = {
     async GET_UNIVERSITY_INFO({ commit }, university_id) {
         commit("SET_LOADING", true);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/get-university/"+university_id, method: "GET" });
+            const { data } = await DefaultAPIInstance({ url: "/common/university/"+university_id, method: "GET" });
             commit("SET_INFO", data);
         } catch (error) {
             console.log('University Error:', error);

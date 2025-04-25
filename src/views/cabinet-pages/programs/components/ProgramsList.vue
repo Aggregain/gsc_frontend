@@ -2,7 +2,7 @@
   <el-row :gutter="24" class="programsList">
     <template v-if="programsList.length > 0">
       <el-col :span="8" v-for="item in programsList" v-bind:key="item">
-        <el-card class="programCard" shadow="never">
+        <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
           <div class="head">
             <img src="@/assets/img/program-logo.png" alt="">
             <p class="title">
@@ -48,6 +48,9 @@ export default {
 
       const item = list.find(entry => entry.id === id);
       return item ? item.name : '-';
+    },
+    goToUniversity(id) {
+      this.$router.push({ name: "University", params:{ university_id: id } });
     }
   }
 };
