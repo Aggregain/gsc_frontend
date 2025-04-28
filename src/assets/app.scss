@@ -685,12 +685,21 @@ a.defaultLink{
       align-items: center;
       gap: 2rem;
       justify-content: space-around;
-      img{
+      .logoBlock{
         height: 6.4rem;
         width: 6.4rem;
         display: inline-flex;
         margin: 0;
         flex-shrink: 0;
+        position: relative;
+        border-radius: .8rem;
+        overflow: hidden;
+        img{
+          height: 100%;
+          width: 100%;
+          display: flex;
+          margin: 0;
+        }
       }
       p.title{
         display: inline-flex;
@@ -1358,7 +1367,7 @@ a.defaultLink{
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1550px) {
   html {
     font-size: 56.25%; /* 1rem = 9px */
   }

@@ -4,10 +4,12 @@
       <el-col :span="8" v-for="item in programsList" v-bind:key="item">
         <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
           <div class="head">
-            <img src="@/assets/img/program-logo.png" alt="">
+            <div class="logoBlock">
+              <img v-if="item?.education_place?.logo" :src="item.education_place.logo" alt="">
+            </div>
             <p class="title">
-              {{ (n => n.length > 40 ? n.slice(0, 40) + '...' : n)(item.education_place.name) }}
-              <span>{{ getNameFromDictionary('cities', item.education_place.city) }}</span>
+              {{ (n => n.length > 32 ? n.slice(0, 32) + '...' : n)(item.education_place.name) }}
+              <span>{{ item?.education_place?.country_name }}, {{ item?.education_place?.city_name }}</span>
             </p>
           </div>
           <div class="body">

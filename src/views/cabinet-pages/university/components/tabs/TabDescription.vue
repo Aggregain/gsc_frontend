@@ -7,13 +7,11 @@
         <p>Об университете</p>
       </div>
       <div class="contentBlock">
-        <p>
-          Государственное некоммерческое учебное заведение. the U располагается в городе Солт-Лейк-Сити, США. the U ведет совместную деятельность с Utah System of Higher Education, Association of Public and Land-Grant Universities (APLU), OpenCourseWare Consortium (OCW). Sport affiliations and memberships: National Collegiate Athletic Association (NCAA). Вуз находится в топ-440 лучших университетов мира, по версии международного рейтинга QS. the U — один из лучших вузов США. В рейтинге QS, вуз один из самых развитых в инженерии и технологиях, медико-биологических науках, естественных науках, социальных науках и менеджменте, искусстве и гуманитарных науках. Вуз занимает 299 строчку в топе независимого международного рейтинга вузов мира THE.
-        </p>
+        <div v-html="universityInfo?.description" />
         <div class="infoList">
-          <p><span>Год основания</span>1850</p>
-          <p><span>Расположение</span>США, Солт-Лейк-Сити</p>
-          <p><span>Рейтинг университета</span>531</p>
+          <p><span>Год основания</span>{{ $formatDate(universityInfo?.foundation_date) }}</p>
+          <p><span>Расположение</span>{{ universityInfo.country_name }}, {{ universityInfo.city_name }}</p>
+          <p><span>Рейтинг университета</span>{{ parseInt(universityInfo?.rating) }}</p>
         </div>
       </div>
 
@@ -49,10 +47,14 @@
 </template>
 <script>
 import SpecialityCard from "../SpecialityCard";
+import {mapGetters} from "vuex";
 
 export default {
   components:{
     SpecialityCard
+  },
+  computed: {
+    ...mapGetters("UniversityModule", ["universityInfo"])
   }
 }
 </script>

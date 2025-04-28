@@ -27,13 +27,9 @@ export default {
   },
   methods: {
     ...mapActions("DictionaryModule", ["GET_DICTIONARY"]),
-
-    loadDictionary() {
-      this.GET_DICTIONARY();
-    }
   },
   created() {
-    this.loadDictionary();
+    this.GET_DICTIONARY();
   },
 };
 </script>

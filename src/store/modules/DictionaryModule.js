@@ -15,9 +15,7 @@ const mutations = {
 };
 
 const actions = {
-    async GET_DICTIONARY({ commit }, { force = false } = {}) {
-        if (!force && (state.loading || Object.keys(state.dictionaryList).length > 0)) return;
-
+    async GET_DICTIONARY({ commit }) {
         commit("SET_LOADING", true);
         try {
             const { data } = await DefaultAPIInstance({ url: "/common/roster/", method: "GET" });

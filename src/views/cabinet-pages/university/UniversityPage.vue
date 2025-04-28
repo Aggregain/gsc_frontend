@@ -2,8 +2,8 @@
   <el-row :gutter="40" id="universityPage" v-loading="isLoading">
     <HeadBlock />
     <el-col :span="18">
-      <div class="mainImage">
-        <img src="@/assets/img/university.png" alt="">
+      <div class="mainImage" v-if="universityInfo?.image">
+        <img :src="universityInfo.image" alt="">
       </div>
 
       <TabsComponent />
@@ -26,17 +26,17 @@ export default {
     TabsComponent,
     RightBlock
   },
-  computed: {
-    universityId() {
-      return this.$route.params.university_id;
-    },
-    ...mapGetters("UniversityModule", ["universityInfo", "isLoading"])
-  },
   methods: {
     ...mapActions("UniversityModule", ["GET_UNIVERSITY_INFO"]),
     getUniversityInfo() {
       this.GET_UNIVERSITY_INFO(this.universityId);
     }
+  },
+  computed: {
+    universityId() {
+      return this.$route.params.university_id;
+    },
+    ...mapGetters("UniversityModule", ["universityInfo", "isLoading"])
   },
   created() {
     this.getUniversityInfo();

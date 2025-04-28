@@ -2,11 +2,10 @@ import { DefaultAPIInstance } from "@/plugins/axios";
 import { ElNotification } from "element-plus";
 
 const state = {
-    wishlistData: [
-        {name: 'University of Utah'},
-        {name: 'University of Utah 2'},
-        {name: 'University of Utah'}
-    ],
+    wishlistFilter: {
+        ordering: 'name'
+    },
+    wishlistData: [],
     loading: false
 };
 
@@ -20,10 +19,12 @@ const mutations = {
 };
 
 const actions = {
-    async GET_WISHLIST({ commit }) {
+    async GET_WISHLIST({ state, commit }, { force = false } = {}) {
+        if (!force && (state.loading || Object.keys(state.wishlistData).length > 0)) return;
+
         commit("SET_LOADING", true);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/get-wishlist", method: "GET" });
+            const { data } = await DefaultAPIInstance({ url: "/wishlist/items/", method: "GET", params: state.wishlistFilter });
             commit("SET_WISHLIST", data);
         } catch (error) {
             console.log('Wishlist Error:', error);
@@ -36,11 +37,45 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
+
+    async ADD_WISHLIST({ commit, dispatch }, id) {
+        commit("SET_LOADING", true);
+        try {
+            await DefaultAPIInstance({ url: "/wishlist/add/", method: "POST", data: {"education_place": id} });
+            await dispatch("GET_WISHLIST", { force: true });
+        } catch (error) {
+            console.log('Wishlist Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "При добавлении возникла ошибка.",
+                type: "error"
+            });
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
+    async DELETE_WISHLIST({ commit, dispatch }, id) {
+        commit("SET_LOADING", true);
+        try {
+            await DefaultAPIInstance({ url: "/wishlist/delete/"+id, method: "DELETE" });
+            await dispatch("GET_WISHLIST", { force: true });
+        } catch (error) {
+            console.log('Wishlist Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "При удалении возникла ошибка.",
+                type: "error"
+            });
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
 };
 
 const getters = {
     wishlistData: (state) => state.wishlistData,
-    isLoading: (state) => state.loading
+    wishlistLoading: (state) => state.loading
 };
 
 export default {
