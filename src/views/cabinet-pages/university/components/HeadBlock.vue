@@ -7,15 +7,15 @@
             <img v-if="universityInfo.logo" :src="universityInfo.logo" alt="">
           </div>
           <p class="title">
-            {{ universityInfo.name }}
-            <span>{{ universityInfo.country_name }}, {{ universityInfo.city_name }}</span>
+            {{ universityInfo?.name }}
+            <span>{{ universityInfo?.country_name }}, {{ universityInfo?.city_name }}</span>
           </p>
         </div>
       </el-col>
       <el-col :span="10" class="text-right">
-        <el-button class="medium" type="primary">Подать заявку</el-button>
-        <el-button class="medium afterIcon" type="primary" plain>Перейти на сайт</el-button>
-        <WishlistButtonComponent v-if="universityInfo?.id" />
+        <el-button v-if="universityInfo.id" class="medium" type="primary">Подать заявку</el-button>
+        <el-button v-if="universityInfo.link" @click="openLink" class="medium afterIcon" type="primary" plain>Перейти на сайт</el-button>
+        <WishlistButtonComponent v-if="universityInfo.id" />
       </el-col>
     </el-row>
   </el-col>
@@ -37,6 +37,9 @@ export default {
       if (mainBlock) {
         this.isScrolled = mainBlock.scrollTop > 0;
       }
+    },
+    openLink() {
+      window.open(this.universityInfo.link, '_blank');
     }
   },
   computed:{

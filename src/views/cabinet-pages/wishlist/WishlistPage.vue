@@ -1,13 +1,13 @@
 <template>
   <el-row :gutter="30" id="wishlistPage" v-loading="wishlistLoading">
-    <el-col :span="24" v-if="wishlistData.length>0">
+    <el-col :span="24" v-if="wishlistData?.length>0">
       <el-row :gutter="40" align="middle">
         <el-col :span="12">
           <h2>Университета в избранном: {{ wishlistData.length }}</h2>
         </el-col>
-        <el-col :span="12" class="text-right">
-          <el-button class="mini afterIcon secondStyle" type="primary" plain>По названию <SortIcon /></el-button>
-        </el-col>
+<!--        <el-col :span="12" class="text-right">-->
+<!--          <el-button class="mini afterIcon secondStyle" type="primary" plain>По названию <SortIcon /></el-button>-->
+<!--        </el-col>-->
       </el-row>
 
       <WishlistProgramsList />
@@ -28,12 +28,12 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import WishlistProgramsList from "./components/WishlistProgramsList.vue";
-import SortIcon from "@/components/icons/SortIcon.vue";
+// import SortIcon from "@/components/icons/SortIcon.vue";
 
 export default {
   components:{
     WishlistProgramsList,
-    SortIcon
+    // SortIcon
   },
   data:()=>({
   }),

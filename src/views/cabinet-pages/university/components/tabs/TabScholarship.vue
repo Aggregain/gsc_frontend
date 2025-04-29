@@ -6,19 +6,19 @@
         <div class="defaultIcon"><Icon icon="tabler:award-filled"></Icon></div>
         <p>Scholarship</p>
       </div>
-      <div class="contentBlock">
-        <p>
-          Университет предлагает различные стипендии и гранты для талантливых и мотивированных студентов. Финансовая поддержка может предоставляться на основе академической успеваемости, лидерских качеств, спортивных достижений или других заслуг.
-        </p>
-      </div>
+
+      <div class="contentBlock" v-html="universityInfo?.scholarship_description" />
 
     </el-col>
   </el-row>
 </template>
 <script>
 
+import {mapGetters} from "vuex";
+
 export default {
-  components:{
+  computed: {
+    ...mapGetters("UniversityModule", ["universityInfo"])
   }
 }
 </script>

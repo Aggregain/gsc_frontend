@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="24" class="wishlistList">
-    <template v-if="wishlistData.length > 0">
+    <template v-if="wishlistData?.length>0">
       <el-col :span="8" v-for="item in wishlistData" v-bind:key="item">
         <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
           <div class="head">
@@ -11,7 +11,7 @@
               {{ (n => n.length > 32 ? n.slice(0, 32) + '...' : n)(item.education_place.name) }}
               <span>{{ item.education_place.country_name }}, {{ item.education_place.city_name }}</span>
             </p>
-            <el-button type="info" class="onlyIcon mini" @click="deleteWishlist(item.id)"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
+            <el-button type="info" class="onlyIcon mini" @click.stop="deleteWishlist(item.id)"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
           </div>
           <div class="body">
             <p><span class="label">Рейтинг университета:</span> <span>{{ parseInt(item.education_place.rating) }}</span></p>

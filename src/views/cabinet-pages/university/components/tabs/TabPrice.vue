@@ -6,30 +6,34 @@
         <div class="defaultIcon"><Icon icon="mingcute:wallet-4-fill"></Icon></div>
         <p>Стоимость</p>
       </div>
-      <div class="contentBlock">
-        <p>Общий бюджет на обучение за границей включает не только оплату академической программы, но и расходы на проживание, питание, страховку и другие нужды. Ниже представлена примерная стоимость:</p>
-      </div>
-      <div class="contentBlock">
-        <el-table class="greyTable" :data="tableData">
-          <el-table-column prop="name" label="Этап" />
-          <el-table-column prop="label" label="Крайний срок" />
-        </el-table>
+
+      <div class="contentBlock" v-if="universityInfo?.programs?.length>0">
+        <el-tabs v-model="activeTab" class="secondStyle">
+          <el-tab-pane v-for="(tab, index) in universityInfo.programs" :key="tab.id" :name="String(index)">
+            <template #label><img class="degreeImage" :src="degreeImage(tab.name)" alt=""> {{ getNameFromDictionary('degrees', tab.name) }}</template>
+            <TabItem :table="tab.expenses" />
+          </el-tab-pane>
+        </el-tabs>
       </div>
 
     </el-col>
   </el-row>
 </template>
 <script>
+import {mapGetters} from "vuex";
+import dictionaryMixin from "@/mixins/dictionaryMixin";
+import TabItem from "./TabItem"
 
 export default {
+  mixins: [dictionaryMixin],
+  components:{
+    TabItem,
+  },
   data:()=>({
-    tableData: [
-      { name: 'Подача основной заявки', label: '1 августа 2025 г.' },
-      { name: 'Заявка на стипендию', label: '1 марта 2025 г.' },
-      { name: 'Оплата депозита за обучение', label: '30 апреля 2025 г.' },
-      { name: 'Подача документов на визу	', label: 'до 1 июня 2025 г.' },
-      { name: 'Начало учебы	', label: '1 сентября 2025 г.' }
-    ]
+    activeTab: "0",
   }),
+  computed: {
+    ...mapGetters("UniversityModule", ["universityInfo"])
+  }
 }
 </script>

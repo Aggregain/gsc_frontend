@@ -1,14 +1,13 @@
 <template>
   <el-card class="specialityCard" shadow="never">
     <div class="head">
-      <p class="title">Computer Engineering</p>
-<!--      <el-button class="onlyIcon" link><HeartIcon /></el-button>-->
+      <p class="title">{{ info.name }}</p>
     </div>
     <div class="infoGrid">
-      <p><span>Стоимость</span>от $33 000</p>
-      <p><span>Срок обучения:</span>4 года</p>
-      <p><span>Дедлайн подачи:</span>01.08.2025</p>
-      <p><span>Степень:</span>Бакалавриат</p>
+      <p><span>Стоимость</span>от {{ $formatPrice(info.price) }}</p>
+      <p><span>Срок обучения:</span>{{ info.duration }} года</p>
+      <p><span>Дедлайн подачи:</span>{{ $formatDate(info.admission_deadline) }}</p>
+      <p><span>Степень:</span>{{ getNameFromDictionary('degrees', info.program_name) }}</p>
     </div>
     <div class="bottom text-right">
       <el-button type="primary" class="medium" plain>Подать заявку</el-button>
@@ -16,11 +15,12 @@
   </el-card>
 </template>
 <script>
-// import HeartIcon from "@/components/icons/HeartIcon";
+import dictionaryMixin from "@/mixins/dictionaryMixin";
 
 export default {
-  components:{
-    // HeartIcon
+  mixins: [dictionaryMixin],
+  props: {
+    info: Object
   }
 }
 </script>

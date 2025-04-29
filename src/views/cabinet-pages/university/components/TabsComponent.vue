@@ -36,11 +36,5 @@ export default {
       { name: 'tab6', label: 'Стоимость', component: 'TabPrice' }
     ]
   }),
-  methods: {
-  },
-  computed: {
-  },
-  created() {
-  }
 }
 </script>

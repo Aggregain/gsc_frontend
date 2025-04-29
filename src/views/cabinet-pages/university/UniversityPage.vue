@@ -1,16 +1,20 @@
 <template>
   <el-row :gutter="40" id="universityPage" v-loading="isLoading">
-    <HeadBlock />
-    <el-col :span="18">
-      <div class="mainImage" v-if="universityInfo?.image">
-        <img :src="universityInfo.image" alt="">
-      </div>
 
-      <TabsComponent />
-    </el-col>
-    <el-col :span="6">
-      <RightBlock />
-    </el-col>
+    <template v-if="universityInfo.id">
+      <HeadBlock />
+      <el-col :span="18">
+        <div class="mainImage" v-if="universityInfo.image">
+          <img :src="universityInfo.image" alt="">
+        </div>
+
+        <TabsComponent />
+      </el-col>
+      <el-col :span="6">
+        <RightBlock />
+      </el-col>
+    </template>
+
   </el-row>
 </template>
 

@@ -808,6 +808,10 @@ a.defaultLink{
         font-weight: 200;
         border-radius: 4rem;
         background: $color-main-9;
+        img.degreeImage{
+          vertical-align: middle;
+          margin: -.4rem .2rem 0 0;
+        }
         &.is-active{
           border: 1px solid $color-main-10;
           font-weight: 300;
@@ -1365,6 +1369,10 @@ a.defaultLink{
       width: 2.4rem;
     }
   }
+}
+
+img.degreeImage{
+  height: 1.6rem;
 }
 
 @media (max-width: 1550px) {

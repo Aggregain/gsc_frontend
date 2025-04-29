@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="24" class="programsList">
-    <template v-if="programsList.length > 0">
+    <template v-if="programsList?.length>0">
       <el-col :span="8" v-for="item in programsList" v-bind:key="item">
         <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
           <div class="head">
@@ -35,22 +35,15 @@
 </template>
 
 <script>
+import dictionaryMixin from "@/mixins/dictionaryMixin";
 import {mapGetters} from "vuex";
 
 export default {
-  components: {},
+  mixins: [dictionaryMixin],
   computed: {
-    ...mapGetters("DictionaryModule", ["dictionaryList"]),
     ...mapGetters("ProgramModule", ["programsList"])
   },
   methods: {
-    getNameFromDictionary(field, id) {
-      const list = this.dictionaryList[field];
-      if (!list) return null;
-
-      const item = list.find(entry => entry.id === id);
-      return item ? item.name : '-';
-    },
     goToUniversity(id) {
       this.$router.push({ name: "University", params:{ university_id: id } });
     }

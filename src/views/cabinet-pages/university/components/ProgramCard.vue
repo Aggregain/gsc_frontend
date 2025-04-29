@@ -1,22 +1,25 @@
 <template>
   <el-card class="programTypeCard" shadow="never">
     <div class="head">
-      <p class="title">🎓 Бакалавриат</p>
+      <p class="title"><img class="degreeImage" :src="degreeImage(info.name)" alt=""> {{ getNameFromDictionary('degrees', info.name) }}</p>
     </div>
     <div class="content">
+      <div v-html="info.description_general" />
       <p>
-        Первый уровень высшего образования, который дает фундаментальные знания и профессиональные навыки.
         <br>
         <br>
-        Длительность – 3–4 года
+        Длительность – {{ info.duration_years }} года
       </p>
     </div>
   </el-card>
 </template>
 <script>
+import dictionaryMixin from "@/mixins/dictionaryMixin";
 
 export default {
-  components:{
+  mixins: [dictionaryMixin],
+  props: {
+    info: Object
   }
 }
 </script>
