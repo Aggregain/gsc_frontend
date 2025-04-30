@@ -211,7 +211,7 @@ hr{
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99;
+  z-index: 2001;
   padding: 2.4rem 1.6rem;
   margin: 0;
   background: $custom-white;
@@ -1095,6 +1095,8 @@ a.defaultLink{
 
 .el-loading-mask{
   border-radius: 2.4rem;
+  left: 1.5rem;
+  right: 1.5rem;
 }
 
 .el-table{
@@ -1381,13 +1383,13 @@ img.degreeImage{
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   html {
     font-size: 50%; /* 1rem = 8px */
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 925px) {
   html {
     font-size: 43.75%; /* 1rem = 7px */
   }

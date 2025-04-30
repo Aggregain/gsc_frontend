@@ -3,6 +3,7 @@
       class="mini afterIcon"
       @click="forMeFilter"
       :type="forMeStatus?'success':'primary'"
+      :disabled="isLoading"
       plain>
     Подходящие мне <StarIcon :color="forMeStatus?'green':'#1A73E8'" />
   </el-button>
@@ -29,7 +30,7 @@ export default {
   },
   computed: {
     ...mapGetters("UserModule", ["profileInfo"]),
-    ...mapGetters("ProgramModule", ["filterForm"]),
+    ...mapGetters("ProgramModule", ["filterForm", "isLoading"]),
     forMeStatus(){
       return Array.isArray(this.filterForm?.names) && this.filterForm.names.some(item => item === this.profileInfo?.degree);
     }

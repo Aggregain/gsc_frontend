@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from "vuex";
+import {mapGetters, mapActions, mapMutations} from "vuex";
 import HeadBlock from "./components/HeadBlock"
 import TabsComponent from "./components/TabsComponent"
 import RightBlock from "./components/RightBlock"
@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     ...mapActions("UniversityModule", ["GET_UNIVERSITY_INFO"]),
+    ...mapMutations("UniversityModule", ["SET_INFO"]),
     getUniversityInfo() {
       this.GET_UNIVERSITY_INFO(this.universityId);
     }
@@ -49,6 +50,10 @@ export default {
     if (to.params.university_id !== from.params.university_id) {
       this.getUniversityInfo();
     }
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    this.SET_INFO({});
     next();
   }
 };

@@ -3,7 +3,7 @@
       @click="handleWishlistClick"
       class="medium afterIcon"
       :type="isInWishlist ? 'danger' : 'primary'"
-      :disabled="wishlistLoading"
+      :loading="wishlistLoading"
       plain
   >
     {{ isInWishlist?'В избранном':'В избранное' }}

@@ -9,14 +9,6 @@
     </div>
     <hr class="mini">
     <div class="headLabel">
-      <div class="defaultIcon danger"><Icon icon="solar:calendar-bold"></Icon></div>
-      <p>
-        Дедлайн подачи:
-        <span>01.08.2025</span>
-      </p>
-    </div>
-    <hr class="mini">
-    <div class="headLabel">
       <div class="defaultIcon danger"><Icon icon="mingcute:certificate-fill"></Icon></div>
       <p>
         Требование:
