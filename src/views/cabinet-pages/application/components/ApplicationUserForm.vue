@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="never" v-loading="isLoading">
+  <el-card shadow="never" v-loading="userAttachmentsLoading || isLoading">
     <el-form ref="formRef" :model="userForm" :rules="rules" validateOnRuleChange>
       <el-row :gutter="24">
         <el-col :span="24">
@@ -11,46 +11,46 @@
         <el-col :span="24"><hr></el-col>
         <el-col :span="8">
           <p class="custom-label">
-            IELTS <span>{{ default_descr }}</span>
+            IELTS <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.ielts" name="ielts" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.ielts_doc" name="ielts_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.ielts_grade" name="ielts_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="ielts_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
-            SAT <span>{{ default_descr }}</span>
+            SAT <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.sat" name="sat" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.sat_doc" name="sat_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.sat_grade" name="sat_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="sat_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
-            GMAT <span>{{ default_descr }}</span>
+            GMAT <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gmat" name="gmat" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.gmat_doc" name="gmat_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gmat_grade" name="gmat_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="gmat_doc" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="8">
           <p class="custom-label">
-            TOEFL <span>{{ default_descr }}</span>
+            TOEFL <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.toefl" name="toefl" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.toefl_doc" name="toefl_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.toefl_grade" name="toefl_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="toefl_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
-            GRE <span>{{ default_descr }}</span>
+            GRE <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gre" name="gre" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.gre_doc" name="gre_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gre_grade" name="gre_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="gre_doc" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
-            DUOLINGO <span>{{ default_descr }}</span>
+            DUOLINGO <span>{{ default_text }}</span>
           </p>
-          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.duolingo" name="duolingo" />
-          <UploadDocumentInput :readonly="readonly" v-model="userForm.duolingo_doc" name="duolingo_doc" />
+          <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.duolingo_grade" name="duolingo_grade" />
+          <UploadAttachmentComponent :readonly="readonly" name="duolingo_doc" />
         </el-col>
       </el-row>
     </el-form>
@@ -59,26 +59,23 @@
 
 <script>
 import DefaultInput from "@/components/form/DefaultInput";
-import UploadDocumentInput from "@/components/form/UploadDocumentInput";
+import UploadAttachmentComponent from "./UploadAttachmentComponent";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     DefaultInput,
-    UploadDocumentInput
+    UploadAttachmentComponent
   },
   props:{
     readonly: Boolean
   },
   data:()=>({
     rules: {},
-    default_descr: 'Прикрепите PDF с результатом теста',
-    user_info:{
-      name: '',
-    }
+    default_text: 'Прикрепите PDF с результатом теста'
   }),
   computed: {
-    ...mapGetters("UserModule", ["userForm", "isLoading"]),
+    ...mapGetters("UserModule", ["userForm", "userAttachmentsLoading", "isLoading"]),
   }
 };
 </script>

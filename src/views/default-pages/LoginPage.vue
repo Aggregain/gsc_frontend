@@ -9,7 +9,7 @@
 
           <router-link :to="{name: 'LoginPage'}" class="defaultLink">Забыли пароль?</router-link>
 
-          <el-button type="primary" class="fullSize bigFS" @click="submitForm" :disabled="isLoading">Войти</el-button>
+          <el-button type="primary" class="fullSize bigFS" @click="submitForm" :loading="isLoading">Войти</el-button>
           <el-button class="fullSize bigFS white--style"><GoogleIcon />Продолжить с Google</el-button>
 
           <p class="supportText">

@@ -4,6 +4,8 @@ import { ElNotification } from "element-plus";
 const state = {
     userForm: {},
     profileInfo: {},
+    userAttachments: [],
+    userAttachmentsLoading: false,
     loading: false,
     ready: true,
 };
@@ -18,7 +20,13 @@ const mutations = {
     },
     SET_READY(state, ready) {
         state.ready = ready;
-    }
+    },
+    SET_USER_ATTACHMENTS(state, setData) {
+        state.userAttachments = setData;
+    },
+    SET_USER_ATTACHMENTS_LOADING(state, loading) {
+        state.userAttachmentsLoading = loading;
+    },
 };
 
 const actions = {
@@ -95,7 +103,27 @@ const actions = {
             commit("SET_LOADING", false);
             commit("SET_READY", true);
         }
+    },
+
+    async GET_USER_ATTACHMENTS({ commit }) {
+        commit("SET_USER_ATTACHMENTS_LOADING", true);
+        commit("SET_READY", false);
+        try {
+            const { data } = await DefaultAPIInstance({ url: "/accounts/attachments/", method: "GET" });
+            commit("SET_USER_ATTACHMENTS", data);
+            commit("SET_READY", true);
+        } catch (error) {
+            console.log('UserAttachments Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Не удалось загрузить данные.",
+                type: "error"
+            });
+        } finally {
+            commit("SET_USER_ATTACHMENTS_LOADING", false);
+        }
     }
+
 };
 
 const getters = {
@@ -103,6 +131,8 @@ const getters = {
     profileInfo: (state) => state.profileInfo,
     isLoading: (state) => state.loading,
     isReady: (state) => state.ready,
+    userAttachments: (state) => state.userAttachments,
+    userAttachmentsLoading: (state) => state.userAttachmentsLoading,
 };
 
 export default {

@@ -9,7 +9,7 @@
           <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="authForm.phone_number" />
           <DefaultInput label="Пароль" placeholder="Придумайте пароль" name="password" v-model="authForm.password" />
 
-          <el-button type="primary" class="fullSize bigFS withMT" @click="submitForm" :disabled="isLoading">Зарегистрироваться</el-button>
+          <el-button type="primary" class="fullSize bigFS withMT" @click="submitForm" :loading="isLoading">Зарегистрироваться</el-button>
 
           <p class="supportText">
             Уже зарегистрированы? <router-link :to="{name: 'LoginPage'}">Войти</router-link>

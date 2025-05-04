@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="30" align="middle">
     <el-col :xs="{span:12}" :sm="{span:12}">
-      <h1>{{ this.pageTitle }} {{ this.userInfo }}</h1>
+      <h1 id="mainTitle">{{ this.pageTitle }} {{ this.userInfo }}</h1>
     </el-col>
     <el-col :xs="{span:12}" :sm="{span:12}" class="text-right">
       <NotificationsComponent />

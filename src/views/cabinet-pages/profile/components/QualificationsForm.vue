@@ -1,25 +1,25 @@
 <template>
   <el-row :gutter="24">
     <el-col :span="6">
-      <DefaultInput label="IELTS" placeholder="Введите балл" name="attachments.ielts_grade" v-model="computedUserForm.ielts_grade" />
+      <DefaultInput label="IELTS" placeholder="Введите балл" name="ielts_grade" v-model="computedUserForm.ielts_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="SAT" placeholder="Введите балл" name="attachments.sat_grade" v-model="computedUserForm.sat_grade" />
+      <DefaultInput label="SAT" placeholder="Введите балл" name="sat_grade" v-model="computedUserForm.sat_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="GMAT" placeholder="Введите балл" name="attachments.gmat_grade" v-model="computedUserForm.gmat_grade" />
+      <DefaultInput label="GMAT" placeholder="Введите балл" name="gmat_grade" v-model="computedUserForm.gmat_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="TOEFL" placeholder="Введите балл" name="attachments.toefl_grade" v-model="computedUserForm.toefl_grade" />
+      <DefaultInput label="TOEFL" placeholder="Введите балл" name="toefl_grade" v-model="computedUserForm.toefl_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="GRE" placeholder="Введите балл" name="attachments.gre_grade" v-model="computedUserForm.gre_grade" />
+      <DefaultInput label="GRE" placeholder="Введите балл" name="gre_grade" v-model="computedUserForm.gre_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="DUOLINGO" placeholder="Введите балл" name="attachments.duolingo_grade" v-model="computedUserForm.duolingo_grade" />
+      <DefaultInput label="DUOLINGO" placeholder="Введите балл" name="duolingo_grade" v-model="computedUserForm.duolingo_grade" />
     </el-col>
     <el-col :span="6">
-      <DefaultInput label="Текущий GPA" placeholder="Введите балл" name="attachments.gpa_grade" v-model="computedUserForm.gpa_grade" />
+      <DefaultInput label="Текущий GPA" placeholder="Введите балл" name="gpa_grade" v-model="computedUserForm.gpa_grade" />
     </el-col>
   </el-row>
 </template>

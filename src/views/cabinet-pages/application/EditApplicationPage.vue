@@ -24,12 +24,12 @@ export default {
     ApplicationUserForm
   },
   data:()=>({
-    rules: {},
-    readonly: true,
+    readonly: false,
   }),
   computed: {
     ...mapGetters('ApplicationModule', { applicationIsReady: 'isReady' }),
     ...mapGetters('UserModule', { userIsReady: 'isReady' }),
+
     isSubmitDisabled() {
       return !(this.applicationIsReady && this.userIsReady);
     },
@@ -39,7 +39,8 @@ export default {
   },
   methods: {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO", "UPDATE_APPLICATION_INFO"]),
-    ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO"]),
+    ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO", "GET_USER_ATTACHMENTS"]),
+
     async submitForms() {
       try {
         const documentsFormValid = await this.$refs.documentsFormRef.$refs.formRef.validate();
@@ -47,12 +48,12 @@ export default {
 
         if (documentsFormValid && userFormValid) {
           const [appResponse, profileResponse] = await Promise.all([
-            this.UPDATE_APPLICATION_INFO(),
             this.UPDATE_USER_INFO(),
+            this.UPDATE_APPLICATION_INFO(),
           ]);
 
           if (appResponse.success && profileResponse.success) {
-            this.$router.push({ name: "HomePage" });
+            this.$router.push({ name: "Applications" });
           }
         } else {
           console.log('Пожалуйста, исправьте ошибки в формах.');
@@ -60,22 +61,22 @@ export default {
       } catch (err) {
         console.error("Ошибка при отправке:", err);
       }
-    },
-    getApplicationInfo() {
-      this.GET_APPLICATION_INFO(this.applicationId);
     }
   },
   created() {
-    // this.GET_USER_INFO();
-    if (this.applicationId) {
-      // this.getApplicationInfo();
-    }else{
-      this.readonly = false;
-    }
+    this.GET_USER_INFO();
+    this.GET_USER_ATTACHMENTS();
+    // this.GET_APPLICATION_INFO(this.applicationId);
+    // TODO Использовать для менеджера
+    // if (manager) {
+    //   this.readonly = true;
+    // }
   },
   beforeRouteUpdate(to, from, next) {
     if (to.params.application_id !== from.params.application_id) {
-      // this.getApplicationInfo();
+      this.GET_USER_INFO();
+      this.GET_USER_ATTACHMENTS();
+      // this.GET_APPLICATION_INFO(this.applicationId);
     }
     next();
   }

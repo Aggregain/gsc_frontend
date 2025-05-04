@@ -24,7 +24,7 @@ const actions = {
 
         commit("SET_LOADING", true);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/wishlist/items/", method: "GET", params: state.wishlistFilter });
+            const { data } = await DefaultAPIInstance({ url: "/wishlist/", method: "GET", params: state.wishlistFilter });
             commit("SET_WISHLIST", data);
         } catch (error) {
             console.log('Wishlist Error:', error);
@@ -41,7 +41,7 @@ const actions = {
     async ADD_WISHLIST({ commit, dispatch }, id) {
         commit("SET_LOADING", true);
         try {
-            await DefaultAPIInstance({ url: "/wishlist/add/", method: "POST", data: {"education_place": id} });
+            await DefaultAPIInstance({ url: "/wishlist/", method: "POST", data: {"education_place": id} });
             await dispatch("GET_WISHLIST", { force: true });
         } catch (error) {
             console.log('Wishlist Error:', error);
@@ -58,7 +58,7 @@ const actions = {
     async DELETE_WISHLIST({ commit, dispatch }, id) {
         commit("SET_LOADING", true);
         try {
-            await DefaultAPIInstance({ url: "/wishlist/delete/"+id, method: "DELETE" });
+            await DefaultAPIInstance({ url: "/wishlist/"+id, method: "DELETE" });
             await dispatch("GET_WISHLIST", { force: true });
         } catch (error) {
             console.log('Wishlist Error:', error);

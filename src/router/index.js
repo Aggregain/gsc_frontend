@@ -92,7 +92,6 @@ const routes = [
         name: 'ViewApplication',
         component: () => import('../views/cabinet-pages/application/EditApplicationPage'),
         meta: {
-          title: 'Заявка №',
           activeNav: '4'
         }
       },

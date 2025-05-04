@@ -8,6 +8,7 @@ import ProgramModule from './modules/ProgramModule'
 import UniversityModule from './modules/UniversityModule'
 import ApplicationModule from './modules/ApplicationModule'
 import WishlistModule from './modules/WishlistModule'
+import AttachmentModule from './modules/AttachmentModule'
 
 export default createStore({
   modules: {
@@ -17,6 +18,7 @@ export default createStore({
       ProgramModule,
       UniversityModule,
       ApplicationModule,
-      WishlistModule
+      WishlistModule,
+      AttachmentModule
   }
 })

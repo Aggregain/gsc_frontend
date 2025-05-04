@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import uiHelpers from './plugins/uiHelpers'
+import uiHelpers from './plugins/formatters'
 import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'

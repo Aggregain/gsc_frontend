@@ -4,7 +4,7 @@
     <!-- ======== Readonly Mode ======== -->
     <template v-if="readonly">
       <button
-          v-if="modelValue"
+          v-if="attachmentFile"
           class="upload-button greyStyle"
           type="button"
           @click="alert(fileDownloadUrl)"
@@ -17,7 +17,7 @@
     <!-- ======== Editable Mode ======== -->
     <template v-else>
       <button
-          v-if="modelValue"
+          v-if="attachmentFile"
           class="upload-button greyStyle"
           type="button"
           @click="removeFile"
@@ -47,7 +47,6 @@ import TrashIcon from "@/components/icons/TrashIcon.vue";
 import DownloadIcon from "@/components/icons/DownloadIcon.vue";
 
 export default {
-  name: "UploadDocumentInput",
   components:{
     TrashIcon,
     DownloadIcon
@@ -59,7 +58,7 @@ export default {
       type: String,
       default: "Загрузите файл в формате Word (.docx) или PDF (.pdf)"
     },
-    modelValue: {
+    attachmentFile: {
       type: [File, Object, null],
       default: null,
     },
@@ -69,23 +68,21 @@ export default {
     },
   },
 
-  emits: ["update:modelValue"],
-
   computed: {
     displayFileName() {
-      return this.modelValue?.name || this.modelValue?.filename || "Файл";
+      return this.attachmentFile?.name || this.attachmentFile?.filename || "Файл";
     },
     fileDownloadUrl() {
-      return this.modelValue?.url || "#";
+      return this.attachmentFile?.url || "#";
     },
   },
 
   methods: {
     handleFileChange(file) {
-      this.$emit("update:modelValue", file.raw);
+      this.$emit("uploadAttachment", file.raw);
     },
     removeFile() {
-      this.$emit("update:modelValue", null);
+      console.log("Remove");
     },
   },
 };
