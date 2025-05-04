@@ -2,14 +2,14 @@ import { DefaultAPIInstance } from "@/plugins/axios";
 import { ElNotification } from "element-plus";
 
 const state = {
-    applicationForm: {},
+    applicationInfo: {},
     loading: false,
     ready: true,
 };
 
 const mutations = {
-    SET_FORM(state, setData) {
-        state.applicationForm = setData;
+    SET_INFO(state, setData) {
+        state.applicationInfo = setData;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -25,7 +25,7 @@ const actions = {
         commit("SET_READY", false);
         try {
             const { data } = await DefaultAPIInstance({ url: "/application/info/", method: "GET" });
-            commit("SET_FORM", data);
+            commit("SET_INFO", data);
             commit("SET_READY", true);
         } catch (error) {
             console.log('Application Error:', error);
@@ -43,7 +43,7 @@ const actions = {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            const response = await DefaultAPIInstance({ url: "/submit-application/", method: "POST", data: state.applicationForm });
+            const response = await DefaultAPIInstance({ url: "/submit-application/", method: "POST", data: state.applicationInfo });
             ElNotification({
                 title: "Успех",
                 message: "Данные обновлены!",
@@ -68,7 +68,7 @@ const actions = {
 };
 
 const getters = {
-    applicationForm: (state) => state.applicationForm,
+    applicationInfo: (state) => state.applicationInfo,
     isLoading: (state) => state.loading,
     isReady: (state) => state.ready,
 };

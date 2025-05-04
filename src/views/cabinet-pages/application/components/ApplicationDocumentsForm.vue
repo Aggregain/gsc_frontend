@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="never" v-loading="isLoading">
-    <el-form ref="formRef" :model="applicationForm" :rules="rules" validateOnRuleChange>
+    <el-form ref="formRef" :model="form" :rules="rules" validateOnRuleChange>
       <el-row :gutter="24">
         <el-col :span="24">
           <div class="headLabel">
@@ -55,10 +55,11 @@ export default {
     readonly: Boolean
   },
   data:()=>({
+    form: {},
     rules: {}
   }),
   computed: {
-    ...mapGetters("ApplicationModule", ["applicationForm", "isLoading"]),
+    ...mapGetters("ApplicationModule", ["applicationInfo", "isLoading"]),
   }
 };
 </script>
