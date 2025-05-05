@@ -55,8 +55,6 @@ export default {
           if (appResponse.success && profileResponse.success) {
             this.$router.push({ name: "Applications" });
           }
-        } else {
-          console.log('Пожалуйста, исправьте ошибки в формах.');
         }
       } catch (err) {
         console.error("Ошибка при отправке:", err);
@@ -67,6 +65,7 @@ export default {
     this.GET_USER_INFO();
     this.GET_USER_ATTACHMENTS();
     // this.GET_APPLICATION_INFO(this.applicationId);
+
     // TODO Использовать для менеджера
     // if (manager) {
     //   this.readonly = true;

@@ -28,9 +28,11 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import fileValidatorMixin from "@/mixins/fileValidatorMixin";
 import EditIcon from "@/components/icons/EditIcon";
 
 export default {
+  mixins: [fileValidatorMixin],
   components: {
     EditIcon
   },
@@ -53,21 +55,6 @@ export default {
       formData.append("avatar", avatarFile);
 
       this.UPLOAD_USER_AVATAR(formData);
-    },
-
-    validateAvatar(file) {
-      const isJPGorPNG = file.type === "image/jpeg" || file.type === "image/png";
-      const isLt300KB = file.size / 1024 < 300;
-
-      if (!isJPGorPNG) {
-        this.$message.error("Файл должен быть в формате JPG или PNG!");
-      }
-
-      if (!isLt300KB) {
-        this.$message.error("Размер файла не должен превышать 300 КБ!");
-      }
-
-      return isJPGorPNG && isLt300KB;
     }
   }
 

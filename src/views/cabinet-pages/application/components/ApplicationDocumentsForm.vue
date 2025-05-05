@@ -11,31 +11,39 @@
 
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Транскрипт" descr="Транскрипт должен быть нотариально заверен" name="document1" />
+          <p class="custom-label">Транскрипт <span>Транскрипт должен быть нотариально заверен</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document1" />
         </el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Мотивационное письмо" name="document2" />
-        </el-col>
-        <el-col :span="24"><hr></el-col>
-        <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Essay" name="document3" />
-        </el-col>
-        <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Personal Statement" name="document4" />
+          <p class="custom-label">Мотивационное письмо <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document2" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Резюме" name="document5" />
+          <p class="custom-label">Essay <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document3" />
         </el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Портфолио" name="document6" />
+          <p class="custom-label">Personal Statement <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document4" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Скан Паспорта" descr="Загрузите файл в формате PDF (.pdf)" name="document7" />
+          <p class="custom-label">Резюме <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document5" />
         </el-col>
         <el-col :span="12">
-          <UploadAttachmentComponent :readonly="readonly" label="Оплата депозита за обучение (Инвойс)" name="document8" />
+          <p class="custom-label">Портфолио <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document6" />
+        </el-col>
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="12">
+          <p class="custom-label">Скан Паспорта <span>Загрузите файл в формате PDF (.pdf)</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document7" />
+        </el-col>
+        <el-col :span="12">
+          <p class="custom-label">Оплата депозита за обучение (Инвойс) <span>{{ default_text }}</span></p>
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document8" />
         </el-col>
 
       </el-row>
@@ -56,10 +64,15 @@ export default {
   },
   data:()=>({
     form: {},
-    rules: {}
+    rules: {},
+    default_text: "Загрузите файл в формате Word (.docx) или PDF (.pdf)"
   }),
   computed: {
-    ...mapGetters("ApplicationModule", ["applicationInfo", "isLoading"]),
+    ...mapGetters("ApplicationModule", ["isLoading"]),
+
+    applicationId() {
+      return this.$route.params.application_id;
+    },
   }
 };
 </script>

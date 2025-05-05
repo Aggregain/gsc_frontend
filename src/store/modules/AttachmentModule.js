@@ -6,9 +6,18 @@ const state = {};
 const mutations = {};
 
 const actions = {
-    async ADD_ATTACHMENT(attachment_data) {
+    async ADD_ATTACHMENT(_, formData) {
         try {
-            await DefaultAPIInstance({ url: "/accounts/attachments/", method: "POST", data: attachment_data });
+            await DefaultAPIInstance({ url: "/accounts/attachments/", method: "POST", data: formData, headers: {'Content-Type': 'multipart/form-data'} });
+
+            ElNotification({
+                title: "Успех",
+                message: "Файл успешно загружен!",
+                type: "success"
+            });
+
+            return { success: true };
+
         } catch (error) {
             console.log('Attachments Error:', error);
             ElNotification({
@@ -19,9 +28,18 @@ const actions = {
         }
     },
 
-    async DELETE_ATTACHMENT(attachment_id) {
+    async DELETE_ATTACHMENT(_, attachment_id) {
         try {
             await DefaultAPIInstance({ url: "/accounts/attachments/"+attachment_id, method: "DELETE" });
+
+            ElNotification({
+                title: "Успех",
+                message: "Файл успешно удален!",
+                type: "success"
+            });
+
+            return { success: true };
+
         } catch (error) {
             console.log('Attachments Error:', error);
             ElNotification({

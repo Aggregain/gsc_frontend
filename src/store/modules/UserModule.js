@@ -5,7 +5,6 @@ const state = {
     userForm: {},
     profileInfo: {},
     userAttachments: [],
-    userAttachmentsLoading: false,
     loading: false,
     ready: true,
 };
@@ -23,9 +22,6 @@ const mutations = {
     },
     SET_USER_ATTACHMENTS(state, setData) {
         state.userAttachments = setData;
-    },
-    SET_USER_ATTACHMENTS_LOADING(state, loading) {
-        state.userAttachmentsLoading = loading;
     },
 };
 
@@ -106,7 +102,7 @@ const actions = {
     },
 
     async GET_USER_ATTACHMENTS({ commit }) {
-        commit("SET_USER_ATTACHMENTS_LOADING", true);
+        commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
             const { data } = await DefaultAPIInstance({ url: "/accounts/attachments/", method: "GET" });
@@ -120,7 +116,7 @@ const actions = {
                 type: "error"
             });
         } finally {
-            commit("SET_USER_ATTACHMENTS_LOADING", false);
+            commit("SET_LOADING", false);
         }
     }
 
@@ -132,7 +128,6 @@ const getters = {
     isLoading: (state) => state.loading,
     isReady: (state) => state.ready,
     userAttachments: (state) => state.userAttachments,
-    userAttachmentsLoading: (state) => state.userAttachmentsLoading,
 };
 
 export default {

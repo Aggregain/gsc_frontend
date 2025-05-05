@@ -43,14 +43,14 @@ const actions = {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            const response = await DefaultAPIInstance({ url: "/submit-application/", method: "POST", data: state.applicationInfo });
+            await DefaultAPIInstance({ url: "/submit-application/", method: "POST", data: state.applicationInfo });
             ElNotification({
                 title: "Успех",
                 message: "Данные обновлены!",
                 type: "success"
             });
 
-            return { success: true, data: response.data };
+            return { success: true };
         } catch (error) {
             console.log('Application Error:', error);
             ElNotification({
