@@ -68,7 +68,7 @@ export default {
     default_text: "Загрузите файл в формате Word (.docx) или PDF (.pdf)"
   }),
   computed: {
-    ...mapGetters("ApplicationModule", ["isLoading"]),
+    ...mapGetters("ApplicationModule", ["activeApplicationInfo", "isLoading"]),
 
     applicationId() {
       return this.$route.params.application_id;

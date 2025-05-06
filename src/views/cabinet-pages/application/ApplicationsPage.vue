@@ -1,23 +1,33 @@
 <template>
-  <el-row :gutter="30">
-    <el-col v-if="true" :span="24">
-      <el-table :data="tableData">
+  <el-row :gutter="30" v-loading="isLoading">
+    <el-col v-if="userApplications?.length > 0" :span="24">
+      <el-table :data="userApplications">
+
         <el-table-column class-name="text-center" type="index" min-width="20" label="№"/>
+
         <el-table-column prop="name" min-width="160">
           <template #header>
             Университет
           </template>
           <template #default="scope">
             <p>
-              {{ scope.row.name }}
-              <span>Канада, Реджайна</span>
+              {{ (n => n.length > 32 ? n.slice(0, 32) + '...' : n)(scope.row?.education_place?.name) }}
+              <span>{{ scope.row?.education_place?.country_name }}, {{ scope.row?.education_place?.city_name }}</span>
             </p>
           </template>
         </el-table-column>
-        <el-table-column min-width="130" prop="program" label="Программа" />
-        <el-table-column min-width="130" prop="deadline" label="Дедлайн подачи" />
-        <el-table-column min-width="130" prop="date" label="Начало обучения" />
-        <el-table-column min-width="130" prop="price" label="Стоимость" />
+
+        <el-table-column prop="program" min-width="160">
+          <template #header>
+            Программа
+          </template>
+          <template #default="scope">
+            <p>
+              {{ getNameFromDictionary('degrees', scope.row?.program?.name) }}
+            </p>
+          </template>
+        </el-table-column>
+
         <el-table-column min-width="130" prop="status">
           <template #header>
             Статус
@@ -26,6 +36,7 @@
             <StatusComponent :status="scope.row.status" />
           </template>
         </el-table-column>
+
         <el-table-column min-width="60">
           <template #default="scope">
             <el-dropdown placement="left-start" trigger="click" @command="handleDropdownCommand">
@@ -41,11 +52,12 @@
             </el-dropdown>
           </template>
         </el-table-column>
+
       </el-table>
     </el-col>
 
-    <el-col v-if="false" :span="24">
-      <div class="defaultEmptyBlock" v-if="false">
+    <el-col v-else :span="24">
+      <div class="defaultEmptyBlock">
         <el-card shadow="never">
           <img src="@/assets/img/empty-docs.png" alt="" />
           <p class="custom-empty-text">Здесь будут ваши заявки <span>Начните подавать заявки сейчас</span></p>
@@ -57,39 +69,31 @@
 
 <script>
 import StatusComponent from "@/views/cabinet-pages/application/components/StatusComponent.vue";
+import dictionaryMixin from "@/mixins/dictionaryMixin";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
+  mixins: [dictionaryMixin],
   components:{
     StatusComponent
   },
-  data:()=>({
-    tableData: [
-      { name: 'University of Regina', program: 'Бакалавриат', deadline: '01.08.2025', date: '01.10.2025', price: '$33 000', status: 'pending' },
-      { name: 'University of Regina', program: 'Бакалавриат', deadline: '01.08.2025', date: '01.10.2025', price: '$33 000', status: 'success' },
-      { name: 'University of Regina', program: 'Бакалавриат', deadline: '01.08.2025', date: '01.10.2025', price: '$33 000', status: 'edit' },
-      { name: 'University of Regina', program: 'Бакалавриат', deadline: '01.08.2025', date: '01.10.2025', price: '$33 000', status: 'reject' },
-      { name: 'University of Regina', program: 'Бакалавриат', deadline: '01.08.2025', date: '01.10.2025', price: '$33 000', status: 'university' },
-    ]
-  }),
   methods: {
+    ...mapActions("ApplicationModule", ["GET_APPLICATIONS", "DELETE_APPLICATION"]),
+
     handleDropdownCommand(command) {
       if(command.action === 'view'){
-        this.viewItem(command.id);
+        this.$router.push({ name: "ViewApplication", params:{ application_id: command.id } });
       }
       if(command.action === 'delete'){
-        this.deleteItem(command.id);
+        this.DELETE_APPLICATION(command.id);
       }
-    },
-    viewItem(id) {
-      console.log('Посмотреть элемент с ID:', id);
-    },
-    deleteItem(id) {
-      console.log('Удалить элемент с ID:', id);
     }
   },
   computed: {
+    ...mapGetters("ApplicationModule", ["userApplications", "isLoading"])
   },
   created() {
+    this.GET_APPLICATIONS();
   }
 }
 </script>

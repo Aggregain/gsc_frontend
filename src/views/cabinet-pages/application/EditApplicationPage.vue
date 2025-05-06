@@ -49,7 +49,7 @@ export default {
         if (documentsFormValid && userFormValid) {
           const [appResponse, profileResponse] = await Promise.all([
             this.UPDATE_USER_INFO(),
-            this.UPDATE_APPLICATION_INFO(),
+            this.UPDATE_APPLICATION_INFO(this.applicationId, "IN_PROGRESS"),
           ]);
 
           if (appResponse.success && profileResponse.success) {

@@ -2,14 +2,18 @@ import { DefaultAPIInstance } from "@/plugins/axios";
 import { ElNotification } from "element-plus";
 
 const state = {
-    applicationInfo: {},
+    userApplications: {},
+    activeApplicationInfo: {},
     loading: false,
     ready: true,
 };
 
 const mutations = {
-    SET_INFO(state, setData) {
-        state.applicationInfo = setData;
+    SET_APPLICATIONS(state, setData) {
+        state.userApplications = setData;
+    },
+    SET_APPLICATION_INFO(state, setData) {
+        state.activeApplicationInfo = setData;
     },
     SET_LOADING(state, loading) {
         state.loading = loading;
@@ -20,12 +24,29 @@ const mutations = {
 };
 
 const actions = {
-    async GET_APPLICATION_INFO({ commit }) {
+    async GET_APPLICATIONS({ commit }) {
+        commit("SET_LOADING", true);
+        try {
+            const { data } = await DefaultAPIInstance({ url: "/applications/", method: "GET" });
+            commit("SET_APPLICATIONS", data);
+        } catch (error) {
+            console.log('Application Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Не удалось загрузить заявки.",
+                type: "error"
+            });
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
+    async GET_APPLICATION_INFO({ commit }, id) {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            const { data } = await DefaultAPIInstance({ url: "/application/info/", method: "GET" });
-            commit("SET_INFO", data);
+            const { data } = await DefaultAPIInstance({ url: "/applications/"+id, method: "GET" });
+            commit("SET_APPLICATION_INFO", data);
             commit("SET_READY", true);
         } catch (error) {
             console.log('Application Error:', error);
@@ -39,11 +60,31 @@ const actions = {
         }
     },
 
-    async UPDATE_APPLICATION_INFO({ state, commit }) {
+    async CREATE_APPLICATION({ commit }, university_id) {
+        commit("SET_LOADING", true);
+        try {
+            const { data } = await DefaultAPIInstance({ url: "/applications/", method: "POST", data: {education_place: university_id} });
+
+            return { success: true, application_id: data.id };
+        } catch (error) {
+            console.log('Application Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Ошибка при создании заявки! Возможно уже есть активная заявка.",
+                type: "error"
+            });
+
+            return { success: false, error };
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
+    async UPDATE_APPLICATION_INFO({ commit }, id, status) {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            await DefaultAPIInstance({ url: "/submit-application/", method: "POST", data: state.applicationInfo });
+            await DefaultAPIInstance({ url: "/applications/"+id, method: "PATCH", data: {status: status} });
             ElNotification({
                 title: "Успех",
                 message: "Данные обновлены!",
@@ -64,11 +105,37 @@ const actions = {
             commit("SET_LOADING", false);
             commit("SET_READY", true);
         }
+    },
+
+    async DELETE_APPLICATION({ commit }, id) {
+        commit("SET_LOADING", true);
+        try {
+            await DefaultAPIInstance({ url: "/applications/"+id, method: "DELETE" });
+            ElNotification({
+                title: "Успех",
+                message: "Заявка успешно удалена!",
+                type: "success"
+            });
+
+            return { success: true };
+        } catch (error) {
+            console.log('Application Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Ошибка при удалении.",
+                type: "error"
+            });
+
+            return { success: false, error };
+        } finally {
+            commit("SET_LOADING", false);
+        }
     }
 };
 
 const getters = {
-    applicationInfo: (state) => state.applicationInfo,
+    userApplications: (state) => state.userApplications,
+    activeApplicationInfo: (state) => state.activeApplicationInfo,
     isLoading: (state) => state.loading,
     isReady: (state) => state.ready,
 };

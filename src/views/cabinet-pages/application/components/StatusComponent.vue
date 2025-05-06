@@ -10,15 +10,17 @@ export default {
   computed: {
     statusText() {
       switch (this.status) {
-        case "pending":
-          return "В обработке";
-        case "success":
+        case "DRAFT":
+          return "Черновик";
+        case "IN_PROGRESS":
+          return "В работе";
+        case "ACCEPTED":
           return "Принято";
-        case "edit":
+        case "FOR_REVISION":
           return "На доработку";
-        case "reject":
+        case "DENIED":
           return "Отклонено";
-        case "university":
+        case "FOR_CONSIDERATION":
           return "На рассмотрении в университете";
         default:
           return "Неизвестно";
