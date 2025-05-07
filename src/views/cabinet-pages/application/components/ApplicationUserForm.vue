@@ -14,21 +14,21 @@
             IELTS <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.ielts_grade" name="ielts_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="ielts_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.ielts_attachment" name="ielts_attachment" @updateInfo="getAttachments" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             SAT <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.sat_grade" name="sat_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="sat_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.sat_attachment" name="sat_attachment" @updateInfo="getAttachments" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             GMAT <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gmat_grade" name="gmat_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="gmat_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.gmat_attachment" name="gmat_attachment" @updateInfo="getAttachments" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="8">
@@ -36,21 +36,21 @@
             TOEFL <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.toefl_grade" name="toefl_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="toefl_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.toefl_attachment" name="toefl_attachment" @updateInfo="getAttachments" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             GRE <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gre_grade" name="gre_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="gre_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.gre_attachment" name="gre_attachment" @updateInfo="getAttachments" />
         </el-col>
         <el-col :span="8">
           <p class="custom-label">
             DUOLINGO <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.duolingo_grade" name="duolingo_grade" />
-          <UploadAttachmentComponent :readonly="readonly" name="duolingo_attachment" @getAttachments="getAttachments" />
+          <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.duolingo_attachment" name="duolingo_attachment" @updateInfo="getAttachments" />
         </el-col>
       </el-row>
     </el-form>
@@ -75,7 +75,16 @@ export default {
     default_text: 'Прикрепите PDF с результатом теста'
   }),
   computed: {
-    ...mapGetters("UserModule", ["userForm", "isLoading"]),
+    ...mapGetters("UserModule", ["userForm", "isLoading", "userAttachments"]),
+
+    attachmentsByName() {
+      const list = this.userAttachments || [];
+
+      return list.reduce((acc, attachment) => {
+        acc[attachment.name] = attachment;
+        return acc;
+      }, {});
+    }
   },
   methods: {
     ...mapActions("UserModule", ["GET_USER_ATTACHMENTS"]),

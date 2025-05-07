@@ -30,7 +30,7 @@ const actions = {
 
     async DELETE_ATTACHMENT(_, attachment_id) {
         try {
-            await DefaultAPIInstance({ url: "/accounts/attachments/"+attachment_id, method: "DELETE" });
+            await DefaultAPIInstance({ url: "/accounts/attachments/"+attachment_id+"/", method: "DELETE" });
 
             ElNotification({
                 title: "Успех",

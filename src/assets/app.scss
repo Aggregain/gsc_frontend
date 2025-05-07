@@ -500,6 +500,15 @@ a.defaultLink{
   font-size: 1.6rem;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .upload-button{
   height: 4.8rem;
   min-height: 4.8rem;
@@ -524,6 +533,10 @@ a.defaultLink{
       padding: .3rem .4rem .5rem;
       width: 1.6rem;
       height: 1.6rem;
+    }
+    &.spinnerIcon{
+      animation: spin 2s linear infinite;
+      transform-origin: 50% 50%;
     }
   }
   span{

@@ -7,8 +7,9 @@
           class="upload-button greyStyle"
           type="button"
           :disabled="loading"
-          @click="alert(fileDownloadUrl)"
+          @click="downloadFile(fileDownloadUrl)"
       >
+        <Icon icon="mingcute:loading-3-fill" v-if="loading" class="spinnerIcon" />
         <Icon icon="akar-icons:file" color="#8E9DAF" /><span>{{ displayFileName }}</span><DownloadIcon />
       </button>
       <div v-else class="text-muted">Файл не был загружен</div>
@@ -21,9 +22,9 @@
           class="upload-button greyStyle"
           type="button"
           :disabled="loading"
-          @click="removeFile"
       >
-        <Icon icon="akar-icons:file" color="#8E9DAF" /><span>{{ displayFileName }}</span><TrashIcon />
+        <Icon icon="mingcute:loading-3-fill" v-if="loading" class="spinnerIcon" />
+        <Icon icon="akar-icons:file" color="#8E9DAF" /><span>{{ displayFileName }}</span><TrashIcon @click="removeFile" />
       </button>
 
       <el-upload
@@ -37,6 +38,7 @@
             type="button"
             :disabled="loading"
         >
+          <Icon icon="mingcute:loading-3-fill" v-if="loading" class="spinnerIcon" />
           <Icon icon="tabler:upload" color="#FDFDFD" class="uploadStyle" /><span>Загрузить</span>
         </button>
       </el-upload>
@@ -104,7 +106,7 @@ export default {
       try {
         const result = await this.ADD_ATTACHMENT(formData);
         if (result.success) {
-          this.$emit("getAttachments");
+          this.$emit("updateInfo");
         }
       } catch (error) {
         console.error("Ошибка при загрузке файла:", error);
@@ -120,14 +122,19 @@ export default {
       try {
         const result = await this.DELETE_ATTACHMENT(this.attachmentFile.id);
         if (result.success) {
-          this.$emit("getAttachments");
+          this.$emit("updateInfo");
         }
       } catch (error) {
         console.error("Ошибка при удалении файла:", error);
       } finally {
         this.loading = false;
       }
+    },
+
+    downloadFile(url) {
+      window.open(url, '_blank');
     }
+
   },
 };
 </script>
