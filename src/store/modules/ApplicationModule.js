@@ -80,23 +80,18 @@ const actions = {
         }
     },
 
-    async UPDATE_APPLICATION_INFO({ commit }, id, status) {
+    async UPDATE_APPLICATION_INFO({ commit }, { id, status }) {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            await DefaultAPIInstance({ url: "/applications/"+id, method: "PATCH", data: {status: status} });
-            ElNotification({
-                title: "Успех",
-                message: "Данные обновлены!",
-                type: "success"
-            });
+            await DefaultAPIInstance({ url: "/applications/"+id+"/", method: "PATCH", data: {status: status} });
 
             return { success: true };
         } catch (error) {
             console.log('Application Error:', error);
             ElNotification({
                 title: "Ошибка",
-                message: "Ошибка при отправке.",
+                message: "Ошибка при обновлении заявки!",
                 type: "error"
             });
 
@@ -107,15 +102,17 @@ const actions = {
         }
     },
 
-    async DELETE_APPLICATION({ commit }, id) {
+    async DELETE_APPLICATION({ commit, dispatch }, id) {
         commit("SET_LOADING", true);
         try {
-            await DefaultAPIInstance({ url: "/applications/"+id, method: "DELETE" });
+            await DefaultAPIInstance({ url: "/applications/"+id+"/", method: "DELETE" });
             ElNotification({
                 title: "Успех",
                 message: "Заявка успешно удалена!",
                 type: "success"
             });
+
+            await dispatch("GET_APPLICATIONS");
 
             return { success: true };
         } catch (error) {

@@ -12,38 +12,38 @@
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
           <p class="custom-label">Транскрипт <span>Транскрипт должен быть нотариально заверен</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document1" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_transcript" name="doc_transcript" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="12">
           <p class="custom-label">Мотивационное письмо <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document2" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_motivation_letter" name="doc_motivation_letter" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
           <p class="custom-label">Essay <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document3" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_essay" name="doc_essay" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="12">
           <p class="custom-label">Personal Statement <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document4" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_personal_statement" name="doc_personal_statement" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
           <p class="custom-label">Резюме <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document5" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_resume" name="doc_resume" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="12">
           <p class="custom-label">Портфолио <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document6" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_portfolio" name="doc_portfolio" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="24"><hr></el-col>
         <el-col :span="12">
           <p class="custom-label">Скан Паспорта <span>Загрузите файл в формате PDF (.pdf)</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document7" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_passport_scan" name="doc_passport_scan" @updateInfo="getApplicationInfo" />
         </el-col>
         <el-col :span="12">
           <p class="custom-label">Оплата депозита за обучение (Инвойс) <span>{{ default_text }}</span></p>
-          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" name="document8" />
+          <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_deposit_invoice" name="doc_deposit_invoice" @updateInfo="getApplicationInfo" />
         </el-col>
 
       </el-row>
@@ -53,7 +53,7 @@
 
 <script>
 import UploadAttachmentComponent from "./UploadAttachmentComponent";
-import { mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   components: {
@@ -69,10 +69,24 @@ export default {
   }),
   computed: {
     ...mapGetters("ApplicationModule", ["activeApplicationInfo", "isLoading"]),
-
     applicationId() {
       return this.$route.params.application_id;
     },
+    attachmentsByName() {
+      const list = this.activeApplicationInfo?.attachments || [];
+
+      return list.reduce((acc, attachment) => {
+        acc[attachment.name] = attachment;
+        return acc;
+      }, {});
+    },
+  },
+  methods: {
+    ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO"]),
+
+    getApplicationInfo(){
+      this.GET_APPLICATION_INFO(this.applicationId);
+    }
   }
 };
 </script>

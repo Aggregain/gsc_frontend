@@ -1261,23 +1261,23 @@ a.defaultLink{
     background: $color-grey;
     display: inline-flex;
   }
-  &.pending{
-    color: $color-grey;
-    &:before{ background: $color-grey; }
+  &.IN_PROGRESS{
+    color: $color-main-2;
+    &:before{ background: $color-main-2; }
   }
-  &.success{
+  &.ACCEPTED{
     color: $color-main-3;
     &:before{ background: $color-main-3; }
   }
-  &.edit{
+  &.FOR_REVISION{
     color: #FF7E07;
     &:before{ background: #FF7E07; }
   }
-  &.reject{
+  &.DENIED{
     color: $color-main-1;
     &:before{ background: $color-main-1; }
   }
-  &.university{
+  &.FOR_CONSIDERATION{
     color: $color-main-2;
     &:before{ background: $color-main-2; }
   }

@@ -49,7 +49,7 @@ export default {
         if (documentsFormValid && userFormValid) {
           const [appResponse, profileResponse] = await Promise.all([
             this.UPDATE_USER_INFO(),
-            this.UPDATE_APPLICATION_INFO(this.applicationId, "IN_PROGRESS"),
+            this.UPDATE_APPLICATION_INFO({ id: this.applicationId, status: "IN_PROGRESS" }),
           ]);
 
           if (appResponse.success && profileResponse.success) {
@@ -64,7 +64,7 @@ export default {
   created() {
     this.GET_USER_INFO();
     this.GET_USER_ATTACHMENTS();
-    // this.GET_APPLICATION_INFO(this.applicationId);
+    this.GET_APPLICATION_INFO(this.applicationId);
 
     // TODO Использовать для менеджера
     // if (manager) {
@@ -75,7 +75,7 @@ export default {
     if (to.params.application_id !== from.params.application_id) {
       this.GET_USER_INFO();
       this.GET_USER_ATTACHMENTS();
-      // this.GET_APPLICATION_INFO(this.applicationId);
+      this.GET_APPLICATION_INFO(this.applicationId);
     }
     next();
   }
