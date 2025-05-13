@@ -5,6 +5,7 @@ const state = {
     credentials: {
         access_token: localStorage.getItem('access_token') || null,
         refresh_token: localStorage.getItem('refresh_token') || null,
+        is_staff: localStorage.getItem('is_staff') || null,
     },
     authForm: {},
     loading: false
@@ -17,14 +18,18 @@ const mutations = {
     SET_TOKENS(state, data) {
         state.credentials.access_token = data.access;
         state.credentials.refresh_token = data.refresh;
+        state.credentials.is_staff = data.is_staff;
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('refresh_token', data.refresh);
+        localStorage.setItem('is_staff', data.is_staff);
     },
     DELETE_TOKENS(state) {
         state.credentials.access_token = null;
         state.credentials.refresh_token = null;
+        state.credentials.is_staff = null;
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
+        localStorage.removeItem('is_staff');
     }
 };
 
@@ -86,6 +91,7 @@ const actions = {
 
 const getters = {
     authForm: (state) => state.authForm,
+    isStaff: (state) => state.credentials.is_staff,
     isLoading: (state) => state.loading
 };
 

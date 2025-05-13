@@ -4,15 +4,14 @@ import CabinetLayout from '../views/layouts/CabinetLayout.vue';
 
 const authGuard = (to, from, next) => {
   const token = localStorage.getItem('access_token');
-  // const role = localStorage.getItem('auth_role');
-  const role = 'manager';
+  const is_staff = localStorage.getItem('is_staff') === 'true';
 
   if (!token) {
     return next({ name: 'LoginPage' });
   }
 
-  const requiredRole = to.meta?.requiresRole;
-  if (requiredRole && role !== requiredRole) {
+  const isManager = to.meta?.isManager;
+  if (isManager && !is_staff) {
     return next({ name: 'Profile' });
   }
 
@@ -103,16 +102,26 @@ const routes = [
           title: 'Мои избранные',
           activeNav: '3'
         }
-      },
+      }
+    ]
+  },
+  {
+    path: '/manager',
+    component: CabinetLayout,
+    beforeEnter: authGuard,
+    meta: { isManager: true },
+    children: [
       {
-        path: 'manager',
+        path: '',
         name: 'ManagerProfile',
         component: () => import('../views/cabinet-pages/manager/ProfilePage.vue'),
-        meta: {
-          requiresRole: 'manager',
-          title: 'Профиль менеджера',
-          activeNav: '1'
-        }
+        meta: { title: 'Профиль менеджера', activeNav: '1' }
+      },
+      {
+        path: 'applications',
+        name: 'ManagerApplications',
+        component: () => import('../views/cabinet-pages/application/ApplicationsPage'),
+        meta: { title: 'Заявки', activeNav: '4' }
       }
     ]
   },

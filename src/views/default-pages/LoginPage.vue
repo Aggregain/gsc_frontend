@@ -52,7 +52,11 @@ export default {
           const result = await this.ON_LOGIN();
           if (result.success) {
             this.SET_TOKENS(result.data);
-            window.location = '/cabinet';
+            if(result.data.is_staff){
+              window.location = '/manager';
+            }else{
+              window.location = '/cabinet';
+            }
           }
         }
       });

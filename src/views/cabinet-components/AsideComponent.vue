@@ -31,8 +31,9 @@
   </el-aside>
 </template>
 <script>
-import { mapActions } from "vuex";
-import { menuItems } from "@/constants/menu.js";
+import {mapActions, mapGetters} from "vuex";
+import { userMenuItems } from "@/constants/userMenu.js";
+import { managerMenuItems } from "@/constants/managerMenu.js";
 import LogoutIcon from "@/components/icons/LogoutIcon";
 
 export default {
@@ -41,7 +42,8 @@ export default {
   },
   data() {
     return {
-      menuItems,
+      userMenuItems,
+      managerMenuItems,
       asideOpened: false,
     };
   },
@@ -58,9 +60,16 @@ export default {
     }
   },
   computed: {
+    ...mapGetters("AuthModule", ["isStaff"]),
+
     activeNav() {
       return this.$route.meta.activeNav;
     },
+    menuItems() {
+      return this.isStaff === true || this.isStaff === 'true'
+          ? this.managerMenuItems
+          : this.userMenuItems;
+    }
   },
 };
 </script>

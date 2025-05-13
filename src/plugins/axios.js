@@ -43,10 +43,12 @@ DefaultAPIInstance.interceptors.response.use(
                   const rs = await LoginAPIInstance.post("/accounts/token/refresh/", {"refresh":refreshToken});
                   localStorage.setItem('access_token', rs.data.access);
                   localStorage.setItem('refresh_token', rs.data.refresh);
+                  localStorage.setItem('is_staff', rs.data.is_staff);
                   return DefaultAPIInstance(originalConfig);
                 } catch (_error) {
                   localStorage.removeItem('access_token');
                   localStorage.removeItem('refresh_token');
+                  localStorage.removeItem('is_staff');
                   delete DefaultAPIInstance.defaults.headers['authorization'];
                   console.log(_error);
                   window.location = '/login';

@@ -12,6 +12,7 @@
               <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="userForm.first_name" />
               <DefaultInput label="Фамилия" placeholder="Введите Фамилию" name="second_name" v-model="userForm.second_name" />
               <DefaultInput label="Отчество" placeholder="Введите Отчество" name="last_name" v-model="userForm.last_name" />
+              <DefaultInput label="Дата рождения" placeholder="дд.мм.гггг" name="birth_date" v-model="userForm.birth_date" />
               <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="userForm.phone_number" />
             </el-col>
           </el-row>
