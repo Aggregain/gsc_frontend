@@ -292,12 +292,29 @@ hr{
     }
   }
 }
-
+.custom-badge{
+  display: flex;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  background: $color-main-1;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+}
 .el-button{
   height: 5.6rem;
   min-height: 5.6rem;
   padding: 0 1.6rem;
   border-radius: 1.6rem;
+  position: relative;
   &.fullSize{
     width: 100%;
   }
@@ -363,7 +380,7 @@ hr{
     width: 5.6rem;
     padding: 0;
     justify-content: center!important;
-    overflow: hidden;
+    overflow: visible;
     span{
       svg{
         margin: 0;

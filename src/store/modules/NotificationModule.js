@@ -30,7 +30,7 @@ const actions = {
     async READ_NOTIFICATIONS({ commit, dispatch }) {
         commit("SET_LOADING", true);
         try {
-            await DefaultAPIInstance({ url: "/notifications-read/", method: "GET" });
+            await DefaultAPIInstance({ url: "/notifications/read/", method: "POST" });
             await dispatch("GET_NOTIFICATIONS");
         } catch (error) {
             console.log('Notifications Error:', error);

@@ -9,6 +9,7 @@ import UniversityModule from './modules/UniversityModule'
 import ApplicationModule from './modules/ApplicationModule'
 import WishlistModule from './modules/WishlistModule'
 import AttachmentModule from './modules/AttachmentModule'
+import NotificationModule from './modules/NotificationModule'
 
 export default createStore({
   modules: {
@@ -19,6 +20,7 @@ export default createStore({
       UniversityModule,
       ApplicationModule,
       WishlistModule,
-      AttachmentModule
+      AttachmentModule,
+      NotificationModule
   }
 })

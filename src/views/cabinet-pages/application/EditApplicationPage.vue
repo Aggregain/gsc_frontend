@@ -75,7 +75,7 @@ export default {
     if (to.params.application_id !== from.params.application_id) {
       this.GET_USER_INFO();
       this.GET_USER_ATTACHMENTS();
-      this.GET_APPLICATION_INFO(this.applicationId);
+      this.GET_APPLICATION_INFO(to.params.application_id);
     }
     next();
   }

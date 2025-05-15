@@ -22,6 +22,7 @@ export default {
   },
   methods:{
     ...mapActions("UserModule", ["GET_USER_INFO"]),
+
     goToProfile() {
       this.$router.push({ name: "Profile" });
     }

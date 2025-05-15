@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="30" align="middle">
     <el-col :xs="{span:12}" :sm="{span:12}">
-      <h1 id="mainTitle">{{ this.pageTitle }} {{ this.userInfo }}</h1>
+      <h1 id="mainTitle">{{ this.pageTitle }}</h1>
     </el-col>
     <el-col :xs="{span:12}" :sm="{span:12}" class="text-right">
       <NotificationsComponent />
@@ -24,9 +24,6 @@ export default {
   computed: {
     pageTitle() {
       return this.$route.meta.title;
-    },
-    userInfo() {
-      return this.$store.getters.get_user_info;
     }
   }
 }
