@@ -4,7 +4,7 @@
       <h1 id="mainTitle">{{ this.pageTitle }}</h1>
     </el-col>
     <el-col :xs="{span:12}" :sm="{span:12}" class="text-right">
-      <NotificationsComponent />
+      <NotificationsComponent v-if="!showNotifications" />
       <ProfileComponent />
     </el-col>
   </el-row>
@@ -13,6 +13,7 @@
 <script>
 import NotificationsComponent from "@/views/cabinet-components/header-components/NotificationsComponent";
 import ProfileComponent from "@/views/cabinet-components/header-components/ProfileComponent";
+import {mapGetters} from "vuex";
 
 export default {
   components:{
@@ -22,6 +23,11 @@ export default {
   methods:{
   },
   computed: {
+    ...mapGetters("AuthModule", ["isStaff"]),
+
+    showNotifications() {
+      return this.isStaff === true || this.isStaff === 'true'
+    },
     pageTitle() {
       return this.$route.meta.title;
     }

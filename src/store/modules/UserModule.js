@@ -118,6 +118,25 @@ const actions = {
         } finally {
             commit("SET_LOADING", false);
         }
+    },
+
+    async GET_USER_BY_ID({ commit }, user_id) {
+        commit("SET_LOADING", true);
+        commit("SET_READY", false);
+        try {
+            const { data } = await DefaultAPIInstance({ url: "/accounts/"+user_id, method: "GET" });
+            commit("SET_READY", true);
+            return data;
+        } catch (error) {
+            console.log('UserAttachments Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Не удалось загрузить данные о пользователе.",
+                type: "error"
+            });
+        } finally {
+            commit("SET_LOADING", false);
+        }
     }
 
 };

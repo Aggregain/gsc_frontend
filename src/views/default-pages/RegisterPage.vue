@@ -7,7 +7,7 @@
           <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="authForm.first_name" />
           <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
           <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="authForm.phone_number" />
-          <DefaultInput label="Пароль" placeholder="Придумайте пароль" name="password" v-model="authForm.password" />
+          <DefaultInput label="Пароль" placeholder="Придумайте пароль" name="password" type="password" v-model="authForm.password" />
 
           <el-button type="primary" class="fullSize bigFS withMT" @click="submitForm" :loading="isLoading">Зарегистрироваться</el-button>
 

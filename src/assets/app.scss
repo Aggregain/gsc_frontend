@@ -437,6 +437,9 @@ hr{
       background: #FFF5F9;
       border-color: $color-main-1;
       color: $color-main-1;
+      &.secondStyle{
+        background: $custom-white;
+      }
       &:hover{
         background: #e9e9e9;
         border-color: #e9e9e9;
@@ -791,6 +794,56 @@ a.defaultLink{
   }
 }
 
+.el-dialog{
+  background: $custom-white;
+  border-color: $custom-white;
+  border-radius: 2.4rem;
+  padding: 4rem 2.4rem;
+  header{
+    padding: 0;
+  }
+  .el-dialog__body{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .iconBlock{
+      display: flex;
+      width: 7.2rem;
+      height: 7.2rem;
+      background: #E1F2E5;
+      border-radius: 50%;
+      position: relative;
+      padding: 0;
+      margin: 0 0 2.4rem;
+      align-items: center;
+      justify-content: center;
+      svg{
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        width: 3.6rem;
+        height: 3.6rem;
+      }
+    }
+    p.title{
+      display: flex;
+      font-size: 1.8rem;
+      color: $color-main-6;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    p.description{
+      display: flex;
+      color: $color-grey;
+      text-align: center;
+      max-width: 80%;
+      word-break: normal;
+      margin: 0 0 2.8rem;
+    }
+  }
+}
+
 .el-tabs{
   .el-tabs__header{
     margin: 0;
@@ -1012,6 +1065,19 @@ a.defaultLink{
             font-weight: 200;
           }
         }
+      }
+    }
+    .el-textarea{
+      textarea{
+        padding: 1.2rem 1.6rem;
+        border: 1px solid #E8E8E8;
+        border-radius: 1.2rem;
+        box-shadow: none;
+        min-height: 12rem;
+        height: 12rem;
+        font-size: 1.6rem;
+        color: $color-main-6;
+        font-weight: 300;
       }
     }
     .el-radio-group{

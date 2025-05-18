@@ -5,7 +5,7 @@
         <h1>Войти</h1>
         <el-form ref="formRef" :model="authForm" :rules="rules" validateOnRuleChange>
           <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
-          <DefaultInput label="Пароль" placeholder="Введите пароль" name="password" v-model="authForm.password" />
+          <DefaultInput label="Пароль" placeholder="Введите пароль" name="password" type="password" v-model="authForm.password" />
 
           <router-link :to="{name: 'LoginPage'}" class="defaultLink">Забыли пароль?</router-link>
 

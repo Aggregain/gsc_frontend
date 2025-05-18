@@ -48,6 +48,7 @@ const actions = {
             const { data } = await DefaultAPIInstance({ url: "/applications/"+id, method: "GET" });
             commit("SET_APPLICATION_INFO", data);
             commit("SET_READY", true);
+            return data;
         } catch (error) {
             console.log('Application Error:', error);
             ElNotification({
@@ -80,11 +81,11 @@ const actions = {
         }
     },
 
-    async UPDATE_APPLICATION_INFO({ commit }, { id, status }) {
+    async UPDATE_APPLICATION_INFO({ commit }, { id, update_data }) {
         commit("SET_LOADING", true);
         commit("SET_READY", false);
         try {
-            await DefaultAPIInstance({ url: "/applications/"+id+"/", method: "PATCH", data: {status: status} });
+            await DefaultAPIInstance({ url: "/applications/"+id+"/", method: "PATCH", data: update_data });
 
             return { success: true };
         } catch (error) {

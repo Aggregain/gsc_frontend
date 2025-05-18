@@ -4,35 +4,37 @@
       <h2 class="withMB">Чеклист по документам для студента</h2>
     </el-col>
     <el-col :span="24">
-      <ApplicationDocumentsForm :readonly="readonly" ref="documentsFormRef" />
-      <ApplicationUserForm :readonly="readonly" ref="userFormRef" />
+      <ApplicationDocumentsForm :readonly="false" ref="documentsFormRef" />
+      <ApplicationUserForm :readonly="false" ref="userFormRef" />
     </el-col>
-    <el-col :span="24">
-      <el-button class="medium" type="primary" @click="submitForms" :loading="isSubmitDisabled">Отправить</el-button>
-    </el-col>
+    <StudentActions @updateStatus="updateStatus" />
+    <SuccessDialog v-if="successDialogShow" :completeDialogData="completeDialogData" />
   </el-row>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import ApplicationDocumentsForm from "./components/ApplicationDocumentsForm";
 import ApplicationUserForm from "./components/ApplicationUserForm";
+import StudentActions from "./components/UserActions";
+import SuccessDialog from "./components/SuccessDialog";
 
 export default {
   components:{
     ApplicationDocumentsForm,
-    ApplicationUserForm
+    ApplicationUserForm,
+    StudentActions,
+    SuccessDialog,
   },
   data:()=>({
-    readonly: false,
+    successDialogShow: false,
+    completeDialogData: {
+      title: 'Ваша заявка успешно отправлена!',
+      description: 'Менеджер свяжется с вами в ближайшее время для дальнейших шагов',
+      route_name: 'Applications'
+    }
   }),
   computed: {
-    ...mapGetters('ApplicationModule', { applicationIsReady: 'isReady' }),
-    ...mapGetters('UserModule', { userIsReady: 'isReady' }),
-
-    isSubmitDisabled() {
-      return !(this.applicationIsReady && this.userIsReady);
-    },
     applicationId() {
       return this.$route.params.application_id;
     },
@@ -41,7 +43,7 @@ export default {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO", "UPDATE_APPLICATION_INFO"]),
     ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO", "GET_USER_ATTACHMENTS"]),
 
-    async submitForms() {
+    async updateStatus(update_data) {
       try {
         const documentsFormValid = await this.$refs.documentsFormRef.$refs.formRef.validate();
         const userFormValid = await this.$refs.userFormRef.$refs.formRef.validate();
@@ -49,11 +51,11 @@ export default {
         if (documentsFormValid && userFormValid) {
           const [appResponse, profileResponse] = await Promise.all([
             this.UPDATE_USER_INFO(),
-            this.UPDATE_APPLICATION_INFO({ id: this.applicationId, status: "IN_PROGRESS" }),
+            this.UPDATE_APPLICATION_INFO({ id: this.applicationId, update_data: update_data }),
           ]);
 
           if (appResponse.success && profileResponse.success) {
-            this.$router.push({ name: "Applications" });
+            this.successDialogShow = true;
           }
         }
       } catch (err) {
@@ -65,11 +67,6 @@ export default {
     this.GET_USER_INFO();
     this.GET_USER_ATTACHMENTS();
     this.GET_APPLICATION_INFO(this.applicationId);
-
-    // TODO Использовать для менеджера
-    // if (manager) {
-    //   this.readonly = true;
-    // }
   },
   beforeRouteUpdate(to, from, next) {
     if (to.params.application_id !== from.params.application_id) {

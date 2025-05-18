@@ -120,9 +120,17 @@ const routes = [
       {
         path: 'applications',
         name: 'ManagerApplications',
-        component: () => import('../views/cabinet-pages/application/ApplicationsPage'),
+        component: () => import('../views/cabinet-pages/manager/ApplicationsPage'),
         meta: { title: 'Заявки', activeNav: '4' }
-      }
+      },
+      {
+        path: 'application/:application_id',
+        name: 'ManagerViewApplication',
+        component: () => import('../views/cabinet-pages/manager/ViewApplicationPage'),
+        meta: {
+          activeNav: '4'
+        }
+      },
     ]
   },
   {

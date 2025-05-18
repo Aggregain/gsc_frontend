@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="label" :prop="name">
-    <el-input v-model="computedValue" :placeholder="placeholder" :disabled="readonly" :type="name==='password'?'password':'text'" />
+    <el-input v-model="computedValue" :placeholder="placeholder" :disabled="readonly" :type="type" />
   </el-form-item>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: 'text',
     },
     modelValue: String
   },
