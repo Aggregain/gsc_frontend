@@ -7,7 +7,7 @@
       <ApplicationDocumentsForm :readonly="true" />
       <ApplicationUserMainInfo v-loading="loading" :fullUserInfo="fullUserInfo" />
     </el-col>
-    <ManagerActions @updateStatus="updateStatus" @sendComment="updateStatus" />
+    <ManagerActions @sendOffer="updateStatus" @sendComment="updateStatus" />
     <SuccessDialog v-if="successDialogShow" :completeDialogData="completeDialogData" />
   </el-row>
 </template>
