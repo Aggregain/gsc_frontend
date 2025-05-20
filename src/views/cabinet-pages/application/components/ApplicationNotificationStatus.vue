@@ -61,7 +61,7 @@ export default {
         default:
           return {
             title: "Страница заявки",
-            text: "Данные профиля используются при поиске и подаче заявок в университет",
+            text: "",
             icon: "material-symbols:info-rounded",
             class: "status-default"
           };
