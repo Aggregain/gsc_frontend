@@ -2,6 +2,12 @@
   <el-card shadow="never" v-loading="isLoading">
     <el-form ref="formRef" :model="form" :rules="rules" validateOnRuleChange>
       <el-row :gutter="24">
+        <el-col :span="24" v-if="activeApplicationInfo.status && activeApplicationInfo.status !== 'DRAFT'">
+          <ApplicationNotificationStatus
+              :status="activeApplicationInfo.status"
+              :comment="activeApplicationInfo.comment"
+              :comment_file="activeApplicationInfo.comment_file" />
+        </el-col>
         <el-col :span="24">
           <div class="headLabel">
             <div class="defaultIcon"><Icon icon="mage:file-2-fill"></Icon></div>
@@ -52,15 +58,20 @@
 </template>
 
 <script>
-import UploadAttachmentComponent from "./UploadAttachmentComponent";
 import {mapActions, mapGetters} from "vuex";
+import ApplicationNotificationStatus from "./ApplicationNotificationStatus";
+import UploadAttachmentComponent from "./UploadAttachmentComponent";
 
 export default {
   components: {
+    ApplicationNotificationStatus,
     UploadAttachmentComponent
   },
   props:{
-    readonly: Boolean
+    readonly: {
+      type: Boolean,
+      default: true
+    }
   },
   data:()=>({
     form: {},

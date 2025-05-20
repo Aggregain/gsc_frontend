@@ -50,7 +50,7 @@ export default {
           this.$router.push({ name: "ViewApplication", params:{ application_id: result.application_id } });
         }
       } catch (error) {
-        console.error("Ошибка при загрузке файла:", error);
+        console.error("Ошибка при создании заявки:", error);
       }
     }
   },

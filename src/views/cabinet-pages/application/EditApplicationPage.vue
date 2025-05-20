@@ -4,8 +4,8 @@
       <h2 class="withMB">Чеклист по документам для студента</h2>
     </el-col>
     <el-col :span="24">
-      <ApplicationDocumentsForm :readonly="false" ref="documentsFormRef" />
-      <ApplicationUserForm :readonly="false" ref="userFormRef" />
+      <ApplicationDocumentsForm :readonly="this.readonly" ref="documentsFormRef" />
+      <ApplicationUserForm :readonly="this.readonly" ref="userFormRef" />
     </el-col>
     <StudentActions @updateStatus="updateStatus" />
     <SuccessDialog v-if="successDialogShow" :completeDialogData="completeDialogData" />
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import ApplicationDocumentsForm from "./components/ApplicationDocumentsForm";
 import ApplicationUserForm from "./components/ApplicationUserForm";
 import StudentActions from "./components/UserActions";
@@ -35,6 +35,12 @@ export default {
     }
   }),
   computed: {
+    ...mapGetters("ApplicationModule", ["activeApplicationInfo", "isLoading"]),
+
+    readonly() {
+      const status = this.activeApplicationInfo?.status;
+      return !(status === "FOR_CONSIDERATION" || status === "DRAFT");
+    },
     applicationId() {
       return this.$route.params.application_id;
     },
@@ -49,13 +55,14 @@ export default {
         const userFormValid = await this.$refs.userFormRef.$refs.formRef.validate();
 
         if (documentsFormValid && userFormValid) {
-          const [appResponse, profileResponse] = await Promise.all([
-            this.UPDATE_USER_INFO(),
-            this.UPDATE_APPLICATION_INFO({ id: this.applicationId, update_data: update_data }),
-          ]);
+          const profileResponse = await this.UPDATE_USER_INFO();
 
-          if (appResponse.success && profileResponse.success) {
-            this.successDialogShow = true;
+          if (profileResponse.success) {
+            const appResponse = await this.UPDATE_APPLICATION_INFO({ id: this.applicationId, update_data: update_data,});
+
+            if (appResponse.success) {
+              this.successDialogShow = true;
+            }
           }
         }
       } catch (err) {

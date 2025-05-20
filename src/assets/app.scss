@@ -959,12 +959,23 @@ a.defaultLink{
     .text{
       font-style: italic;
     }
+    a{
+      display: flex;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: $color-main-2;
+      font-weight: 500;
+      text-decoration: underline;
+    }
   }
   &.big{
     padding: 2.4rem;
   }
   &.successStyle{
     background: #E9F4EC;
+    img, svg{
+      color: $color-main-3;
+    }
     .image{
       svg{
         color: $color-main-3;
@@ -976,6 +987,9 @@ a.defaultLink{
   }
   &.errorStyle{
     background: #FFF5F9;
+    img, svg{
+      color: $color-main-1;
+    }
     .image{
       svg{
         color: $color-main-1;

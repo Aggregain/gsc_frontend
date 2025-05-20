@@ -86,6 +86,11 @@ const actions = {
         commit("SET_READY", false);
         try {
             await DefaultAPIInstance({ url: "/applications/"+id+"/", method: "PATCH", data: update_data });
+            ElNotification({
+                title: "Успех",
+                message: "Статус заявки успешно обновлен!",
+                type: "success"
+            });
 
             return { success: true };
         } catch (error) {

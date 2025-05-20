@@ -1,5 +1,5 @@
 <template>
-  <el-col :span="24" v-if="['IN_PROGRESS', 'FOR_REVISION'].includes(activeApplicationInfo?.status)">
+  <el-col :span="24" v-if="['IN_PROGRESS'].includes(activeApplicationInfo?.status)">
     <el-button
         class="medium secondStyle"
         type="danger"

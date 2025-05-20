@@ -68,7 +68,10 @@ export default {
     UploadAttachmentComponent
   },
   props:{
-    readonly: Boolean
+    readonly: {
+      type: Boolean,
+      default: true
+    }
   },
   data:()=>({
     rules: {},
