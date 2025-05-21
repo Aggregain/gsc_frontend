@@ -218,6 +218,10 @@
     left: 0;
     .headLabel{
       margin: 0;
+      align-items: flex-start;
+      .defaultIcon{
+        margin-top: .1rem;
+      }
       p{
         font-size: 1.5rem;
         font-weight: 200;

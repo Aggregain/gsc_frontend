@@ -21,10 +21,12 @@
   </el-col>
 </template>
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
+import createApplicationMixin from "@/mixins/createApplicationMixin";
 import WishlistButtonComponent from "./WishlistButtonComponent.vue";
 
 export default {
+  mixins: [createApplicationMixin],
   components: {
     WishlistButtonComponent
   },
@@ -32,8 +34,6 @@ export default {
     isScrolled: false
   }),
   methods: {
-    ...mapActions("ApplicationModule", ["CREATE_APPLICATION"]),
-
     handleScroll() {
       const mainBlock = document.getElementById("main-block");
       if (mainBlock) {
@@ -42,16 +42,6 @@ export default {
     },
     openLink() {
       window.open(this.universityInfo.link, '_blank');
-    },
-    async createApplication() {
-      try {
-        const result = await this.CREATE_APPLICATION(this.universityInfo.id);
-        if (result.success) {
-          this.$router.push({ name: "ViewApplication", params:{ application_id: result.application_id } });
-        }
-      } catch (error) {
-        console.error("Ошибка при создании заявки:", error);
-      }
     }
   },
   computed:{
