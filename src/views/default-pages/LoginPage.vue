@@ -1,7 +1,7 @@
 <template>
   <div class="default-container authPage height100">
     <el-row :gutter="30" align="middle">
-      <el-col :span="9" class="text-center">
+      <el-col :xs="{span: 24}" :span="9" class="text-center">
         <h1>Войти</h1>
         <el-form ref="formRef" :model="authForm" :rules="rules" validateOnRuleChange>
           <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
@@ -17,7 +17,7 @@
           </p>
         </el-form>
       </el-col>
-      <el-col :span="12" :sm="{offset: 3}">
+      <el-col :xs="{span: 0}" :span="12" :sm="{offset: 3}">
         <AuthImageComponent />
       </el-col>
     </el-row>

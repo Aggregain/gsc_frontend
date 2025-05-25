@@ -6,7 +6,7 @@
           <img src="@/assets/logo.png" alt="Logo">
         </div>
       </el-col>
-      <el-col :span="12" class="text-right">
+      <el-col :xs="{span: 0}" :span="12" class="text-right">
         <el-button type="primary" class="medium-second" plain>Войти</el-button>
         <el-button type="primary" class="medium-second">Зарегистрироваться</el-button>
       </el-col>

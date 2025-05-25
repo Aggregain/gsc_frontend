@@ -201,6 +201,7 @@ hr{
     }
   }
   .logo{
+    display: flex;
     img{
       height: 5.6rem;
     }
@@ -1499,8 +1500,8 @@ img.degreeImage{
   }
 }
 
-@media (max-width: 925px) {
-  html {
-    font-size: 43.75%; /* 1rem = 7px */
-  }
-}
+//@media (max-width: 925px) {
+//  html {
+//    font-size: 43.75%; /* 1rem = 7px */
+//  }
+//}

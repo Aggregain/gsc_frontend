@@ -28,6 +28,15 @@
           </template>
         </el-table-column>
 
+        <el-table-column min-width="130" prop="created_at">
+          <template #header>
+            Дата поступления заявки
+          </template>
+          <template #default="scope">
+            {{ $formatDate(scope.row.created_at) }}
+          </template>
+        </el-table-column>
+
         <el-table-column min-width="130" prop="status">
           <template #header>
             Статус
