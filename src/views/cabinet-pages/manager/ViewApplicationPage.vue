@@ -4,6 +4,7 @@
       <h2 class="withMB">Чеклист по документам для студента</h2>
     </el-col>
     <el-col :span="24">
+      <OfferComponent />
       <ApplicationDocumentsForm :readonly="true" />
       <ApplicationUserMainInfo v-loading="loading" :fullUserInfo="fullUserInfo" />
     </el-col>
@@ -12,15 +13,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {mapActions, mapMutations} from "vuex";
 import ApplicationDocumentsForm from "@/views/cabinet-pages/application/components/ApplicationDocumentsForm";
 import ApplicationUserMainInfo from "./components/ApplicationUserMainInfo";
+import OfferComponent from "@/views/cabinet-pages/application/components/OfferComponent";
 import ManagerActions from "./components/ManagerActions";
 
 export default {
   components:{
     ApplicationDocumentsForm,
     ApplicationUserMainInfo,
+    OfferComponent,
     ManagerActions
   },
   data:()=>({
@@ -35,6 +38,7 @@ export default {
   methods: {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO", "UPDATE_APPLICATION_INFO"]),
     ...mapActions("UserModule", ["GET_USER_BY_ID"]),
+    ...mapMutations("ApplicationModule", ["SET_APPLICATION_INFO"]),
 
     async getApplicationInfo(id){
       try {
@@ -72,6 +76,10 @@ export default {
     if (to.params.application_id !== from.params.application_id) {
       this.getApplicationInfo(to.params.application_id);
     }
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    this.SET_APPLICATION_INFO({});
     next();
   }
 }

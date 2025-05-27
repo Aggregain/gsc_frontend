@@ -2,12 +2,14 @@
   <el-card shadow="never" v-loading="isLoading">
     <el-form ref="formRef" :model="form" :rules="rules" validateOnRuleChange>
       <el-row :gutter="24">
-        <el-col :span="24" v-if="activeApplicationInfo.status && activeApplicationInfo.status !== 'DRAFT'">
+        <el-col :span="24" v-if="activeApplicationInfo.status && !['DRAFT', 'ACCEPTED'].includes(activeApplicationInfo.status)">
           <ApplicationNotificationStatus
               :status="activeApplicationInfo.status"
               :comment="activeApplicationInfo.comment"
-              :comment_file="activeApplicationInfo.comment_file" />
+              :comment_file="activeApplicationInfo.comment_file"
+          />
         </el-col>
+
         <el-col :span="24">
           <div class="headLabel">
             <div class="defaultIcon"><Icon icon="mage:file-2-fill"></Icon></div>
@@ -51,6 +53,17 @@
           <p class="custom-label">Оплата депозита за обучение (Инвойс) <span>{{ default_text }}</span></p>
           <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="attachmentsByName.doc_deposit_invoice" name="doc_deposit_invoice" @updateInfo="getApplicationInfo" />
         </el-col>
+        <el-col :span="24"><hr></el-col>
+        <el-col :span="24">
+          <p class="custom-label">Дополнительные файлы <span>При необходимости загрузите один или несколько дополнительных файлов.</span></p>
+          <div class="additionalFileItem" v-for="(file, index) in additionalFiles" :key="file.id || index" >
+            <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="file" name="additional_file" @updateInfo="getApplicationInfo" />
+          </div>
+
+          <div class="additionalFileItem">
+            <UploadAttachmentComponent :readonly="readonly" :application_id="applicationId" :attachmentFile="null" name="additional_file" @updateInfo="getApplicationInfo" />
+          </div>
+        </el-col>
 
       </el-row>
     </el-form>
@@ -91,6 +104,10 @@ export default {
         return acc;
       }, {});
     },
+    additionalFiles() {
+      const list = this.activeApplicationInfo?.attachments || [];
+      return list.filter((a) => a.name === "additional_file");
+    }
   },
   methods: {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO"]),

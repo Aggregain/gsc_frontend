@@ -4,6 +4,7 @@
       <h2 class="withMB">Чеклист по документам для студента</h2>
     </el-col>
     <el-col :span="24">
+      <OfferComponent />
       <ApplicationDocumentsForm :readonly="this.readonly" ref="documentsFormRef" />
       <ApplicationUserForm :readonly="this.readonly" ref="userFormRef" />
     </el-col>
@@ -13,9 +14,10 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import ApplicationDocumentsForm from "./components/ApplicationDocumentsForm";
 import ApplicationUserForm from "./components/ApplicationUserForm";
+import OfferComponent from "./components/OfferComponent";
 import StudentActions from "./components/UserActions";
 import SuccessDialog from "./components/SuccessDialog";
 
@@ -23,6 +25,7 @@ export default {
   components:{
     ApplicationDocumentsForm,
     ApplicationUserForm,
+    OfferComponent,
     StudentActions,
     SuccessDialog,
   },
@@ -48,6 +51,7 @@ export default {
   methods: {
     ...mapActions("ApplicationModule", ["GET_APPLICATION_INFO", "UPDATE_APPLICATION_INFO"]),
     ...mapActions("UserModule", ["GET_USER_INFO", "UPDATE_USER_INFO", "GET_USER_ATTACHMENTS"]),
+    ...mapMutations("ApplicationModule", ["SET_APPLICATION_INFO"]),
 
     async updateStatus(update_data) {
       try {
@@ -81,6 +85,10 @@ export default {
       this.GET_USER_ATTACHMENTS();
       this.GET_APPLICATION_INFO(to.params.application_id);
     }
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    this.SET_APPLICATION_INFO({});
     next();
   }
 }

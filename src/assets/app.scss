@@ -6,6 +6,7 @@
 @import "styles/landing";
 @import "styles/auth";
 @import "styles/manager";
+@import "styles/applications";
 *{
   margin: 0;
   padding: 0;
@@ -571,7 +572,7 @@ a.defaultLink{
     border-color: $color-main-9;
     font-size: 1.6rem;
     font-weight: 300;
-    min-width: 35rem;
+    min-width: 24rem;
     max-width: 100%;
     justify-content: space-between;
     span{
