@@ -21,6 +21,10 @@ const authGuard = (to, from, next) => {
 const routes = [
   {
     path: '/',
+    redirect: '/cabinet'
+  },
+  {
+    path: '/',
     component: PublicLayout,
     children: [
       {
