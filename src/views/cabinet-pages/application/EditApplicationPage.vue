@@ -42,7 +42,7 @@ export default {
 
     readonly() {
       const status = this.activeApplicationInfo?.status;
-      return !(status === "FOR_CONSIDERATION" || status === "DRAFT");
+      return !(status === "FOR_REVISION" || status === "DRAFT");
     },
     applicationId() {
       return this.$route.params.application_id;
