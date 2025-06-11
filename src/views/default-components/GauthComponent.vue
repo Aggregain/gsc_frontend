@@ -1,49 +1,46 @@
 <template>
-  <div class="googleOauthBlock">
-    <GoogleLogin :callback="callback"></GoogleLogin>
+  <div class="googleOauthBlock" v-loading="isLoading">
+    <GoogleLogin :callback="callback">
+      <template #default="{ onClick }">
+        <el-button @click="onClick" class="fullSize bigFS white&#45;&#45;style"><GoogleIcon />Продолжить с Google</el-button>
+      </template>
+    </GoogleLogin>
   </div>
 </template>
 
 <script>
-import {ON_GOOGLE_OAUTH, SET_REFRESH_TOKEN, SET_TOKEN, SET_USER_INFO} from "@/store/modules/Old-AuthModule";
+import {mapActions, mapGetters, mapMutations} from "vuex";
+import GoogleIcon from "@/components/icons/GoogleIcon"
 
 export default {
-  props:{
-    invitation: [String, Number]
+  components: {
+    GoogleIcon
   },
   data(){
     return{
       callback:(response) => {
-        this.onGoogleOauth(response.credential);
-        this.$emit('loading-true');
+        this.onGoogleOauth(response.code);
       }
     }
   },
   methods: {
+    ...mapActions("AuthModule", ["ON_GOOGLE_OAUTH"]),
+    ...mapMutations('AuthModule', ['SET_TOKENS']),
+
     async onGoogleOauth(jwt_token) {
-      try {
-        let form = {
-          "auth_token": jwt_token
-        };
-        if(this.invitation!==''){
-          form.referral_code = this.invitation;
-        }
-        const data = await this.$store.dispatch(ON_GOOGLE_OAUTH, form);
-        this.$store.commit(SET_TOKEN, data.access);
-        this.$store.commit(SET_REFRESH_TOKEN, data.refresh);
-        this.$store.commit(SET_USER_INFO, data.user.email);
-        // eslint-disable-next-line no-undef
-        sendMetric('login');
-        if(this.savedAlert!==''){
-          window.location = '/create-alert';
+      const result = await this.ON_GOOGLE_OAUTH(jwt_token);
+      if (result.success) {
+        this.SET_TOKENS(result.data);
+        if(result.data.is_staff){
+          window.location = '/manager';
         }else{
-          window.location = '/home';
+          window.location = '/cabinet';
         }
-      } catch (e) {
-        this.$emit('loading-false');
-        this.$message.error(e.response.data.detail);
       }
     }
+  },
+  computed: {
+    ...mapGetters("AuthModule", ["authForm", "isLoading"])
   }
 };
 </script>

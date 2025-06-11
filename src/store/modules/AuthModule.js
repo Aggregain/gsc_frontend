@@ -58,6 +58,30 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
+    async ON_GOOGLE_OAUTH({ commit }, jwt_token) {
+        commit("SET_LOADING", true);
+        try {
+            const response = await DefaultAPIInstance({ url: "/accounts/google/", method: "POST", data: {"token": jwt_token} });
+            ElNotification({
+                title: "Успех",
+                message: "Данные обновлены!",
+                type: "success"
+            });
+
+            return { success: true, data: response.data };
+        } catch (error) {
+            console.log('Auth Error:', error);
+            ElNotification({
+                title: "Ошибка",
+                message: "Ошибка при отправке.",
+                type: "error"
+            });
+
+            return { success: false, error };
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
     async ON_REGISTER({ state, commit }) {
         commit("SET_LOADING", true);
         try {

@@ -7,6 +7,7 @@
 @import "styles/auth";
 @import "styles/manager";
 @import "styles/applications";
+@import "styles/not-found";
 *{
   margin: 0;
   padding: 0;
@@ -39,7 +40,7 @@ body{
 }
 
 #main-container{
-  height: 100vh;
+  height: 100svh;
   padding: 0;
 }
 

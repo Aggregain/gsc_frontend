@@ -7,8 +7,8 @@
         </div>
       </el-col>
       <el-col :xs="{span: 0}" :span="12" class="text-right">
-        <el-button type="primary" class="medium-second" plain>Войти</el-button>
-        <el-button type="primary" class="medium-second">Зарегистрироваться</el-button>
+        <el-button type="primary" @click="routerPush('LoginPage')" class="medium-second" plain>Войти</el-button>
+        <el-button type="primary" @click="routerPush('RegisterPage')" class="medium-second">Зарегистрироваться</el-button>
       </el-col>
     </el-row>
   </div>
@@ -17,8 +17,9 @@
 <script>
 export default {
   methods:{
-  },
-  computed: {
+    routerPush(route_name){
+      this.$router.push({ name: route_name });
+    }
   }
 }
 </script>

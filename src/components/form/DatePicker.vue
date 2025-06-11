@@ -6,7 +6,7 @@
         :disabled="readonly"
         type="date"
         format="YYYY-MM-DD"
-        value-format="YYYY-MM-DD"
+        value-format="DD/MM/YYYY"
         style="width: 100%"
     />
   </el-form-item>

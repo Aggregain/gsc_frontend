@@ -48,6 +48,22 @@ const routes = [
           footerHidden: true
         }
       },
+      {
+        path: 'reset',
+        name: 'ResetPasswordPage',
+        component: () => import('../views/default-pages/ResetPasswordPage'),
+        meta: {
+          footerHidden: true
+        }
+      },
+      {
+        path: 'reset/:reset_token',
+        name: 'NewPasswordPage',
+        component: () => import('../views/default-pages/NewPasswordPage'),
+        meta: {
+          footerHidden: true
+        }
+      },
     ]
   },
   {

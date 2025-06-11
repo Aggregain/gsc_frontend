@@ -7,7 +7,7 @@
       <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="computedUserForm.first_name" />
       <DefaultInput label="Фамилия" placeholder="Введите Фамилию" name="second_name" v-model="computedUserForm.second_name" />
       <DefaultInput label="Отчество" placeholder="Введите Отчество" name="last_name" v-model="computedUserForm.last_name" />
-      <DefaultInput label="Дата рождения" placeholder="дд.мм.гггг" name="birth_date" v-model="computedUserForm.birth_date" />
+      <DatePicker label="Дата рождения" placeholder="дд.мм.гггг" name="birth_date" v-model="computedUserForm.birth_date" />
     </el-col>
     <el-col :span="10">
       <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="computedUserForm.phone_number" />
@@ -43,12 +43,14 @@ import { mapGetters } from "vuex";
 import DefaultInput from "@/components/form/DefaultInput";
 import DefaultSelect from "@/components/form/DefaultSelect";
 import UploadAvatar from "@/components/form/UploadAvatar";
+import DatePicker from "@/components/form/DatePicker";
 
 export default {
   components: {
     DefaultInput,
     DefaultSelect,
     UploadAvatar,
+    DatePicker
   },
   props:{
     modelValue: Object

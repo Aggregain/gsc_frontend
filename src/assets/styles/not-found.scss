@@ -1,0 +1,20 @@
+.default-container.notFoundPage{
+  min-height: 100svh;
+  align-content: center;
+  width: calc(100% - 30px);
+  p.notFoundText{
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12rem;
+    color: $color-main-2;
+    margin: 0;
+    line-height: 1;
+  }
+  h1{
+    font-size: 3rem;
+    font-weight: 600;
+    color: #202124;
+    margin: 0 0 6rem;
+  }
+}

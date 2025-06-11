@@ -7,11 +7,10 @@
           <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
           <DefaultInput label="Пароль" placeholder="Введите пароль" name="password" type="password" v-model="authForm.password" />
 
-          <router-link :to="{name: 'LoginPage'}" class="defaultLink">Забыли пароль?</router-link>
+          <router-link :to="{name: 'ResetPasswordPage'}" class="defaultLink">Забыли пароль?</router-link>
 
           <el-button type="primary" class="fullSize bigFS" @click="submitForm" :loading="isLoading">Войти</el-button>
-          <el-button class="fullSize bigFS white--style"><GoogleIcon />Продолжить с Google</el-button>
-
+          <GauthComponent />
           <p class="supportText">
             Еще не зарегистрированы? <router-link :to="{name: 'RegisterPage'}">Регистрация</router-link>
           </p>
@@ -28,13 +27,13 @@
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import DefaultInput from "@/components/form/DefaultInput";
 import AuthImageComponent from "../default-components/AuthImageComponent"
-import GoogleIcon from "@/components/icons/GoogleIcon"
+import GauthComponent from "@/views/default-components/GauthComponent";
 
 export default {
   components:{
     DefaultInput,
     AuthImageComponent,
-    GoogleIcon
+    GauthComponent
   },
   data:()=>({
     rules: {
