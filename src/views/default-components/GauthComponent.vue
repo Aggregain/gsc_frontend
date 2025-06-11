@@ -27,8 +27,8 @@ export default {
     ...mapActions("AuthModule", ["ON_GOOGLE_OAUTH"]),
     ...mapMutations('AuthModule', ['SET_TOKENS']),
 
-    async onGoogleOauth(jwt_token) {
-      const result = await this.ON_GOOGLE_OAUTH(jwt_token);
+    async onGoogleOauth(google_code) {
+      const result = await this.ON_GOOGLE_OAUTH(google_code);
       if (result.success) {
         this.SET_TOKENS(result.data);
         if(result.data.is_staff){

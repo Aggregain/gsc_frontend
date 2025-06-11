@@ -58,10 +58,10 @@ const actions = {
             commit("SET_LOADING", false);
         }
     },
-    async ON_GOOGLE_OAUTH({ commit }, jwt_token) {
+    async ON_GOOGLE_OAUTH({ commit }, google_code) {
         commit("SET_LOADING", true);
         try {
-            const response = await DefaultAPIInstance({ url: "/accounts/google/", method: "POST", data: {"token": jwt_token} });
+            const response = await DefaultAPIInstance({ url: "/accounts/google/", method: "POST", data: {"code": google_code} });
             ElNotification({
                 title: "Успех",
                 message: "Данные обновлены!",
