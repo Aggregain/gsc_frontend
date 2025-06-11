@@ -8,17 +8,17 @@
       {{ profileInfo.first_name }}<br>
       {{ profileInfo.second_name }}
     </p>
-    <ArrowIcon />
+<!--    <ArrowIcon />-->
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import ArrowIcon from "@/components/icons/ArrowIcon";
+// import ArrowIcon from "@/components/icons/ArrowIcon";
 
 export default {
   components:{
-    ArrowIcon
+    // ArrowIcon
   },
   methods:{
     ...mapActions("UserModule", ["GET_USER_INFO"]),
