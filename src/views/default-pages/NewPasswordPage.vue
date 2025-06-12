@@ -5,7 +5,7 @@
         {{ this.$route.params.reset_token }}
         <h1>Введите новый пароль</h1>
         <el-form ref="formRef" :model="resetForm" :rules="rules" validateOnRuleChange>
-          <DefaultInput label="Новый пароль" placeholder="Введите новый пароль" name="password" type="password" v-model="authForm.password" />
+          <DefaultInput label="Новый пароль" placeholder="Введите новый пароль" name="password" type="password" v-model="resetForm.password" />
           <el-button type="primary" class="fullSize bigFS" @click="submitForm" :loading="isLoading">Сохранить</el-button>
         </el-form>
       </el-col>

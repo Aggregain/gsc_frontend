@@ -5,7 +5,7 @@
         <h1>Забыли пароль?</h1>
         <p class="descr">Введите адрес электронной почты, указанный при регистрации. Мы отправим вам ссылку для сброса пароля.</p>
         <el-form ref="formRef" :model="resetForm" :rules="rules" validateOnRuleChange>
-          <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="authForm.email" />
+          <DefaultInput label="Email" placeholder="Введите вашу электронную почту" name="email" v-model="resetForm.email" />
           <el-button type="primary" class="fullSize bigFS" @click="submitForm" :loading="isLoading">Отправить запрос</el-button>
         </el-form>
       </el-col>
