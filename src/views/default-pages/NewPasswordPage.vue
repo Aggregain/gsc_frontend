@@ -2,7 +2,6 @@
   <div class="default-container authPage height100">
     <el-row :gutter="30" align="middle">
       <el-col :xs="{span: 24}" :span="12" :sm="{offset: 6}" class="text-center">
-        {{ this.$route.params.reset_token }}
         <h1>Введите новый пароль</h1>
         <el-form ref="formRef" :model="resetForm" :rules="rules" validateOnRuleChange>
           <DefaultInput label="Новый пароль" placeholder="Введите новый пароль" name="password" type="password" v-model="resetForm.password" />
@@ -23,19 +22,23 @@ export default {
   },
   data:()=>({
     resetForm: {
-      email: ''
+      password: '',
+      token: '',
+      uidb64: ''
     },
     rules: {
       password: [{ required: true, message: "Обязательное поле", trigger: "blur" }],
     }
   }),
   methods: {
-    ...mapActions("AuthModule", ["ON_LOGIN"]),
+    ...mapActions("AuthModule", ["CONFIRM_RESET_PASSWORD"]),
 
     async submitForm() {
       this.$refs.formRef.validate(async (valid) => {
         if (valid) {
-          const result = await this.ON_LOGIN();
+          this.resetForm.token = this.$route.params.reset_token;
+          this.resetForm.uidb64 = this.$route.params.reset_uid;
+          const result = await this.CONFIRM_RESET_PASSWORD(this.resetForm);
           if (result.success) {
             this.$router.push({name: "LoginPage"});
           }

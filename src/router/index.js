@@ -49,7 +49,7 @@ const routes = [
         }
       },
       {
-        path: 'reset',
+        path: 'reset-password',
         name: 'ResetPasswordPage',
         component: () => import('../views/default-pages/ResetPasswordPage'),
         meta: {
@@ -57,7 +57,7 @@ const routes = [
         }
       },
       {
-        path: 'reset/:reset_token',
+        path: 'reset-password/:reset_uid/:reset_token',
         name: 'NewPasswordPage',
         component: () => import('../views/default-pages/NewPasswordPage'),
         meta: {

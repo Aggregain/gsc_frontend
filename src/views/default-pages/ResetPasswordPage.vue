@@ -30,12 +30,12 @@ export default {
     }
   }),
   methods: {
-    ...mapActions("AuthModule", ["ON_LOGIN"]),
+    ...mapActions("AuthModule", ["RESET_PASSWORD"]),
 
     async submitForm() {
       this.$refs.formRef.validate(async (valid) => {
         if (valid) {
-          const result = await this.ON_LOGIN();
+          const result = await this.RESET_PASSWORD(this.resetForm.email);
           if (result.success) {
             this.$router.push({name: "LoginPage"});
           }
