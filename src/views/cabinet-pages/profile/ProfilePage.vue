@@ -1,9 +1,9 @@
 <template>
-  <el-row :gutter="30">
+  <el-row :gutter="30" class="profilePage">
     <el-col :span="24">
       <el-card shadow="never" v-loading="isLoading">
         <el-form ref="formRef" :model="userForm" :rules="rules" validateOnRuleChange>
-          <el-tabs v-model="activeTab">
+          <el-tabs stretch v-model="activeTab">
             <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" :disabled="tab.disabled">
               <template #label>
                 <el-badge v-if="tab.disabled" value="coming soon"  type="success">
@@ -48,7 +48,7 @@ export default {
       { name: 'tab1', label: 'Мои данные', component: 'ProfileForm', disabled: false },
       { name: 'tab2', label: 'Квалификации', component: 'QualificationsForm', disabled: false },
       { name: 'tab3', label: 'Тип программы', component: 'ProgramsForm', disabled: false },
-      { name: 'tab4', label: 'AI', disabled: true },
+      // { name: 'tab4', label: 'AI', disabled: true },
     ],
     rules: {
       first_name: [{ required: true, message: "Обязательное поле", trigger: "blur" }],

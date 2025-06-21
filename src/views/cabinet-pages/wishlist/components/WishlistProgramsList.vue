@@ -11,7 +11,7 @@
               {{ (n => n.length > 32 ? n.slice(0, 32) + '...' : n)(item.education_place.name) }}
               <span>{{ item.education_place?.country_name }}, {{ item.education_place?.city_name }}</span>
             </p>
-            <el-button type="info" class="onlyIcon mini" @click.stop="deleteWishlist(item.id)"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
+            <el-button type="info" class="onlyIcon medium-second" @click.stop="deleteWishlist(item.id)"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
           </div>
           <div class="body">
             <p><span class="label">Рейтинг университета:</span> <span>{{ parseInt(item.education_place?.rating) }}</span></p>

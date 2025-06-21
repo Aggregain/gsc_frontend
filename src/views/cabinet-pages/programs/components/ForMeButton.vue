@@ -1,6 +1,7 @@
 <template>
   <el-button
       class="mini afterIcon"
+      v-if="this.profileInfo?.degree"
       @click="forMeFilter"
       :type="forMeStatus?'success':'primary'"
       :disabled="isLoading"

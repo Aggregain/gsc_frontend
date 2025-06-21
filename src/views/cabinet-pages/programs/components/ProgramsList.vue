@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="24" class="programsList">
     <template v-if="programsList?.length>0">
-      <el-col :span="8" v-for="item in programsList" v-bind:key="item">
+      <el-col :xs={span:24} :span="8" v-for="item in programsList" v-bind:key="item">
         <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
           <div class="head">
             <div class="logoBlock">

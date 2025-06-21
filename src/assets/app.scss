@@ -393,9 +393,13 @@ hr{
         opacity: 0;
       }
     }
-    &.mini{
+    &.medium-second{
       width: 4.8rem;
       height: 4.8rem;
+    }
+    &.mini{
+      width: 4.4rem;
+      height: 4.4rem;
     }
   }
   &.el-button--primary{
@@ -1491,6 +1495,10 @@ img.degreeImage{
   height: 1.6rem;
 }
 
+.forMobile{
+  display: none;
+}
+
 @media (max-width: 1550px) {
   html {
     font-size: 56.25%; /* 1rem = 9px */
@@ -1503,8 +1511,68 @@ img.degreeImage{
   }
 }
 
-//@media (max-width: 925px) {
-//  html {
-//    font-size: 43.75%; /* 1rem = 7px */
-//  }
-//}
+@media (max-width: 925px) {
+  //html {
+  //  font-size: 43.75%; /* 1rem = 7px */
+  //}
+  .forMobile{
+    display: inline-flex;
+  }
+  .el-header{
+    padding: 2rem;
+    h1{
+      font-size: 2rem;
+    }
+    #profileBlock{
+      margin-left: 1rem;
+      p.name{
+        display: none;
+      }
+    }
+  }
+  #main-block{
+    padding: 2rem 2rem 10rem;
+  }
+  .el-aside{
+    display: none;
+  }
+  #inner-container{
+    padding: 0;
+  }
+  .el-tabs__nav-wrap.is-scrollable{
+    padding: 0 1rem;
+  }
+  .el-tabs__nav-next, .el-tabs__nav-prev{
+    height: 100%;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    z-index: 3;
+    padding: 0 .5rem;
+  }
+  .el-tabs{
+    .el-tabs__content{
+      padding-top: 2.4rem;
+    }
+  }
+  .el-card{
+    .el-card__body{
+      padding: 2rem;
+    }
+  }
+  .el-popper{
+    max-width: calc(100% - 2.5rem);
+  }
+  .el-drawer{
+    max-width: 80%;
+  }
+  #programsPage{
+    .text-right{
+      text-align: left;
+    }
+    h2{
+      margin-bottom: 1.5rem;
+    }
+  }
+}

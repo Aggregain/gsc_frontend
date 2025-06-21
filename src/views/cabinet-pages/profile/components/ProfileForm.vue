@@ -1,15 +1,15 @@
 <template>
   <el-row :gutter="24">
-    <el-col :span="4">
+    <el-col :xs={span:24} :span="4">
       <UploadAvatar />
     </el-col>
-    <el-col :span="10">
+    <el-col :xs={span:24} :span="10">
       <DefaultInput label="Имя" placeholder="Введите Имя" name="first_name" v-model="computedUserForm.first_name" />
       <DefaultInput label="Фамилия" placeholder="Введите Фамилию" name="second_name" v-model="computedUserForm.second_name" />
       <DefaultInput label="Отчество" placeholder="Введите Отчество" name="last_name" v-model="computedUserForm.last_name" />
       <DatePicker label="Дата рождения" placeholder="дд.мм.гггг" name="birth_date" v-model="computedUserForm.birth_date" />
     </el-col>
-    <el-col :span="10">
+    <el-col :xs={span:24} :span="10">
       <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="computedUserForm.phone_number" />
       <DefaultSelect
           v-model="computedUserForm.country"
