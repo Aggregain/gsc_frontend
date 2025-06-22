@@ -3,14 +3,17 @@
 
     <template v-if="universityInfo.id">
       <HeadBlock />
-      <el-col :span="18">
+      <el-col :xs={span:24} :sm={span:0}>
+        <RightBlock />
+      </el-col>
+      <el-col :xs={span:24} :span="18">
         <div class="mainImage" v-if="universityInfo.image">
           <img :src="universityInfo.image" alt="">
         </div>
 
         <TabsComponent />
       </el-col>
-      <el-col :span="6">
+      <el-col :xs={span:0} :span="6">
         <RightBlock />
       </el-col>
     </template>

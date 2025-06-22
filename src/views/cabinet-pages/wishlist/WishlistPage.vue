@@ -2,7 +2,7 @@
   <el-row :gutter="30" id="wishlistPage" v-loading="wishlistLoading">
     <el-col :span="24" v-if="wishlistData?.length>0">
       <el-row :gutter="40" align="middle">
-        <el-col :span="12">
+        <el-col :xs={span:24} :span="12">
           <h2>Университета в избранном: {{ wishlistData.length }}</h2>
         </el-col>
 <!--        <el-col :span="12" class="text-right">-->

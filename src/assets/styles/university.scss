@@ -239,3 +239,52 @@
     }
   }
 }
+
+@media (max-width: 925px) {
+  #universityPage{
+    .stickyHeader{
+      position: relative;
+      margin: 0;
+      &.scrolled{
+        &:before{
+          opacity: 0;
+        }
+      }
+      .headBlock{
+        margin-bottom: 2rem;
+        p.title{
+          font-size: 2rem;
+          span{
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .el-card {
+      .contentBlock {
+        .infoList {
+          flex-direction: column;
+          margin: 2rem 0 0;
+          gap: 1.5rem;
+        }
+      }
+      &.specialityCard{
+        width: calc(100% - 4px);
+        .infoGrid{
+          gap: 0;
+          grid-template-columns: repeat(1, 1fr);
+          &:before, &:after{
+            display: none;
+          }
+          p{
+            &+p{
+              border-top: 1px solid $custom-white;
+              padding-top: 1.2rem;
+              margin-top: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

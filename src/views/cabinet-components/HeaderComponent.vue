@@ -1,9 +1,12 @@
 <template>
   <el-row :gutter="30" align="middle">
-    <el-col :xs="{span:12}" :sm="{span:12}">
+    <el-col :xs="{span:14}" :sm="{span:12}" class="mobileAlignCenter">
+      <div class="forMobile mobileLogo">
+        <img src="@/assets/logo.png" alt="Logo">
+      </div>
       <h1 id="mainTitle">{{ this.pageTitle }}</h1>
     </el-col>
-    <el-col :xs="{span:12}" :sm="{span:12}" class="text-right">
+    <el-col :xs="{span:10}" :sm="{span:12}" class="text-right">
       <NotificationsComponent v-if="!showNotifications" />
       <ProfileComponent />
     </el-col>

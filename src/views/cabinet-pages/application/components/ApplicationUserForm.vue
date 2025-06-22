@@ -9,43 +9,43 @@
           </div>
         </el-col>
         <el-col :span="24"><hr></el-col>
-        <el-col :span="8">
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             IELTS <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.ielts_grade" name="ielts_grade" />
           <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.ielts_attachment" name="ielts_attachment" @updateInfo="getAttachments" />
         </el-col>
-        <el-col :span="8">
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             SAT <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.sat_grade" name="sat_grade" />
           <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.sat_attachment" name="sat_attachment" @updateInfo="getAttachments" />
         </el-col>
-        <el-col :span="8">
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             GMAT <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gmat_grade" name="gmat_grade" />
           <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.gmat_attachment" name="gmat_attachment" @updateInfo="getAttachments" />
         </el-col>
-        <el-col :span="24"><hr></el-col>
-        <el-col :span="8">
+        <el-col :xs={span:0} :span="24"><hr></el-col>
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             TOEFL <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.toefl_grade" name="toefl_grade" />
           <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.toefl_attachment" name="toefl_attachment" @updateInfo="getAttachments" />
         </el-col>
-        <el-col :span="8">
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             GRE <span>{{ default_text }}</span>
           </p>
           <DefaultInput :readonly="readonly" placeholder="Введите балл" v-model="userForm.gre_grade" name="gre_grade" />
           <UploadAttachmentComponent :readonly="readonly" :attachmentFile="attachmentsByName.gre_attachment" name="gre_attachment" @updateInfo="getAttachments" />
         </el-col>
-        <el-col :span="8">
+        <el-col :xs={span:24} :span="8">
           <p class="custom-label">
             DUOLINGO <span>{{ default_text }}</span>
           </p>

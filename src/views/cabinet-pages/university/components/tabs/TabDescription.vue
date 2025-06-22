@@ -37,7 +37,7 @@
         </div>
         <div class="contentBlock">
           <el-row :gutter="24">
-            <el-col :span="12" v-for="item in universityInfo.specialties" v-bind:key="item.id"><SpecialityCard :info="item" /></el-col>
+            <el-col :xs={span:24} :span="12" v-for="item in universityInfo.specialties" v-bind:key="item.id"><SpecialityCard :info="item" /></el-col>
           </el-row>
         </div>
       </template>

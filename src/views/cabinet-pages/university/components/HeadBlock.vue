@@ -1,7 +1,7 @@
 <template>
   <el-col :class="['stickyHeader', { scrolled: isScrolled }]">
     <el-row :gutter="40" align="middle">
-      <el-col :span="14">
+      <el-col :xs={span:24} :span="14">
         <div class="headBlock">
           <div class="logoBlock">
             <img v-if="universityInfo.logo" :src="universityInfo.logo" alt="">
@@ -12,8 +12,8 @@
           </p>
         </div>
       </el-col>
-      <el-col :span="10" class="text-right">
-        <el-button v-if="universityInfo.id" :loading="isLoading" @click="createApplication" class="medium" type="primary">Подать заявку</el-button>
+      <el-col :xs={span:24} :span="10" class="text-right">
+        <el-button v-if="universityInfo.id" :loading="isLoading" @click="createApplication" class="medium hideForMobile" type="primary">Подать заявку</el-button>
         <el-button v-if="universityInfo.link" @click="openLink" class="medium afterIcon" type="primary" plain>Перейти на сайт</el-button>
         <WishlistButtonComponent v-if="universityInfo.id" />
       </el-col>

@@ -71,6 +71,12 @@
         }
       }
     }
+    &.opened{
+      display: none;
+    }
+    &.hidden{
+      display: none;
+    }
   }
   .programsList{
     margin: 2.4rem 0 0;
@@ -118,7 +124,7 @@
       background: $color-main-9;
       margin: 0;
       padding: 2rem;
-      height: calc(100svh - 15rem);
+      height: calc(100svh - 14rem);
       overflow-x: hidden;
       overflow-y: auto;
       &.opened{

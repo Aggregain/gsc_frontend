@@ -68,10 +68,16 @@ const actions = {
 
             return { success: true, application_id: data.id };
         } catch (error) {
-            console.log('Application Error:', error);
+            const status = error?.response?.status;        // axios-специфично
+            const message =
+                status === 406
+                    ? "В этом вузе нет подходящей для вас программы обучения."
+                    : "Попробуйте позже.";
+
+            console.error("Application Error:", error);
             ElNotification({
-                title: "Ошибка",
-                message: "Ошибка при создании заявки! Возможно уже есть активная заявка.",
+                title: "Ошибка при создании заявки!",
+                message,
                 type: "error"
             });
 

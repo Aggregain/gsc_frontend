@@ -3,7 +3,7 @@
     <el-col :span="24">
       <el-card shadow="never" v-loading="isLoading">
         <el-form ref="formRef" :model="userForm" :rules="rules" validateOnRuleChange>
-          <el-tabs stretch v-model="activeTab">
+          <el-tabs v-model="activeTab">
             <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" :disabled="tab.disabled">
               <template #label>
                 <el-badge v-if="tab.disabled" value="coming soon"  type="success">

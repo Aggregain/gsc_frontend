@@ -8,7 +8,7 @@
       </div>
       <div class="contentBlock" v-if="universityInfo.programs?.length>0">
         <el-row :gutter="24">
-          <el-col :span="12" v-for="item in universityInfo.programs" v-bind:key="item.id">
+          <el-col :xs={span:24} :span="12" v-for="item in universityInfo.programs" v-bind:key="item.id">
             <ProgramCard :info="item" />
           </el-col>
         </el-row>

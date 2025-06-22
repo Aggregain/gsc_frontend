@@ -1520,8 +1520,22 @@ img.degreeImage{
   }
   .el-header{
     padding: 2rem;
-    h1{
-      font-size: 2rem;
+    .mobileAlignCenter{
+      align-items: center;
+      gap: 1.2rem;
+      display: flex;
+      .mobileLogo{
+        display: inline-flex;
+        img{
+          display: flex;
+          flex-shrink: 0;
+          height: 5.6rem;
+        }
+      }
+      h1{
+        font-size: 2rem;
+        display: inline-flex;
+      }
     }
     #profileBlock{
       margin-left: 1rem;
@@ -1574,5 +1588,13 @@ img.degreeImage{
     h2{
       margin-bottom: 1.5rem;
     }
+  }
+  .upload-button{
+    &.greyStyle{
+      max-width: 30rem;
+    }
+  }
+  .hideForMobile{
+    display: none!important;
   }
 }
