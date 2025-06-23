@@ -1545,10 +1545,57 @@ img.degreeImage{
     }
   }
   #main-block{
-    padding: 2rem 2rem 10rem;
+    padding: 2rem 2rem 12rem;
   }
   .el-aside{
-    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 2.4rem 2rem;
+    .asideInBlock{
+      width: 100%;
+      height: auto;
+      flex-direction: unset;
+      gap: 1rem;
+      justify-content: space-between;
+      .logo{
+        display: none;
+      }
+      ul.menu{
+        display: inline-flex;
+        margin: 0;
+        width: auto;
+        flex-grow: unset;
+        flex-direction: row;
+        &+.el-button{
+          display: inline-flex;
+          margin: 0;
+          border-color: transparent;
+        }
+      }
+      .el-button{
+        width: 5.6rem;
+        padding: 0;
+        justify-content: center !important;
+        overflow: visible;
+        span{
+          svg{
+            margin: 0;
+          }
+          span{
+            display: none;
+          }
+        }
+      }
+    }
+    &.opened{
+      .asideInBlock{
+        width: 100%;
+      }
+    }
   }
   #inner-container{
     padding: 0;
