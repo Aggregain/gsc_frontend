@@ -11,21 +11,21 @@
     </el-col>
     <el-col :xs={span:24} :span="10">
       <DefaultInput label="Номер телефона" placeholder="+7" name="phone_number" v-model="computedUserForm.phone_number" />
-      <DefaultSelect
-          v-model="computedUserForm.country"
-          label="Страна проживания"
-          name="country"
-          placeholder="Выберите страну"
-          :loading="dictionaryLoading"
-          :options="dictionaryList.countries"
-      />
+<!--      <DefaultSelect-->
+<!--          v-model="computedUserForm.country"-->
+<!--          label="Страна проживания"-->
+<!--          name="country"-->
+<!--          placeholder="Выберите страну"-->
+<!--          :loading="dictionaryLoading"-->
+<!--          :options="dictionaryList.countries"-->
+<!--      />-->
       <DefaultSelect
           v-model="computedUserForm.city"
           label="Город проживания"
           name="city"
           placeholder="Выберите город"
           :loading="dictionaryLoading"
-          :options="dictionaryList.cities"
+          :options="kzCities"
       />
       <DefaultSelect
           v-model="computedUserForm.education_place"
@@ -65,6 +65,7 @@ export default {
         this.$emit("update:modelValue", value);
       },
     },
+    kzCities() {return this.dictionaryList.cities?.filter(city => city.country === 1) || [];}
   }
 };
 </script>

@@ -739,6 +739,8 @@ a.defaultLink{
           width: 100%;
           display: flex;
           margin: 0;
+          object-fit: contain;
+          object-position: center;
         }
       }
       p.title{
