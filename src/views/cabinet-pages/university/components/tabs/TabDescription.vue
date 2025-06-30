@@ -12,7 +12,7 @@
           <div class="infoList">
             <p><span>Год основания</span>{{ $formatDate(universityInfo?.foundation_date) }}</p>
             <p><span>Расположение</span>{{ universityInfo?.country_name }}, {{ universityInfo?.city_name }}</p>
-            <p><span>Рейтинг университета</span>{{ parseInt(universityInfo?.rating) }}</p>
+<!--            <p><span>Рейтинг университета</span>{{ parseInt(universityInfo?.rating) }}</p>-->
           </div>
         </div>
 

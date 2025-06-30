@@ -3,7 +3,7 @@
     <template v-if="wishlistData?.length>0">
       <el-col :xs={span:24} :span="8" v-for="item in wishlistData" v-bind:key="item">
         <el-card class="programCard" shadow="never" @click="goToUniversity(item.education_place.id)">
-          <div class="head">
+          <div class="head" style="border-bottom: none; padding-bottom: 0;">
             <div class="logoBlock">
               <img v-if="item?.education_place?.logo" :src="item.education_place.logo" alt="">
             </div>
@@ -13,9 +13,9 @@
             </p>
             <el-button type="info" class="onlyIcon medium-second" @click.stop="deleteWishlist(item.id)"><HeartIcon :color="'#D81B60'" :fill="'#D81B60'" /></el-button>
           </div>
-          <div class="body">
-            <p><span class="label">Рейтинг университета:</span> <span>{{ parseInt(item.education_place?.rating) || "-" }}</span></p>
-          </div>
+<!--          <div class="body">-->
+<!--            <p><span class="label">Рейтинг университета:</span> <span>{{ parseInt(item.education_place?.rating) || "-" }}</span></p>-->
+<!--          </div>-->
         </el-card>
       </el-col>
     </template>

@@ -20,14 +20,14 @@
         <span v-else>-</span>
       </p>
     </div>
-    <hr class="mini">
-    <div class="headLabel">
-      <div class="defaultIcon danger"><Icon icon="solar:calendar-bold"></Icon></div>
-      <p>
-        Дедлайн подачи:
-        <span>{{ $formatDate(foundProgram?.admission_deadline) }}</span>
-      </p>
-    </div>
+<!--    <hr class="mini">-->
+<!--    <div class="headLabel">-->
+<!--      <div class="defaultIcon danger"><Icon icon="solar:calendar-bold"></Icon></div>-->
+<!--      <p>-->
+<!--        Дедлайн подачи:-->
+<!--        <span>{{ $formatDate(foundProgram?.admission_deadline) }}</span>-->
+<!--      </p>-->
+<!--    </div>-->
     <hr class="mini">
     <el-button v-if="universityInfo.id" :loading="isLoading" @click="createApplication" type="primary" class="medium fullSize">Подать заявку</el-button>
   </el-card>

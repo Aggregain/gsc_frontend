@@ -24,7 +24,7 @@ export default {
   computed: {
     visibleColumns() {
       const fields = [
-        { prop: 'name', label: 'Этап' },
+        { prop: 'name', label: 'Название' },
         { prop: 'due_to', label: 'Крайний срок' },
         { prop: 'price_per_year_text', label: 'Сумма в год' }
       ]

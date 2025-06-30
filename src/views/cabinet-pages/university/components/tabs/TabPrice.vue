@@ -4,7 +4,7 @@
 
       <div class="headLabel">
         <div class="defaultIcon"><Icon icon="mingcute:wallet-4-fill"></Icon></div>
-        <p>Стоимость</p>
+        <p>Проживание и питание</p>
       </div>
 
       <div class="contentBlock" v-if="universityInfo?.programs?.length>0">

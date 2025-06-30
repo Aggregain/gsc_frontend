@@ -13,7 +13,7 @@ import TabDescription from "./tabs/TabDescription"
 import TabPrograms from "./tabs/TabPrograms"
 import TabRequirements from "./tabs/TabRequirements"
 import TabScholarship from "./tabs/TabScholarship"
-import TabDeadlines from "./tabs/TabDeadlines"
+// import TabDeadlines from "./tabs/TabDeadlines"
 import TabPrice from "./tabs/TabPrice"
 
 export default {
@@ -22,7 +22,7 @@ export default {
     TabPrograms,
     TabRequirements,
     TabScholarship,
-    TabDeadlines,
+    // TabDeadlines,
     TabPrice,
   },
   data:()=>({
@@ -31,9 +31,9 @@ export default {
       { name: 'tab1', label: 'Описание', component: 'TabDescription' },
       { name: 'tab2', label: 'Программы', component: 'TabPrograms' },
       { name: 'tab3', label: 'Требования к поступлению', component: 'TabRequirements' },
-      { name: 'tab4', label: 'Scholarship', component: 'TabScholarship' },
-      { name: 'tab5', label: 'Дедлайны', component: 'TabDeadlines' },
-      { name: 'tab6', label: 'Стоимость', component: 'TabPrice' }
+      { name: 'tab4', label: 'Скидки', component: 'TabScholarship' },
+      // { name: 'tab5', label: 'Дедлайны', component: 'TabDeadlines' },
+      { name: 'tab6', label: 'Проживание и питание', component: 'TabPrice' }
     ]
   }),
 }

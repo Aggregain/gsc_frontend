@@ -4,7 +4,7 @@
 
       <div class="headLabel">
         <div class="defaultIcon"><Icon icon="tabler:award-filled"></Icon></div>
-        <p>Scholarship</p>
+        <p>Скидки</p>
       </div>
 
       <div class="contentBlock" v-html="universityInfo?.scholarship_description" />
